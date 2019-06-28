@@ -1,6 +1,7 @@
 import React from 'react';
 import StatusUp from './statusUp';
-
+import Combination from './combination'
+import Combination4class from './combination4class'
 // https://stackoverflow.com/questions/48869369/property-value-does-not-exist-on-type-readonly
 
 interface IMyComponentProps {
@@ -178,6 +179,10 @@ export default class Login extends React.Component <IMyComponentProps, IMyCompon
                 <BoliInfo temperature={this.state.temperature}/>
 
                 <StatusUp/>
+
+                <Combination/>
+
+                <Combination4class/>
             </div>
         );
     }
