@@ -1,7 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './pages/1helloworld';
+// import App from './pages/2funcComponent';
+// import App from './pages/4funcComponentTQ';
+// import App from './pages/3classComponent';
+// import App from './pages/5Clock';
+// import App from './pages/6Event';
+import App from './pages/7Condition';
+
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
