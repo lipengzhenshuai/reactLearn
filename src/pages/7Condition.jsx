@@ -16,9 +16,6 @@ function Greeting(props) {
     }
 }
 
-function aa() {
-    return <Greeting name='lipeng'></Greeting>
-}
 /**
  *
  *
