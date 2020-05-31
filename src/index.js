@@ -7,7 +7,8 @@ import './index.css';
 // import App from './pages/3classComponent';
 // import App from './pages/5Clock';
 // import App from './pages/6Event';
-import App from './pages/7Condition';
+// import App from './pages/7Condition';
+import App from './pages/8cycle';
 
 
 import * as serviceWorker from './serviceWorker';
