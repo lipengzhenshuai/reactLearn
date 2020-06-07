@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './pages/1helloworld';
-// import App from './pages/2funcComponent';
-// import App from './pages/4funcComponentTQ';
-// import App from './pages/3classComponent';
-// import App from './pages/5Clock';
-// import App from './pages/6Event';
-// import App from './pages/7Condition';
-// import App from './pages/8cycle';
-// import App from './pages/9form';
-import App from './pages/10StateUp';
+// import App from './pages/core/1helloworld';
+// import App from './pages/core/2funcComponent';
+// import App from './pages/core/4funcComponentTQ';
+// import App from './pages/core/3classComponent';
+// import App from './pages/core/5Clock';
+// import App from './pages/core/6Event';
+// import App from './pages/core/7Condition';
+// import App from './pages/core/8cycle';
+// import App from './pages/core/9form';
+// import App from './pages/core/10StateUp';
+import App from './pages/senior/1codeSplit';
 
 
 import * as serviceWorker from './serviceWorker';
