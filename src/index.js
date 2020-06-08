@@ -11,7 +11,13 @@ import './index.css';
 // import App from './pages/core/8cycle';
 // import App from './pages/core/9form';
 // import App from './pages/core/10StateUp';
-import App from './pages/senior/1codeSplit';
+
+
+// import App from './pages/senior/1codeSplit';
+// import App from './pages/senior/2Context';
+// import App from './pages/senior/3errorSide';
+// import App from './pages/senior/4refs';
+import App from './pages/senior/5fragments';
 
 
 import * as serviceWorker from './serviceWorker';
