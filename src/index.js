@@ -11,7 +11,7 @@ import './index.css';
 // import App from './pages/core/8cycle';
 // import App from './pages/core/9form';
 // import App from './pages/core/10StateUp';
-import App from './pages/core/11LifeCycle';
+// import App from './pages/core/11LifeCycle';
 
 
 // import App from './pages/senior/1codeSplit';
@@ -19,6 +19,11 @@ import App from './pages/core/11LifeCycle';
 // import App from './pages/senior/3errorSide';
 // import App from './pages/senior/4refs';
 // import App from './pages/senior/5fragments';
+
+
+
+// import App fro./pages/router/1basicasic';
+import App from './pages/router/1basic';
 
 
 import * as serviceWorker from './serviceWorker';
