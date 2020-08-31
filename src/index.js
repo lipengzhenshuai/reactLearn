@@ -23,7 +23,7 @@ import './index.css';
 // import App from'./pages/router/1basic';
 
 
-import App from './pages/redux/1basic.jsx';
+import App from './pages/antd/lunbo';
 
 import * as serviceWorker from './serviceWorker';
 

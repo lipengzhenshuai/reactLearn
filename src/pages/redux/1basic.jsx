@@ -28,11 +28,13 @@ class HelloWorld extends React.Component {
     plus = () => {
       // 触发变更
       store.dispatch({ type: 'INCREMENT' })
+      this.setState({state: store.getState()});
     }
 
     subtract = () => {
       // 触发变更
       store.dispatch({ type: 'DECREMENT' })
+      this.setState({state: store.getState()});
     }
 
     render() {
