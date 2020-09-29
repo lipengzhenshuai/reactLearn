@@ -19,11 +19,12 @@ import './index.css';
 // import App from './pages/senior/3errorSide';
 // import App from './pages/senior/4refs';
 // import App from './pages/senior/5fragments';
+import App from './pages/senior/6HOC';
 
 // import App from'./pages/router/1basic';
 
 
-import App from './pages/antd/lunbo';
+// import App from './pages/antd/lunbo';
 
 import * as serviceWorker from './serviceWorker';
 
