@@ -27,7 +27,8 @@ import './index.css';
 
 // import App from './pages/antd/lunbo';
 
-import App from './pages/hook/1.tsx';
+import App from './pages/pinyin/src/index.jsx';
+// import App from './pages/hook/Test.jsx';
 
 import * as serviceWorker from './serviceWorker';
 
