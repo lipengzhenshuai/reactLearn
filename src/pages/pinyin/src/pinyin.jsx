@@ -6,6 +6,7 @@ import "./index.scss";
 import TopOptions from "./components/topOptions";
 import WordOptions from "./components/wordOptions";
 import PinyinOptions from "./components/pinyinOptions";
+import Content from "./components/content/content";
 import Panel1 from "./components/panel1";
 import Panel2 from "./components/panel2";
 
@@ -78,7 +79,9 @@ export default function Generate(props) {
             </div>
           </div>
         </div>
-        <div className="py-edit-content"></div>
+        <div className="py-edit-content">
+          <Content config={config} />
+        </div>
         <div className="py-footer">
           <div className="py-panel">
             <div>
