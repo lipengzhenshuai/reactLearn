@@ -104,7 +104,7 @@ export default function generate({ data = defaultConfig, onSubmit = () => { },
 	// getSelectList = _getSelectList(pyFontFamilys, wordFontFamilys, pyFontSizes, wordFontSizes, wordColors, pyColors);
 	// 1.初始化基本数据
 	ReactDOM.render(
-		<PinYin></PinYin>,
+		<PinYin config={config}></PinYin>,
 		document.querySelector(`#${containerId}`)
 	);
 	// 2.监听事件
@@ -332,25 +332,6 @@ export default function generate({ data = defaultConfig, onSubmit = () => { },
 // 		 return;
 // 	}
 // 	clickHandler(id);
-// }
-
-
-// function clickHandler(id) {
-// 	const { showWord, showPinyin } =
-// 		config.options;
-// 	switch (id) {
-// 		case IDs.SHOWWORD:
-// 			config.options.showWord = !showWord;
-// 			break;
-// 		case IDs.SHOWPINYIN:
-// 			config.options.showPinyin = !showPinyin;
-// 			break;
-// 		case IDs.RESET:
-// 			break;
-// 	}
-
-// 	document.querySelector("#"+id).firstElementChild.classList.toggle("checked");
-// 	document.querySelector(".py-edit-content").innerHTML = editContainer(config);
 // }
 
 // const clearSelected = (list) => {
