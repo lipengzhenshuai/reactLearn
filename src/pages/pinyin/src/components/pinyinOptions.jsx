@@ -19,7 +19,7 @@ function PinyinOptions(props) {
         <span>标准样式</span>
       </div>
       <div
-        onClick={() => updateBasicControl(1)}
+        // onClick={() => updateBasicControl(1)}
         className={
           pinyinType === 1
             ? "active disable py-list-item"
@@ -30,7 +30,7 @@ function PinyinOptions(props) {
         <span>首字大写</span>
       </div>
       <div
-        onClick={() => updateBasicControl(2)}
+        // onClick={() => updateBasicControl(2)}
         className={
           pinyinType === 2
             ? "active py-list-item disable last"
