@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { pyFontFamilys, wordFontFamilys, pyFontSizes, wordFontSizes, wordColors, pyColors } from "../data";
 export const getNode = (e) => {
 	let node;
@@ -65,6 +64,10 @@ export const getWordNameByValue = (value, list) => {
 	return (list.length > 0 || '') && list[0].label;
 }
 
+export const getWordNameByValue4PY = (value, list) => {
+	list = (list || pyFontFamilys).filter(item => (item.value === value || item.label === value) );
+	return (list.length > 0 || '') && list[0].label;
+}
 
 export const isPromise = func => {
 	return func && typeof func.then === 'function' && typeof func.catch === 'function';

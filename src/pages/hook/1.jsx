@@ -4,7 +4,7 @@ interface DemoProps {
 
 }
 
-const Demo: FC<DemoProps> = (props) => {
+const Demo: FC= (props) => {
 
     const inputElement = useRef();
 
@@ -15,7 +15,8 @@ const Demo: FC<DemoProps> = (props) => {
         console.log(inputElement?.current.value);
     }
 
-    return (<div>
+    return (
+    <div>
         {/* <input ref={inputElement} ></input><br/> */}
         <button onClick={handleFocusInput}>1111</button>
     </div>);

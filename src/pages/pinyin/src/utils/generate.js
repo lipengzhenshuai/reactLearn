@@ -1,4 +1,4 @@
-export const getPinYin = (strs: string) => {
+export const getPinYin = (strs) => {
 	const list = [];
 	for (let word of strs) {
 		const pinyin = generate(word);
@@ -12,7 +12,7 @@ export const getPinYin = (strs: string) => {
 	return list;
 };
 
-const generate = (str: string) => {
+const generate = (str) => {
 	// @ts-ignore
 	return pinyinUtil.getPinyin(str, "", true, true);
 };

@@ -206,7 +206,7 @@
 
 		.pys:hover {
 			color: #3f92ff;
-			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAWCAYAAAChWZ5EAAAAAXNSR0IArs4c6QAAAuhJREFUSA29VU1IVFEU/s6b0RDDTVREm6AWbYNWBTrTOGlFIg22CCmwNpNvLGiRBOEiWkQ7Z1QiDJKgHyspA0NGZwzCaFEugtq5MtIJikAK9M3tu695z+c0k3/NXHhzzz3n3POd3zuCMq+WR6pybg43RSEChWtSTnyCV2W+4KkCGm1cwWd/uRw4ck/VzM1imHi1DqYIRsuSgVBCbbEUXiqF/Q44BCPbtiNiuIwSEQ231A6CT3jBGfkTgjcPnpSfJc1AoE/twgKSrPluNz7BAMHbCG5pXskcCMTVXtpPMvKdHvDetAlThDOQWyUpQX2f2kfgV15wRnpjIibtXnDtw3934FCPOrC4iBRtb80FqdN8Nd0hnc7Zu0ugR+1BFq2G4Pm4Ke+8wrXS7PawlcUQ81tt3xUoQ+FiqkO6i9kyYOEBU9XFTn1D748XU1yJz5o3E3zYBQeyDOrcv8C1zaUSKFRkLQwG46phJbB8OcFb+awOEnyTLRMscNROpUy5k6+bfzaoeIE1mtcCbSCrMBTqUcF8xWLnuoSK8t4AP/tVpb1f/E6kY/Kw2B0v30jF5DVT1aQv5gRVloVhZuKgV7EQHUioy+yfXnrOGOyZnmdKj6VNeVFIvxDPvqgFbMZGZeEZycqc4g8fEB7vkLe587KNkV8n+BWHSUPffQaOjpky6fBWs7sOaGVG3ZQFHjOiCvuy4FuFH6FkVN47xpRSEkygm41rOjzuGfHhcLpdpjy8VZHLHNA36uKqhcz7BGAC7LR+pTvBdFQ+8O/Ul5lFP2VntEwvlm7GbyCcbJePfzhr+/3LAX1ddzVB7pK0p4RKs35BeBHoIj/iQgim2fah0ZhMu7w1EgUd0DboxFl29m23wQSWkxUtZ+SfDD/qx6Myo8/rXUvvQJ4FjlE/hW6d88CnqqpRu1FwDVnUAS3kiPYaBi5p2l2CSWxGcKRNMi5vA0TREnhtcjrOczo6mfaxyhqYo6fFfri8OuulfwMwLPRs5Eu2awAAAABJRU5ErkJggg==) no-repeat ~'4px/10px'7px;
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAWCAYAAAChWZ5EAAAAAXNSR0IArs4c6QAAAuhJREFUSA29VU1IVFEU/s6b0RDDTVREm6AWbYNWBTrTOGlFIg22CCmwNpNvLGiRBOEiWkQ7Z1QiDJKgHyspA0NGZwzCaFEugtq5MtIJikAK9M3tu695z+c0k3/NXHhzzz3n3POd3zuCMq+WR6pybg43RSEChWtSTnyCV2W+4KkCGm1cwWd/uRw4ck/VzM1imHi1DqYIRsuSgVBCbbEUXiqF/Q44BCPbtiNiuIwSEQ231A6CT3jBGfkTgjcPnpSfJc1AoE/twgKSrPluNz7BAMHbCG5pXskcCMTVXtpPMvKdHvDetAlThDOQWyUpQX2f2kfgV15wRnpjIibtXnDtw3934FCPOrC4iBRtb80FqdN8Nd0hnc7Zu0ugR+1BFq2G4Pm4Ke+8wrXS7PawlcUQ81tt3xUoQ+FiqkO6i9kyYOEBU9XFTn1D748XU1yJz5o3E3zYBQeyDOrcv8C1zaUSKFRkLQwG46phJbB8OcFb+awOEnyTLRMscNROpUy5k6+bfzaoeIE1mtcCbSCrMBTqUcF8xWLnuoSK8t4AP/tVpb1f/E6kY/Kw2B0v30jF5DVT1aQv5gRVloVhZuKgV7EQHUioy+yfXnrOGOyZnmdKj6VNeVFIvxDPvqgFbMZGZeEZycqc4g8fEB7vkLe587KNkV8n+BWHSUPffQaOjpky6fBWs7sOaGVG3ZQFHjOiCvuy4FuFH6FkVN47xpRSEkygm41rOjzuGfHhcLpdpjy8VZHLHNA36uKqhcz7BGAC7LR+pTvBdFQ+8O/Ul5lFP2VntEwvlm7GbyCcbJePfzhr+/3LAX1ddzVB7pK0p4RKs35BeBHoIj/iQgim2fah0ZhMu7w1EgUd0DboxFl29m23wQSWkxUtZ+SfDD/qx6Myo8/rXUvvQJ4FjlE/hW6d88CnqqpRu1FwDVnUAS3kiPYaBi5p2l2CSWxGcKRNMi5vA0TREnhtcjrOczo6mfaxyhqYo6fFfri8OuulfwMwLPRs5Eu2awAAAABJRU5ErkJggg==) no-repeat 4px/10px 7px;
 			background-color: #f5f6f7;
 		}
 
@@ -231,7 +231,7 @@
 		}
 
 
-		.panel {
+		.py-panel {
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
@@ -249,7 +249,7 @@
 				margin-bottom: 8px;
 			}
 
-			.opt {
+			.py-opt {
 				margin: 0 5px;
 				cursor: pointer;
 				position: relative;
@@ -260,7 +260,7 @@
 				border-radius: 4px;
 				border: 1px solid #ffffff;
 
-				&.border {
+				&.py-borders {
 					border: 1px solid #eff1f2;
 					border-radius: 4px;
 					padding: 0 10px;
@@ -363,46 +363,68 @@
 				.fontColorPanel {
 					position: absolute;
 					z-index: 3;
-					width: 100px;
-					top: 32px;
+					min-width: 100px;
+					top: 24px;
 					left: 0;
-					box-shadow: 0px 5px 10px rgba(40, 41, 61, 0.08);
-					border-radius: 8px;
-					background: white;
-					padding-top: 7px;
+					background: rgba(255, 255, 255, 0);
+					padding-top: 10px;
 
-					ul {
-						margin: 0;
-						padding: 0;
-						max-height: 150px;
-						overflow: auto;
-
-						li {
-							list-style-type: none;
-							margin-bottom: 0;
-							padding: 12px 10px;
-							display: flex;
-							color: #474D6B;
-							font-size: 12px;
-							line-height: 14px;
-							align-items: center;
-
-							&:hover {
-								background: #F1F3F4;
-							}
-
-							.color-box {
-								display: inline-block;
-								width: 16px;
-								height: 16px;
-								border-radius: 4px;
-								background: red;
-								vertical-align: middle;
-								margin: 0 10px 0 5px;
-
+					> div {
+						box-shadow: 0px 5px 10px rgba(40, 41, 61, 0.08);
+						background: white;
+						padding: 7px 0 5px;
+						border-radius: 8px;
+						ul {
+							margin: 0;
+							padding: 0;
+							max-height: 150px;
+							overflow: auto;
+	
+							li {
+								list-style-type: none;
+								margin-bottom: 0;
+								padding: 12px 10px;
+								display: flex;
+								color: #474D6B;
+								font-size: 12px;
+								line-height: 14px;
+								align-items: center;
+								white-space: nowrap;
+								max-width: 210px;
+	
+								&:hover {
+									background: #F1F3F4;
+								}
+	
+								.color-box {
+									display: inline-block;
+									width: 16px;
+									height: 16px;
+									border-radius: 4px;
+									vertical-align: middle;
+									margin: 0 10px 0 5px;
+	
+								}
 							}
 						}
 					}
+
+				}
+			}
+
+			.font-width-area {
+				margin: 0 8px;
+
+				>input {
+					width: 60px;
+					height: 32px;
+					border: 1px solid #E4EBF1;
+					box-sizing: border-box;
+					border-radius: 6px;
+				}
+
+				>input:focus {
+					outline-color: #E4EBF1;
 				}
 			}
 		}
@@ -412,8 +434,8 @@
 			margin-top: 56px;
 		}
 
-		.ok-btn,
-		.cancel-btn {
+		.py-ok-btn,
+		.py-cancel-btn {
 			width: 77px;
 			height: 32px;
 			border: 0;
@@ -422,12 +444,12 @@
 			outline: none;
 		}
 
-		.cancel-btn {
+		.py-cancel-btn {
 			color: #A3B3C2;
 			background: transparent;
 		}
 
-		.ok-btn {
+		.py-ok-btn {
 			background: #00BE7B;
 			border-radius: 6px;
 			color: white;
@@ -441,7 +463,19 @@
 	.hide-remain {
 		opacity: 0;
 	}
+}
 
+// 单独的样式
+
+.py-item-wrapper {
+
+	.hide {
+		display: none !important;
+	}
+	
+	.hide-remain {
+		opacity: 0;
+	}
 }
 
 
@@ -472,7 +506,7 @@
 		padding-top: 18px;
 	}
 
-	.py-item {
+	> div {
 		display: inline-block;
 
 		text-align: center;
@@ -480,7 +514,7 @@
 		margin-bottom: 15px;
 		cursor: default;
 
-		.pinyin {
+		.py-pinyin {
 			text-align: center;
 			position: relative;
 			display: inline-block;
@@ -492,32 +526,15 @@
 				z-index: 3;
 				top: 50%;
 				transform: translateY(-50%);
-				right: -4px;
+				right: -5px;
 				width: 4px;
 				height: 8px;
 				display: -webkit-box;
 				display: flex;
 				flex-wrap: wrap;
 
-				.py-up {
-					display: inline-block;
-					width: 0;
-					height: 0;
-					border-left: 2px solid transparent;
-					border-right: 2px solid transparent;
-					border-bottom: 3px solid #666;
-					border-top: 0;
-					margin-bottom: 2px
-				}
-
 				.py-down {
-					display: inline-block;
-					width: 0;
-					height: 0;
-					border-left: 2px solid transparent;
-					border-right: 2px solid transparent;
-					border-top: 3px solid #666;
-					border-bottom: 0
+					line-height: 5px;
 				}
 
 				.py-masks {
@@ -534,12 +551,18 @@
 		}
 
 		.py-word {
-	
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			position: relative;
 			cursor: default;
+			line-height: 1;
+
+			> span {
+				width: 1.8em;
+				height: 1.2em;
+				white-space: nowrap;
+			}
 		}
 
 		.py-word-input {
@@ -552,11 +575,6 @@
 			top: -0.1em;
 			caret-color: #333;
 			outline: none;
-		}
-
-		.py-word-span {
-			width: 1.8em;
-			height: 1.2em;
 		}
 	}
 }
@@ -596,18 +614,13 @@
 		max-width: 120px;
 	}
 
-	div.py-item {
+	> div {
 		display: inline-block;
-
 		text-align: center;
 		margin-right: 6px;
 		color: #666;
 		margin-bottom: 15px;
 		cursor: default;
-
-		div {
-			float: left
-		}
 
 		.py-word {
 	
@@ -633,25 +646,8 @@
 				flex-wrap: wrap;
 				z-index: 3;
 
-				.py-up {
-					display: inline-block;
-					width: 0;
-					height: 0;
-					border-left: 2px solid transparent;
-					border-right: 2px solid transparent;
-					border-bottom: 3px solid #666;
-					border-top: 0;
-					margin-bottom: 2px
-				}
-
 				.py-down {
-					display: inline-block;
-					width: 0;
-					height: 0;
-					border-left: 2px solid transparent;
-					border-right: 2px solid transparent;
-					border-top: 3px solid #666;
-					border-bottom: 0
+					line-height: 5px;
 				}
 
 				.py-masks {
@@ -682,12 +678,12 @@
 				color: #666
 			}
 
-			.pinyin-span.active,
+			.py-pinyin-span.active,
 			.py-word-span.active {
 				margin-right: 10px
 			}
 
-			.pinyin-span {
+			.py-pinyin-span {
 				font-size: 12px;
 				text-align: center;
 				font-family: STHeiti, huawenheiti

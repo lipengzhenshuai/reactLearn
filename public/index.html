@@ -39,5 +39,47 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <button id='add'>添加拼音</button>
+    <div id="container" class="container"></div>
   </body>
+  <script>
+
+      // let b = function() {
+      //   setTimeout(() => {
+      //   a();
+      // }, 100)
+      // };
+
+      // function a() {
+      //   if (Window.PinYin) {
+      //     Window.PinYin();
+      //     clearTimeout(b);
+      //   }
+      // }
+
+      // b();
+
+
+  const onOk = ({data, html}) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        document.getElementById("container").innerHTML = html;
+        resolve(true)
+      }, 800);
+    });
+  }
+
+  const addBtn = document.querySelector('#add')
+  addBtn.addEventListener('click', () => {
+    PinYin({
+      data: undefined,
+      onSubmit: onOk // promise
+    })
+  });
+
+  PinYin({
+    data: undefined,
+    onSubmit: onOk // promise
+  });
+  </script>
 </html>

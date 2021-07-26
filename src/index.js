@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ThemeContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './pages/core/1helloworld';
@@ -27,17 +27,12 @@ import './index.css';
 
 // import App from './pages/antd/lunbo';
 
-import App from './pages/pinyin/src/index.jsx';
+import PinYin from './pages/pinyin/src/index.js';
 // import App from './pages/hook/Test.jsx';
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+window.PinYin = PinYin;
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
