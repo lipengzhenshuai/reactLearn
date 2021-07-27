@@ -89,7 +89,6 @@ export default function EditContainer(props) {
         data-index="-1"
         placeholder={data.length ? "" : "请输入文字~"}
         autoComplete="off"
-        onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
         className="py-first-input"
         onInput={onInput}
       />
@@ -113,12 +112,12 @@ export default function EditContainer(props) {
         data-index="-1"
         placeholder={data.length ? "" : "请输入文字~"}
         autoComplete="off"
-        onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
         className="py-first-input"
       />
       {data.map((item) => (
         <RenderLeftRight
           config={props.config}
+          options={props.config.options}
           data={item}
           isPreview={true}
         ></RenderLeftRight>
@@ -209,7 +208,6 @@ function RenderUpDown(props) {
             <input
               type="text"
               className="py-word-input"
-              onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
               autoComplete="off"
               style={{ fontSize: "1em" }}
             />
@@ -220,7 +218,8 @@ function RenderUpDown(props) {
   );
 }
 
-function RenderLeftRight(data, index, options, isPreview = false) {
+function RenderLeftRight(props) {
+  const { data, index, options, isPreview = false } = props;
   const { wordStyle, pinyinStyle, showWord, showPinyin } = options;
 
   const { pysData } = data;
@@ -230,13 +229,7 @@ function RenderLeftRight(data, index, options, isPreview = false) {
   return (
     <div className="py-item">
       <div className="py-word" style={{ fontSize: wordStyle.fontSize }}>
-        {isPreview && (
-          <input
-            className="py-word-input"
-            onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
-            type="text"
-          />
-        )}
+        {isPreview && <input className="py-word-input" type="text" />}
         <span
           className="py-word-span"
           style={{ color: wordStyle.color, fontFamily: wordStyle.fontFamily }}
@@ -251,20 +244,18 @@ function RenderLeftRight(data, index, options, isPreview = false) {
             (
           </i>
           <span
-            data-pyindex="6"
-            id="py${index}"
             className="py-wrap"
             style={{ fontFamily: pinyinStyle.fontFamily }}
           >
             {data.pinyin}
           </span>
-          <i style="font-style: normal;" className="">
+          <i style={{fontStyle: "normal"}} className="">
             )
           </i>
         </span>
         {isPreview && (
           <div id="POLYPHONE" className="pys-chooser">
-            <span className="py-down">${decorationSvgs.pys_tips}</span>
+            <span className="py-down">{decorationSvgs.pys_tips}</span>
             <span className="py-masks pysChooser"></span>
           </div>
         )}
