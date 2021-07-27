@@ -8,6 +8,105 @@ import 'antd/dist/antd.css';
 
 const defaultConfig = {
 	data: [
+		{
+			"word": "水",
+			"pinyin": "shuǐ",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "电",
+			"pinyin": "diàn",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "费",
+			"pinyin": "fèi",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "第",
+			"pinyin": "dì",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "三",
+			"pinyin": "sān",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "方",
+			"pinyin": "fāng",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "士",
+			"pinyin": "shì",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "大",
+			"pinyin": "dà",
+			"pysData": [
+				"dà",
+				"dài",
+				"tài"
+			],
+			"type": 1
+		},
+		{
+			"word": "夫",
+			"pinyin": "fū",
+			"pysData": [
+				"fū",
+				"fú"
+			],
+			"type": 1
+		},
+		{
+			"word": "说",
+			"pinyin": "shuō",
+			"pysData": [
+				"shuō",
+				"shuì",
+				"yuè"
+			],
+			"type": 1
+		},
+		{
+			"word": "的",
+			"pinyin": "de",
+			"pysData": [
+				"de",
+				"dí",
+				"dì"
+			],
+			"type": 1
+		},
+		{
+			"word": "水",
+			"pinyin": "shuǐ",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "电",
+			"pinyin": "diàn",
+			"pysData": [],
+			"type": 1
+		},
+		{
+			"word": "费",
+			"pinyin": "fèi",
+			"pysData": [],
+			"type": 1
+		}
 	],
 	options: {
 		wordType: 0, // 上下,左右,组合，四线三格，田字格等

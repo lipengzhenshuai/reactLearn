@@ -88,14 +88,14 @@ export default function EditContainer(props) {
         id="input--1"
         data-index="-1"
         placeholder={data.length ? "" : "请输入文字~"}
-        autocomplete="off"
+        autoComplete="off"
         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
         className="py-first-input"
         onInput={onInput}
       />
       {data.map((item) => (
         <RenderUpDown
-          config={props.config}
+          options={props.config.options}
           data={item}
           isPreview={true}
         ></RenderUpDown>
@@ -112,7 +112,7 @@ export default function EditContainer(props) {
         id="input--1"
         data-index="-1"
         placeholder={data.length ? "" : "请输入文字~"}
-        autocomplete="off"
+        autoComplete="off"
         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
         className="py-first-input"
       />
@@ -177,13 +177,13 @@ function RenderUpDown(props) {
     <div className="py-item" style={{ width: width }}>
       <div className="py-pinyin" style={{ fontSize: pinyinStyle.fontSize }}>
         <span
-          className="py-wrap hide-remain"
+          className="py-wrap"
           style={{
             color: pinyinStyle.color,
             fontFamily: pinyinStyle.fontFamily,
           }}
         >
-          ${data.pinyin}
+          {data.pinyin}
         </span>
         {isPreview ? (
           ""
@@ -194,8 +194,14 @@ function RenderUpDown(props) {
           </div>
         )}
       </div>
-      <div className="py-word" style="font-size:${wordStyle.fontSize}px;">
-        <span style="color:${wordStyle.color};font-size:${wordStyle.fontSize}px;font-family:${wordStyle.fontFamily}">
+      <div className="py-word" style={{ fontSize: wordStyle.fontSize }}>
+        <span
+          style={{
+            color: wordStyle.color,
+            fontSize: wordStyle.fontSize,
+            fontFamily: wordStyle.fontFamily,
+          }}
+        >
           <span>{data.word}</span>
           {isPreview ? (
             ""
@@ -204,7 +210,7 @@ function RenderUpDown(props) {
               type="text"
               className="py-word-input"
               onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
-              autocomplete="off"
+              autoComplete="off"
               style={{ fontSize: "1em" }}
             />
           )}
