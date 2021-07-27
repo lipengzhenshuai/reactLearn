@@ -2,12 +2,10 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import { createContainer } from "./utils/dom.js";
 import PinYin from "./pinyin";
-import { containerId } from "./data";
+import { containerId, _pyFontFamilys , _wordFontFamilys, _pyFontSizes, _wordFontSizes, _wordColors, _pyColors } from "./data";
 import 'antd/dist/antd.css';
 
 
-let isComposing = false;
-let isPending = false;
 const defaultConfig = {
 	data: [
 	],
@@ -34,77 +32,30 @@ const defaultConfig = {
 	}
 };
 let config = {};
-let _onSubmit = undefined;
-let _defaultOptions = {};
-let _pyFontFamilys = [];
-let _wordFontFamilys = [];
-
-const IDs = {
-	OTHERBASICCONTROL: "OTHERBASICCONTROL",
-	SHOWWORD: "SHOWWORD",
-	SHOWPINYIN: "SHOWPINYIN",
-	MARKTONE: "MARKTONE",
-	UKEEPPOINT: "UKEEPPOINT",
-
-	RESET: "RESET",
-
-	BASICCONTROL: "BASICCONTROL",
-	UPDOWN: "UPDOWN",
-	LEFTRIGHT: "LEFTRIGHT",
-	FOURLINE: "FOURLINE",
-	SQUARE: "SQUARE",
-	COMBINE: "COMBINE",
-
-	FORM: "FORM",
-	FIRSTUP: "FIRSTUP",
-	ALLUP: "ALLUP",
-
-	EDITCONTENT: "EDITCONTENT",
-
-	STYLEBASICCONTROL: "STYLEBASICCONTROL",
-	PINYINFONTSTYLE: "PINYINFONTSTYLE",
-	PINYINFONTSIZE: "PINYINFONTSIZE",
-	PINYINFONTCOLOR: "PINYINFONTCOLOR",
-
-	ERRORMSG: "ERRORMSG",
-
-	WORDFONTSTYLE: "WORDFONTSTYLE",
-	WORDFONTSIZE: "WORDFONTSIZE",
-	WORDFONTCOLOR: "WORDFONTCOLOR",
-
-	BLACKFONT: "BLACKFONT",
-	REDFONT: "REDFONT",
-
-	BLACKPINYIN: "BLACKPINYIN",
-	REDPINYIN: "REDPINYIN",
-
-
-	CANCEL: "CANCEL",
-	SUBMIT: "SUBMIT",
-};
-
-let getSelectList = undefined;
 
 export default function generate({ data = defaultConfig, onSubmit = () => { },
-	pyFontFamilys,
-	wordFontFamilys,
-	pyFontSizes,
-	wordFontSizes,
-	wordColors,
-	pyColors
+	pyFontFamilys = _pyFontFamilys,
+	wordFontFamilys = _wordFontFamilys,
+	pyFontSizes = _pyFontSizes,
+	wordFontSizes = _wordFontSizes,
+	wordColors = _wordColors,
+	pyColors = _pyColors
 }) {
 	config = JSON.parse(JSON.stringify(data));
-	_onSubmit = onSubmit;
-	_defaultOptions = JSON.parse(JSON.stringify(config.options));
-	_wordFontFamilys = wordFontFamilys;
-	_pyFontFamilys = pyFontFamilys;
 	// 0.创建容器
 	createContainer();
-	// TODO: 设置下拉框模板，使用antd下拉框实现
-	// getSelectList = _getSelectList(pyFontFamilys, wordFontFamilys, pyFontSizes, wordFontSizes, wordColors, pyColors);
 	// 1.初始化基本数据
 	ReactDOM.render(
-		<PinYin config={config}></PinYin>,
+		<PinYin
+			config={config}
+			onSubmit={onSubmit}
+			pyFontFamilys={pyFontFamilys}
+			wordFontFamilys={wordFontFamilys}
+			pyFontSizes={pyFontSizes}
+			wordFontSizes={wordFontSizes}
+			wordColors={wordColors}
+			pyColors={pyColors}
+		></PinYin>,
 		document.querySelector(`#${containerId}`)
 	);
 	// 2.监听事件
@@ -112,11 +63,6 @@ export default function generate({ data = defaultConfig, onSubmit = () => { },
 }
 
 // const addEventAgent = () => {
-// 	// 顶部
-// 	document.getElementById(IDs.OTHERBASICCONTROL).addEventListener("click",(e) => { otherBasicControl(e) },false);
-
-// 	// 基础内容
-// 	document.getElementById(IDs.BASICCONTROL).addEventListener("click",(e) => {updateBasicControl(e);},false);
 
 // 	// 输入区域
 // 	addEditContetEventAgent();
@@ -305,76 +251,12 @@ export default function generate({ data = defaultConfig, onSubmit = () => { },
 // 	}, false);
 // }
 
-
-// const otherBasicControl = (e) => {
-
-// 	const { target } = e;
-// 	const item = getUpELement(target, "py-line-item-btn", "py-other-basic-control");
-// 	if(!item) {
-// 		return;
-// 	}
-// 	const { id } = item;
-// 	if(id === IDs.RESET) {
-// 		(() => {
-// 			config.options = JSON.parse(JSON.stringify(_defaultOptions));
-// 			// 更新顶部样式
-// 			document.getElementById(IDs.OTHERBASICCONTROL).children[0].innerHTML = topOptions(config);
-// 			// 更新拼音样式
-// 			document.getElementById(IDs.BASICCONTROL).children[0].innerHTML = wordOptions(config);
-// 			// 更新字体样式
-// 			document.getElementById(IDs.STYLEBASICCONTROL).innerHTML = `
-// 				<div>${panel1(config)}</div>
-// 				<div>${panel2(config)}</div>
-// 			`;
-// 			// 更新内容
-// 			document.querySelector(".py-edit-content").innerHTML = editContainer(config);
-// 		 })();
-// 		 return;
-// 	}
-// 	clickHandler(id);
-// }
-
 // const clearSelected = (list) => {
 // 	list.forEach((id) => {
 // 		document.querySelector("#" + id).classList.remove("active");
 // 	});
 // };
 
-// function updateBasicControl(e) {
-// 	const node = getNode(e);
-// 	const id = node.id;
-// 	const value = node.getAttribute('data-value');
-// 	const domId = document.querySelector("#" + id);
-// 	if (
-// 		id !== IDs.BASICCONTROL && !domId.classList.contains("active") && !domId.classList.contains("disable")
-// 	) {
-// 		const list = [
-// 			IDs.UPDOWN,
-// 			IDs.LEFTRIGHT,
-// 			IDs.FOURLINE,
-// 			IDs.SQUARE,
-// 			IDs.COMBINE,
-// 		];
-// 		const list2 = [IDs.FORM, IDs.FIRSTUP, IDs.ALLUP];
-// 		if (list.includes(id)) {
-// 			config.options.wordType = +value;
-// 			clearSelected(list);
-// 		} else {
-// 			config.options.pinyinType = +value;
-// 			clearSelected(list2);
-// 		}
-// 		document.querySelector("#" + id).classList.add("active");
-// 		if (list.includes(id)) {
-// 			document.getElementById(IDs.STYLEBASICCONTROL).innerHTML = `
-// 			<div>${panel1(config)}</div>
-// 			<div>${panel2(config)}</div>
-// 			`;
-// 		}
-// 	}
-
-// 	document.querySelector(".py-edit-content").innerHTML = editContainer(config);
-
-// }
 
 // function addValue(e, value, type) {
 // 	const { target } = e;

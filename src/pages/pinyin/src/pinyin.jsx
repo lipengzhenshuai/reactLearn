@@ -49,14 +49,14 @@ export default function Generate(props) {
       ...config,
       options: {
         ...config.options,
-        [key]: value
-      }
+        [key]: value,
+      },
     });
   };
 
   const reset = () => {
     setConfig(defaultConfig);
-  }
+  };
 
   return (
     <div className="py-mask">
@@ -72,10 +72,13 @@ export default function Generate(props) {
           </div>
           <div className="py-basic-control">
             <div>
-              <WordOptions config={config} updateOperate={updateOperate4Top}/>
+              <WordOptions config={config} updateOperate={updateOperate4Top} />
             </div>
             <div>
-              <PinyinOptions config={config} updateOperate={updateOperate4Top}/>
+              <PinyinOptions
+                config={config}
+                updateOperate={updateOperate4Top}
+              />
             </div>
           </div>
         </div>
@@ -85,10 +88,20 @@ export default function Generate(props) {
         <div className="py-footer">
           <div className="py-panel">
             <div>
-              <Panel1 config={config} />
+              <Panel1
+                config={config}
+                pyFontFamilys={props.pyFontFamilys}
+                pyFontSizes={props.pyFontSizes}
+                pyColors={props.pyColors}
+              />
             </div>
             <div>
-              <Panel2 config={config} />
+              <Panel2
+                config={config}
+                wordFontFamilys={props.wordFontFamilys}
+                wordFontSizes={props.wordFontSizes}
+                wordColors={props.wordColors}
+              />
             </div>
           </div>
           <div>

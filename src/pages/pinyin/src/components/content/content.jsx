@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { parseDom, getUpELement } from "../../utils/dom";
 import { decorationSvgs } from "../../utils/svg_constants";
 
@@ -14,7 +14,66 @@ export default function EditContainer(props) {
     wordStyle: { fontSize: wordFontSize },
     pinyinStyle: { fontSize: pinyinFontSize },
   } = options;
-  let item = "";
+
+  const addValue = () => {};
+
+  const onInput = (e) => {
+    const { target, data = undefined, isComposing = true } = e;
+    const { tagName = "" } = target;
+    if (tagName !== "INPUT") {
+      return;
+    }
+    if (data && !isComposing) {
+      generateSymbol(e, data);
+    }
+  };
+
+  const generateSymbol = (e, data) => {
+    // 是否是一些基本符号
+    const singal =
+      "；：？…—·ˉˇ¨‘’々～‖∶＂＇｀｜〃〔〕〈〉《》「」『』．〖〗【】（）［］｛｝{}ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ≈≡≠＝" +
+      " “”|~`@$^()_+——）（*&……%￥#@！-=，。、";
+    if (singal.includes(data)) {
+      if (data === "……" || data === "——") {
+        // 对 …… 的特殊处理
+        addValue(
+          e,
+          [
+            {
+              pinyin: "",
+              pysData: [],
+              type: 2,
+              word: data,
+            },
+          ],
+          2
+        );
+      } else {
+        for (let item of data) {
+          addValue(
+            e,
+            [
+              {
+                pinyin: "",
+                pysData: [],
+                type: 2,
+                word: item,
+              },
+            ],
+            2
+          );
+        }
+      }
+      return true;
+    }
+
+    setTimeout(() => {
+      e.target.value = "";
+    }, 100);
+  };
+
+  useEffect(() => {}, []);
+
   return wordType === 0 ? (
     <div
       className="py-item-wrap-0 py-item-wrapper"
@@ -31,7 +90,8 @@ export default function EditContainer(props) {
         placeholder={data.length ? "" : "请输入文字~"}
         autocomplete="off"
         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"
-        class="py-first-input"
+        className="py-first-input"
+        onInput={onInput}
       />
       {data.map((item) => (
         <RenderUpDown
