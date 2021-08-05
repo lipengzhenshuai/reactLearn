@@ -1,6 +1,5 @@
 import React from "react";
-import store from "./store/index";
-import { Provider, connect } from "react-redux";
+import { connect } from "react-redux";
 
 const Counter = (props) => {
   const increment = () => {
@@ -30,16 +29,4 @@ function mapStateToProps(state) {
   };
 }
 
-const CounterPlus = connect(mapStateToProps)(Counter);
-
-const A = () => {
-  return (
-    <div>
-      <Provider store={store}>
-        <CounterPlus />
-      </Provider>
-    </div>
-  );
-};
-
-export default A;
+export default connect(mapStateToProps)(Counter);
