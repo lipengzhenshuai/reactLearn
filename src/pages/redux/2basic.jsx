@@ -32,8 +32,6 @@ function mapStateToProps(state) {
 
 const CounterPlus = connect(mapStateToProps)(Counter);
 
-
-
 const A = () => {
   return (
     <div>
