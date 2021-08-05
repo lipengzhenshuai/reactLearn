@@ -1,52 +1,27 @@
-import { createStore } from 'redux'
-import React from 'react';
+import React, { Component } from "react";
+import { createStore } from "redux";
 
-// 处理函数
-function counter(state = 0, action) {
+// reducer函数：根据action的类型改变state
+const reducer = (state = { count: 0 }, action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
+    case "INCREASE":
+      return { count: state.count + 1 };
+    case "DECREASE":
+      return { count: state.count - 1 };
     default:
-      return state
+      return state;
   }
-}
+};
+// actions 定义指令
+const actions = {
+  increase: () => ({ type: "INCREASE" }),
+  decrease: () => ({ type: "DECREASE" }),
+};
 
-// 创建一个store
-let store = createStore(counter)
-// 当数据发生变化的时候触发
-store.subscribe(()=> {console.log(store.getState())});
+// 通过createStore创建store
+const store = createStore(reducer);
 
-class HelloWorld extends React.Component {
+store.subscribe(() => console.log(store.getState()));
 
-    constructor() {
-        super();
-        this.state = {};
-    }
-
-    plus = () => {
-      // 触发变更
-      store.dispatch({ type: 'INCREMENT' })
-      this.setState({state: store.getState()});
-    }
-
-    subtract = () => {
-      // 触发变更
-      store.dispatch({ type: 'DECREMENT' })
-      this.setState({state: store.getState()});
-    }
-
-    render() {
-        return <div>
-          <div className="name"><button onClick={this.plus}>++</button></div>
-          <div className="age"><button onClick={this.subtract}>--</button></div>
-          <div>
-            <div>number:{store.getState()}</div>
-          </div>
-        </div>;
-    }
-}
-
-export default HelloWorld;
-
+// 调用store.dispatch()发出修改state的命令
+store.dispatch(actions.increase()); // {count: 1}
