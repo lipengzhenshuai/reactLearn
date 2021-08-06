@@ -71,13 +71,13 @@
 
   const addBtn = document.querySelector('#add')
   addBtn.addEventListener('click', () => {
-    PinYin({
+    typeof PinYin !== "undefined" && PinYin({
       data: undefined,
       onSubmit: onOk // promise
     })
   });
 
-  PinYin({
+  typeof PinYin !== "undefined" && PinYin({
     data: undefined,
     onSubmit: onOk // promise
   });
