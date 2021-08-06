@@ -11,3 +11,5 @@
     connect主要的任务：
         1.将store的数据作为props传给子组件
         2.注册store变化事件，在数据变化了更新数据
+
+[参考url](https://juejin.cn/post/6844903815594901512)
