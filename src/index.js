@@ -1,4 +1,4 @@
-import React, { ThemeContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './pages/core/1helloworld';
@@ -15,7 +15,7 @@ import './index.css';
 
 
 // import App from './pages/senior/1codeSplit';
-// import App from './pages/senior/2Context';
+// import App from './pages/senior/2Context/Parent';
 // import App from './pages/senior/3errorSide';
 // import App from './pages/senior/4refs';
 // import App from './pages/senior/5fragments';
@@ -23,18 +23,28 @@ import './index.css';
 
 // import App from'./pages/router/1basic';
 
-// import App from './pages/redux/1basic';
+import App from './pages/redux/basic';
 
 // import App from './pages/antd/lunbo';
 
-import PinYin from './pages/pinyin/src/index.js';
+// import App from './pages/pinyin/src/index.jsx';
 // import App from './pages/hook/Test.jsx';
 
 import * as serviceWorker from './serviceWorker';
 
-window.PinYin = PinYin;
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// import PinYin from './pages/pinyin/src/index.js';
+// import * as serviceWorker from './serviceWorker';
+// window.PinYin = PinYin;
+// serviceWorker.unregister();
