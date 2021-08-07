@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { createStore } from "redux";
 
 // reducer函数：根据action的类型改变state
@@ -23,5 +23,16 @@ const store = createStore(reducer);
 
 store.subscribe(() => console.log(store.getState()));
 
-// 调用store.dispatch()发出修改state的命令
-store.dispatch(actions.increase()); // {count: 1}
+const Comp1 = () => {
+  const add = () => {
+    // 调用store.dispatch()发出修改state的命令
+    store.dispatch(actions.increase()); // {count: 1}
+  };
+  return (
+    <div>
+      <button onClick={add}>add</button>
+    </div>
+  );
+};
+
+export default Comp1;
