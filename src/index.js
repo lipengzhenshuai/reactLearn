@@ -23,12 +23,14 @@ import './index.css';
 
 // import App from'./pages/router/1basic';
 
-import App from './pages/redux/basic';
+// import App from './pages/redux/1';
+// import App from './pages/redux/simple/basic';
+import App from './pages/redux/saga/basic';
 
 // import App from './pages/antd/lunbo';
 
 // import App from './pages/pinyin/src/index.jsx';
-// import App from './pages/hook/Test.jsx';
+// import App from './pages/hooks/1.jsx';
 
 import * as serviceWorker from './serviceWorker';
 
