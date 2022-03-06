@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './pages/core/1helloworld';
+import App from './pages/business-compo/1.jsx';
 // import App from './pages/core/2funcComponent';
 // import App from './pages/core/4funcComponentTQ';
 // import App from './pages/core/3classComponent';
@@ -31,7 +31,8 @@ import './index.css';
 
 // import App from './pages/pinyin/src/index.jsx';
 // import App from './pages/hooks/1.jsx';
-import App from './pages/hooks/refHooks.jsx';
+// import App from './pages/hooks/refHooks.jsx';
+// import App from './pages/hooks/customHooks/index';
 
 // import App from './pages/axxd/demo';
 

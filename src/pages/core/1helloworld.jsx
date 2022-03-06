@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+// const Demo1 = (props) => {
+//     return <div>{props.children}</div>
+// }
 
 class HelloWorld extends React.Component {
 
     constructor() {
         super();
-        this.state = {};
+        this.state = {name: 'father'};
     }
 
     render() {
@@ -58,7 +62,10 @@ class HelloWorld extends React.Component {
 
         // 7.你可以安全的在JSX中插入用户输入的内容，不会发生jsx攻击
         // 8.JSX最后会被转义成React.createElement()函数
-        return <div></div>;
+        // return <div>
+        //     <Demo1>{this.state.name}</Demo1>
+        // </div>;
+        return <div></div>
     }
 }
 

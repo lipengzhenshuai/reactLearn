@@ -25,3 +25,5 @@ export default function func(props){
         <Welcome name='hahaha3'></Welcome>
     </div> )
 }
+
+// 函数式组件必须是纯函数，保证它的props不受子组件影响
