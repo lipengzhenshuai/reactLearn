@@ -21,6 +21,7 @@ const actions = {
 // 通过createStore创建store
 const store = createStore(reducer);
 
+// 监听数据变化
 store.subscribe(() => console.log(store.getState()));
 
 const Comp1 = () => {
