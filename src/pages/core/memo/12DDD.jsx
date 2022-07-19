@@ -1,14 +1,19 @@
-import React, { useState, memo } from "react";
-
-const CCC = memo(() => {
-  console.log("CCC没变化");
-  return <div>C没变化</div>;
-});
+import React, { useState, useMemo } from "react";
 
 const AAA = () => {
   const [name, setName] = useState("lipeng");
 
   console.log("AAA");
+
+  const CCC = useMemo(
+    () => {
+      console.log("CCC没变化");
+      console.log(name);
+      return <div>{name}C没变化</div>;
+    },
+    [name]
+  );
+
   return (
     <div>
       <button
@@ -19,7 +24,7 @@ const AAA = () => {
         点击
       </button>
       <BBB name={name}></BBB>
-      <CCC></CCC>
+      {CCC}
     </div>
   );
 };

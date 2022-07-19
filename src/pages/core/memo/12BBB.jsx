@@ -22,6 +22,10 @@ const ParentComponent = () => {
     setText(newText);
   }, []);  // 此依赖项必不可少，否则会每次渲染都会执行，从而useCallback就没有意义了
 
+  // const changeText = (newText) => {
+  //   setText(newText);
+  // };  // 此依赖项必不可少，否则会每次渲染都会执行，从而useCallback就没有意义了
+
   return (
     <>
       <button onClick={handleChange}>clike me</button>

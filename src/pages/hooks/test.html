@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <title>React App</title>
+</head>
+
+<body>
+</body>
+<script>
+  let isMount = true; // 全局变量,是否是mount阶段
+  let workInProgressHook = null; // 正在处理中fiber的hooks数据
+
+  // 2. function Component对应的fiber对象
+  const fiber = {
+    memoizedState: null, // 保存hooks的数据
+    stateNode: App // 保存对应function函数
+  }
+
+  // 3. render阶段
+  function run() {
+    workInProgressHook = fiber.memoizedState; // 初始化hooks
+    const app = fiber.stateNode();
+    isMount = false;
+    return app;
+  }
+
+  // 5. 将触发的任务放入pending数组中
+  function dispatchAction(queue, action) {
+    const update = {
+      action,
+      next: null
+    }
+    if (queue.pending === null) {
+      update.next = update;
+    } else {
+      // 3 -> 0 -> 1 -> 2 -> 3
+      // 4 -> 0 -> 1 -> 2 -> 3 -> 4
+      // 存疑
+      update.next = queue.pending.next;
+      queue.pending.next = update;
+    }
+    queue.pending = update;
+    run();
+  }
+
+
+  // 4.
+  function useState(initialValue) {
+
+    let hook;
+    /** 1.创建hook数据结构 
+     * 
+    */
+    if (isMount) { // 第一次
+      hook = {
+        queue: {
+          pending: null
+        },
+        memoizedState: initialValue,
+        next: null // 下一个hook，链接形成单向链表
+      }
+      if (!fiber.memoizedState) { // fiber对象中还没有一个hook
+        fiber.memoizedState = hook;
+      } else { // 将这个hook放入链表中
+        workInProgressHook.next = hook;
+      } // 创建单向链表
+      workInProgressHook = hook;
+    } else {
+      // 获取当前hook，并且指向下一个hook
+      hook = workInProgressHook;
+      workInProgressHook = workInProgressHook.next;
+    }
+
+    let baseState = hook.memoizedState;
+    if (hook.queue.pending) { // 有需要计算的update
+      let firstUpdte = hook.queue.pending.next;
+
+      do {
+        const action = firstUpdte.action;
+        baseState = action(baseState);
+        firstUpdate = firstUpdte.next;
+      } while (firstUpdte !== hook.queue.pending.next)
+
+      hook.queue.pending = null;
+    }
+    hook.memoizedState = baseState;
+    return [baseState, dispatchAction.bind(null, hook.queue)]
+  }
+
+
+  // function Component
+  function App() {
+    const [num, updateNum] = useState(0);
+    const [trigger, setTrigger] = useState(false);
+    const [aa, setAa] = useState('aa');
+    const [bb, setBb] = useState('bb');
+
+    console.log('num', num);
+    console.log('isMount', isMount);
+
+    return {
+      onClick() {
+        updateNum(num => num + 1)
+        updateNum(num => num + 4)
+        updateNum(num => num + 6)
+        // setTrigger(() => true)
+        // setAa(() => 'AAA')
+        // setBb(() => 'BBB')
+      }
+    }
+  };
+
+  window.app = run();
+</script>
+
+</html>
