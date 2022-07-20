@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './pages/business-compo/1.jsx';
+// import App from './pages/core/memo/12DDD';
 // import App from './pages/core/2funcComponent';
 // import App from './pages/core/4funcComponentTQ';
 // import App from './pages/core/3classComponent';
@@ -24,8 +24,11 @@ import App from './pages/business-compo/1.jsx';
 // import App from'./pages/router/1basic';
 
 // import App from './pages/redux/1';
-// import App from './pages/redux/simple/basic';
-// import App from './pages/redux/saga/basic';
+// import App from './pages/redux/1_simple/basic';
+// import App from './pages/redux/2_use-xx/basic';
+import App from './pages/redux/3_middle-ware/basic';
+// import App from './pages/redux/4_saga/basic';
+// import App from './pages/redux/5_dva/basic';
 
 // import App from './pages/antd/lunbo';
 
