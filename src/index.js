@@ -41,13 +41,8 @@ import App from './pages/redux/4_saga/basic';
 
 // import * as serviceWorker from './serviceWorker';
 
-function render() {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
+function render(props = {}) {
+  ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
 }
 
 
@@ -65,21 +60,13 @@ if (!window.__POWERED_BY_QIANKUN__) {
 
 // 导出协议的三个函数
 export async function bootstrap(props) {
+  console.log('react app bootstraped', props);
 }
 export async function mount(props) {
   render(props);
 }
 export async function unmount(props) {
-  ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+  ReactDOM.unmountComponentAtNode(
+    props.container ? props.container.querySelector('#root') : document.getElementById('root'),
+  );
 }
-
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
-
-// import PinYin from './pages/pinyin/src/index.js';
-// import * as serviceWorker from './serviceWorker';
-// window.PinYin = PinYin;
-// serviceWorker.unregister();
