@@ -26,8 +26,8 @@ import './index.css';
 // import App from './pages/redux/1';
 // import App from './pages/redux/1_simple/basic';
 // import App from './pages/redux/2_use-xx/basic';
-import App from './pages/redux/3_middle-ware/basic';
-// import App from './pages/redux/4_saga/basic';
+// import App from './pages/redux/3_middle-ware/1.jsx';
+import App from './pages/redux/4_saga/basic';
 // import App from './pages/redux/5_dva/basic';
 
 // import App from './pages/antd/lunbo';
@@ -39,19 +39,45 @@ import App from './pages/redux/3_middle-ware/basic';
 
 // import App from './pages/axxd/demo';
 
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function render() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+if (window.__POWERED_BY_QIANKUN__) {
+  // eslint-disable-next-line no-undef
+  __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
+}
+
+if (!window.__POWERED_BY_QIANKUN__) {
+  render();
+}
+
+// 导出协议的三个函数
+export async function bootstrap(props) {
+}
+export async function mount(props) {
+  render(props);
+}
+export async function unmount(props) {
+  ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// serviceWorker.unregister();
 
 // import PinYin from './pages/pinyin/src/index.js';
 // import * as serviceWorker from './serviceWorker';
