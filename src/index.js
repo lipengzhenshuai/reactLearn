@@ -27,14 +27,14 @@ import './index.css';
 // import App from './pages/redux/1_simple/basic';
 // import App from './pages/redux/2_use-xx/basic';
 // import App from './pages/redux/3_middle-ware/1.jsx';
-import App from './pages/redux/4_saga/basic';
+// import App from './pages/redux/4_saga/basic';
 // import App from './pages/redux/5_dva/basic';
 
 // import App from './pages/antd/lunbo';
 
 // import App from './pages/pinyin/src/index.jsx';
 // import App from './pages/hooks/1.jsx';
-// import App from './pages/hooks/refHooks.jsx';
+import App from './pages/hooks/refHooks.jsx';
 // import App from './pages/hooks/customHooks/index';
 
 // import App from './pages/axxd/demo';
