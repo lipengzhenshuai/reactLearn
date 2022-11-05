@@ -34,10 +34,13 @@ import './index.css';
 
 // import App from './pages/pinyin/src/index.jsx';
 // import App from './pages/hooks/1.jsx';
-import App from './pages/hooks/refHooks.jsx';
+// import App from './pages/hooks/refHooks.jsx';
 // import App from './pages/hooks/customHooks/index';
 
 // import App from './pages/axxd/demo';
+
+import App from './pages/css/center/center.jsx';
+
 
 // import * as serviceWorker from './serviceWorker';
 
