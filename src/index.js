@@ -39,7 +39,10 @@ import './index.css';
 
 // import App from './pages/axxd/demo';
 
-import App from './pages/css/center/center.jsx';
+// import App from './pages/business-compo/1.jsx';
+import App from './pages/business-compo/2.jsx';
+
+// import App from './pages/css/center/center.jsx';
 
 
 // import * as serviceWorker from './serviceWorker';

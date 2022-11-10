@@ -13,6 +13,18 @@ module.exports = {
             config.headers = {
                 "Access-Control-Allow-Origin": "*"
             }
+            config.proxy = {
+                '/tiku/': {
+                    target: 'https://ijiaoyan.aixuexi.com',
+                    changeOrigin: true,
+                    secure: false,
+                },
+                '/api/slideGame/': {
+                    target: 'https://slide-game.aixuexi.com',
+                    changeOrigin: true,
+                    secure: true,
+                },
+            }
             return config;
         }
     }
