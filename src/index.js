@@ -17,7 +17,7 @@ import './index.css';
 // import App from './pages/senior/1codeSplit';
 // import App from './pages/senior/2Context/Parent';
 // import App from './pages/senior/3errorSide';
-// import App from './pages/senior/4refs';
+import App from './pages/senior/4refs';
 // import App from './pages/senior/5fragments';
 // import App from './pages/senior/6HOC';
 
@@ -42,10 +42,11 @@ import './index.css';
 // import App from './pages/business-compo/1.jsx';
 // import App from './pages/business-compo/2.jsx';
 // import App from './pages/business-compo/3.jsx';
-import App from './pages/business-compo/4.jsx';
+// import App from './pages/business-compo/4.jsx';
 
 // import App from './pages/css/center/center.jsx';
 
+// import App from './pages/utils/moment';
 
 // import * as serviceWorker from './serviceWorker';
 

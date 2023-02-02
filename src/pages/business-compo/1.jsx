@@ -2,8 +2,6 @@
 import { useRef } from "react";
 import { Button } from "antd";
 import { KnowledgeTree } from "test-upload-pag";
-// import Demo2 from "./3.jsx";
-// import Demo3 from "./3.jsx";
 
 const TestDemo = (props) => {
   const onSelect = (selectedKeys, node, { selected }, filterConditions) => {
@@ -21,13 +19,9 @@ const TestDemo = (props) => {
       props.onSelect(selectedKeys, node, { selected }, filterConditions);
   };
   const knowledgeRef = useRef(() => {});
-  const lessonRef = useRef(() => {});
 
   const removeSelect = () => {
     knowledgeRef.current();
-  };
-  const removeSelect2 = () => {
-    lessonRef.current();
   };
 
   return (
@@ -46,28 +40,6 @@ const TestDemo = (props) => {
             needExpandCallBack={false}
           ></KnowledgeTree>
         </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ width: 300 }}>
-            {/* <Button onClick={removeSelect2}>清空选中</Button> */}
-            {/* <LessonTree
-              lessonRef={lessonRef}
-              multiple={false}
-              subjectProductId={7}
-              lessonList={[]}
-              onSelect={onSelect}
-            ></LessonTree> */}
-          </div>
-        </div>
-      </div>
-      {/* <div style={{height: 200, background: '#ccc', marginBottom: 200}}>
-      </div> */}
-      <div>
-        {/* <Demo2 /> */}
-      </div>
-      {/* <div style={{height: 200, background: '#ccc', marginTop: 200}}>
-      </div> */}
-      <div>
-        {/* <Demo3 /> */}
       </div>
     </div>
   );
