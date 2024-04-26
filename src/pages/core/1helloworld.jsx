@@ -65,7 +65,7 @@ class HelloWorld extends React.Component {
         // return <div>
         //     <Demo1>{this.state.name}</Demo1>
         // </div>;
-        return <div></div>
+        return <div>hello world!</div>
     }
 }
 
