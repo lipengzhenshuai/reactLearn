@@ -43,7 +43,6 @@ function toFahrenheit(value) {
 }
 
 function convert(value, convert) {
-    debugger;
     const float = parseFloat(value);
     if(isNaN(float)) {
         return '';
@@ -71,7 +70,6 @@ export default class Form extends React.Component {
     }
 
     render() {
-        debugger;
         const { temperature, scale } = this.state;
 
         const celsius = scale === 'f' ? convert(temperature, toCelsius) : temperature;

@@ -1,5 +1,6 @@
 import React from "react";
 
+//* for循环
 export default class Cycle extends React.Component {
   render() {
     const numbersOne = [1, 2, 3, 4];

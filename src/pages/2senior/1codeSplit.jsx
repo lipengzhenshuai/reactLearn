@@ -1,6 +1,6 @@
 import React, { Suspense }from 'react';
 
-const FuncCom = React.lazy(() => import('../core/2funcComponent'));
+const FuncCom = React.lazy(() => import('../1core/2funcComponent'));
 
 export default class codeSplit extends React.Component {
 
