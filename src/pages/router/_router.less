@@ -1,0 +1,20 @@
+.list-touchbar {
+  position: absolute;
+  top: 120px;
+  right: 120px;
+  width: 200px;
+  height: 200px;
+  background-color: #5dc8ff; /* 天蓝色背景 */
+  border: 1px solid #5dc8ff; /* 天蓝色边框 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 添加立体感阴影 */
+  background-image: linear-gradient(to bottom, #bddfff, #5dc8ff); /* 上下渐变 */
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  > ul {
+    overflow: auto;
+    height: calc(100% - 20px);
+  }
+}

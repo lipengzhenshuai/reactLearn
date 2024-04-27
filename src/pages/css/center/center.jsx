@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css";
+import "./index.less";
 
 const Box = () => {
   return <div className="css-center-box"></div>;
