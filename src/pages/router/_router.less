@@ -2,7 +2,7 @@
   position: absolute;
   top: 120px;
   right: 120px;
-  width: 200px;
+  width: 250px;
   height: 200px;
   background-color: #5dc8ff; /* 天蓝色背景 */
   border: 1px solid #5dc8ff; /* 天蓝色边框 */
@@ -15,6 +15,16 @@
   }
   > ul {
     overflow: auto;
-    height: calc(100% - 20px);
+    margin-top: 10px;
+    height: calc(100% - 10px);
+    > li {
+      margin-top: 2px; /* 上边距增加 */
+      margin-bottom: 2px; /* 下边距增加 */
+      font-weight: bold; /* 字体粗一点 */
+      color: navy; /* 蓝色 */
+      &:hover {
+        color: greenyellow; /* 蓝色 */
+      }
+    }
   }
 }

@@ -23,7 +23,7 @@ function SonCom(props) {
 
 /**
  *
- * 将函数组件改装成class组件
+ ** 将函数组件改装成class组件
  *
  *  1.创建一个同名的class,并且继承React.Component
  *  2.添加一个空的render()方法

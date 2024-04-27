@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-// const Demo1 = (props) => {
-//     return <div>{props.children}</div>
-// }
+const Demo1 = (props) => {
+    return <div>{props.children}</div>
+}
 
 class HelloWorld extends React.Component {
 
@@ -12,16 +12,16 @@ class HelloWorld extends React.Component {
     }
 
     render() {
-        // 1.直接输出文案
+        //* 1.直接输出文案
         // const element = <h1>hello world!</h1>;
         // return (element);
 
-        // // 2.输出文案加变量
+        //* 2.输出文案加变量
         // const name = 'lipeng';
         // const element = <h1>hello {name}!</h1>;
         // return (element);
 
-        // 3.输出文案使用函数和变量
+        //* 3.输出文案使用函数和变量
         // const obj = {
         //     name: 'lipeng',
         //     age: 23
@@ -32,7 +32,7 @@ class HelloWorld extends React.Component {
         // const element = <h1>hello {getUserInfo(obj)}!</h1>;
         // return (element);
 
-        // 4.表达式作为变量进行处理
+        //* 4.表达式作为变量进行处理
         // function getEle(user) {
         //     if(user) {
         //         return <h1>my name is {user.name}</h1>
@@ -42,7 +42,7 @@ class HelloWorld extends React.Component {
         // }
         // return (getEle());
 
-        // 5.元素属性可以使用变量
+        //* 5.元素属性可以使用变量
         // const index = 22;
         // const element1 = <h1 tabIndex = "0">0</h1>
         // const element2 = <h1 tabIndex = {index}>{index}</h1>
@@ -60,8 +60,8 @@ class HelloWorld extends React.Component {
 
         // return element;
 
-        // 7.你可以安全的在JSX中插入用户输入的内容，不会发生jsx攻击
-        // 8.JSX最后会被转义成React.createElement()函数
+        //* 7.你可以安全的在JSX中插入用户输入的内容，不会发生jsx攻击
+        //* 8.JSX最后会被转义成React.createElement()函数
         // return <div>
         //     <Demo1>{this.state.name}</Demo1>
         // </div>;

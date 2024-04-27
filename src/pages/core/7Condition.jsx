@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 
 function LogIn() {
-    return <div>hello back</div>
+  return <div>hello back</div>;
 }
 
 function LogOut() {
-    return <div>hello guest</div>
+  return <div>hello guest</div>;
 }
 
 function Greeting(props) {
-    if(props.isLogin){
-        return <LogIn></LogIn>
-    }else {
-        return <LogOut></LogOut>
-    }
+  if (props.isLogin) {
+    return <LogIn></LogIn>;
+  } else {
+    return <LogOut></LogOut>;
+  }
 }
 
 /**
@@ -28,44 +28,39 @@ function Greeting(props) {
  *
  */
 
-export default  class User extends React.Component {
+export default class User extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isLogin: false };
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {isLogin: false};
+  login = () => {
+    this.setState({
+      isLogin: true,
+    });
+  };
+
+  logout = () => {
+    this.setState({
+      isLogin: false,
+    });
+  };
+
+  render() {
+    let button = "";
+    if (this.state.isLogin) {
+      button = <button onClick={this.logout}>退出</button>;
+    } else {
+      button = <button onClick={this.login}>登录</button>;
     }
 
-    login = ()=> {
-        this.setState({
-            isLogin: true
-        });
-    }
-
-    logout = () => {
-        this.setState({
-            isLogin: false
-        });
-    }
-
-    render() {
-
-        let button = '';
-        if(this.state.isLogin) {
-            button = <button onClick={this.logout}>退出</button>
-        }else {
-            button = <button onClick={this.login}>登录</button>
-        }
-
-        return (
-           <div>
-                <div>
-                <Greeting isLogin={this.state.isLogin}></Greeting>
-                </div>
-                <div>
-                    {button}
-                </div>
-           </div>
-        )
-    }
-
+    return (
+      <div>
+        <div>
+          <Greeting isLogin={this.state.isLogin}></Greeting>
+        </div>
+        <div>{button}</div>
+      </div>
+    );
+  }
 }
