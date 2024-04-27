@@ -22,8 +22,6 @@ npm start
         业务组件的使用
     pages/core
         react的基础知识
-    pages/css
-        css的使用
 
 ## 项目技术栈
 
