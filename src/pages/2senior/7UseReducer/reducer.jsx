@@ -1,4 +1,4 @@
-// *reducer 类似与 Redux 中的 reducer，它是一个纯函数，接收两个参数：state 和 action，返回新的 state。
+// *reducer 类似与 Redux 中的 reducer，类似redux,是一个纯函数，接收两个参数：state 和 action，返回新的 state。
 // *reducer 名字取自 reduce，可以不断处理数据
 export function tasksReducer(tasks, action) {
   if (action.type === "added") {
