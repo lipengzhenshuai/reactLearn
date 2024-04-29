@@ -3,28 +3,33 @@ import Draggable from 'react-draggable';
 import './_router.less';
 
 // 引入core文件夹下所有文件
-import HelloWorld from "../core/1helloworld";
-import FuncComponent from "../core/2funcComponent";
-import ClassComponent from "../core/3classComponent";
-import FuncComponentTQ from "../core/4funcComponentTQ";
-import Clock from "../core/5Clock";
-import Event from "../core/6Event";
-import Condition from "../core/7Condition";
-import Cycle from "../core/8cycle";
-import Form from "../core/9form";
-import StateUp from "../core/10StateUp";
-import LifeCycle from "../core/11LifeCycle";
+import HelloWorld from "../1core/1helloworld";
+import FuncComponent from "../1core/2funcComponent";
+import ClassComponent from "../1core/3classComponent";
+import FuncComponentTQ from "../1core/4funcComponentTQ";
+import Clock from "../1core/5Clock";
+import Event from "../1core/6Event";
+import Condition from "../1core/7Condition";
+import Cycle from "../1core/8cycle";
+import Form from "../1core/9form";
+import StateUp from "../1core/10StateUp";
+import LifeCycle from "../1core/11LifeCycle";
 
 // 引入senior文件夹下所有文件
-import CodeSplit from "../senior/1codeSplit";
-import Context from "../senior/2Context/Parent";
-import ErrorSide from "../senior/3errorSide";
-import Refs from "../senior/4refs";
-import Fragments from "../senior/5fragments";
-import HOC from "../senior/6HOC";
+import CodeSplit from "../2middle/1codeSplit";
+import Context from "../2middle/2Context/Parent";
+import ErrorSide from "../2middle/3errorSide";
+import Refs from "../2middle/4refs";
+import Fragments from "../2middle/5fragments";
+import HOC from "../2middle/6HOC";
+import Reducer from "../2middle/7UseReducer/index.jsx";
+import useContextTest from "../2middle/8useContext";
+import ReducerContext from "../2middle/10ReducerContext";
+
+import Ref from "../3senior/1Ref";
 
 // 引入router文件夹下所有文件
-import Basic from "../router/1basic";
+import Basic from "./1basic";
 
 // 引入redux文件夹下所有文件
 import Redux1 from "../redux/1";
@@ -46,9 +51,6 @@ import CustomHooks from "../hooks/customHooks/index";
 // import Business3 from "../business-compo/3";
 // import Business4 from "../business-compo/4";
 
-// 引入css文件夹下所有文件
-import Center from "../css/center/center";
-
 
 import {
     BrowserRouter as Router,
@@ -69,12 +71,16 @@ const routes = [
     { path: "/core/9form", component: Form },
     { path: "/core/10StateUp", component: StateUp },
     { path: "/core/11LifeCycle", component: LifeCycle },
-    { path: "/senior/1codeSplit", component: CodeSplit },
-    { path: "/senior/2Context", component: Context },
-    { path: "/senior/3errorSide", component: ErrorSide },
-    { path: "/senior/4refs", component: Refs },
-    { path: "/senior/5fragments", component: Fragments },
-    { path: "/senior/6HOC", component: HOC },
+    { path: "/middle/1codeSplit", component: CodeSplit },
+    { path: "/middle/2Context", component: Context },
+    { path: "/middle/3errorSide", component: ErrorSide },
+    { path: "/middle/4refs", component: Refs },
+    { path: "/middle/5fragments", component: Fragments },
+    { path: "/middle/6HOC", component: HOC },
+    { path: "/middle/7Reducer", component: Reducer },
+    { path: "/middle/8useContextTest", component: useContextTest },
+    { path: "/middle/10ReducerContext", component: ReducerContext },
+    { path: "/senior/1Ref", component: Ref },
     { path: "/router/1basic", component: Basic },
     { path: "/redux/1", component: Redux1 },
     { path: "/redux/1_simple/basic", component: Redux1Simple },
@@ -90,7 +96,6 @@ const routes = [
     // { path: "/business-compo/2", component: Business2 },
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
-    { path: "/css/center/center", component: Center },
 ];
 
 
