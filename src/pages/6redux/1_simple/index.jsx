@@ -1,7 +1,12 @@
-import React from "react";
-import store from "./store/index";
+import store from "./store";
 import { Provider } from "react-redux";
-import Counter from "./component/Counter";
+import Counter from "./Counter";
+
+/**
+ * * 1.引入store
+ * * 2.给Counter组件包裹Provider
+ * * 3.Counter使用store
+ */
 
 const A = () => {
   return (

@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
+
+/**
+ * * 使用高阶组件的方式，将组件包裹起来，获取到redux的state和dispatch
+ * 
+ */
+
 const Counter = (props) => {
   const increment = () => {
     props.dispatch({ type: "INCREMENT" });
