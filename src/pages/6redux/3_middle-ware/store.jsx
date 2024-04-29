@@ -69,6 +69,7 @@ function applyMiddleware(...middleWares) {
       };
       const middlewareArr = middleWares.map((middleware) => middleware(middleWareAPI));
       // 为何这样？  建立中间件之间的关联
+      // 传入store.dispatch,执行最后一个函数，最后函数返回一个函数，这个函数作为下一个函数的参数，执行倒数第二个函数······
       dispatch = compose(...middlewareArr)(store.dispatch); // 给最后一个中间件，传入next，执行一层层函数
       return { ...store, dispatch };
     };
