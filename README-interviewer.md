@@ -1,6 +1,4 @@
-# React 知识从基础到高级Demo库-面试准备
-
-## 目录结构
+# React 知识从基础到高级 Demo 库-面试准备
 
 ## 项目启动
 
@@ -9,23 +7,19 @@ npm install
 npm start
 ```
 
-## 项目说明
+## 复习流程
 
-// 目录结构
-    pages/antd
-        antd组件的使用
-    pages/api
-        react的api的使用
-    pages/axxd
-        爱学习组件库的使用
-    pages/business
-        业务组件的使用
+1.先复习react基础知识（20分钟左右）
     pages/core
         react的基础知识
-
-## 项目技术栈
-
-// 项目技术栈
+2.pages/antd
+    antd组件的使用
+pages/api
+    react的api的使用
+pages/axxd
+    爱学习组件库的使用
+pages/business
+    业务组件的使用
 
 ## 项目功能
 

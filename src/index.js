@@ -22,7 +22,7 @@ import './index.css';
 // import App from './pages/senior/5fragments';
 // import App from './pages/senior/6HOC';
 
-import App from'./pages/5.router/_router';
+import App from'./pages/5router/_router';
 // import App from'./pages/router/1basic';
 
 // import App from './pages/redux/1';

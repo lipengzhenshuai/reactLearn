@@ -9,12 +9,12 @@
 
 ## 2 升级 react-redux
 
-## react-redux 把 store 和 react 组件 🔗 起来
+### react-redux 把 store 和 react 组件 🔗 起来
 
-1.使用 Provider 将数据传下去（context）  
-2.使用 connect 包裹函数（高阶函数）  
-connect 主要的任务： 1.将 store 的数据作为 props 传给子组件  
- 2.注册 store 变化事件，在数据变化了更新数据
+    1.使用 Provider 将数据传下去（context）  
+    2.使用 connect 包裹函数（高阶函数）  
+    connect 主要的任务： 1.将 store 的数据作为 props 传给子组件  
+    2.注册 store 变化事件，在数据变化了更新数据
 
 [参考 url](https://juejin.cn/post/6844903815594901512)
 
@@ -31,3 +31,5 @@ connect 主要的任务： 1.将 store 的数据作为 props 传给子组件
 
     1.业界比较好的方案
     2.无论怎么说，就是可以异步执行中间件，没什么太多东西
+
+## dva

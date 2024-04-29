@@ -33,10 +33,10 @@ import Basic from "./1basic";
 
 // 引入redux文件夹下所有文件
 import Redux1 from "../6redux/1";
-import Redux1Simple from "../6redux/1_simple/basic";
-import Redux2Use from "../6redux/2_use-xx/basic";
+import Redux1Simple from "../6redux/1_simple";
+import Redux2Use from "../6redux/2_use-xx";
 import Redux3Middle from "../6redux/3_middle-ware/1";
-import Redux4Saga from "../6redux/4_saga/basic";
+import Redux4Saga from "../6redux/4_saga";
 import Redux5Dva from "../6redux/5_dva/basic";
 
 // 引入pinyin文件夹下所有文件
