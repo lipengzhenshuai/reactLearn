@@ -32,12 +32,12 @@ import Ref from "../3senior/1Ref";
 import Basic from "./1basic";
 
 // 引入redux文件夹下所有文件
-import Redux1 from "../redux/1";
-import Redux1Simple from "../redux/1_simple/basic";
-import Redux2Use from "../redux/2_use-xx/basic";
-import Redux3Middle from "../redux/3_middle-ware/1";
-import Redux4Saga from "../redux/4_saga/basic";
-import Redux5Dva from "../redux/5_dva/basic";
+import Redux1 from "../6redux/1";
+import Redux1Simple from "../6redux/1_simple/basic";
+import Redux2Use from "../6redux/2_use-xx/basic";
+import Redux3Middle from "../6redux/3_middle-ware/1";
+import Redux4Saga from "../6redux/4_saga/basic";
+import Redux5Dva from "../6redux/5_dva/basic";
 
 // 引入pinyin文件夹下所有文件
 import Pinyin from "../pinyin/src/index";
