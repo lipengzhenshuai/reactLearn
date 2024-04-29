@@ -27,9 +27,13 @@
 
     为了可以在执行dispatch之前执行一些异步操作
 
-## redux-saga
+## redux-saga(感觉这个现在用的很少,不用复习了)
 
     1.业界比较好的方案
     2.无论怎么说，就是可以异步执行中间件，没什么太多东西
 
 ## dva
+
+## useReducer + useContext
+
+    1.使用useReducer + useContext可以实现redux的功能
