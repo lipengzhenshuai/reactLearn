@@ -15,5 +15,5 @@ const reducer = (state, action) => {
     }
 }
 // store
-const store = createStore(reducer);
+const store = createStore(reducer, { count: 100 });
 export default store;
