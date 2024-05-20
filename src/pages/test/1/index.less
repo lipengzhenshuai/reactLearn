@@ -1,0 +1,129 @@
+@colorWhite: #FFFFFF;
+@colorGray: #70859F;
+.courseCenter {
+  box-sizing: border-box;
+  height: calc(100vh);
+  padding-top: 113px;
+  background: linear-gradient(#4D7E9B, #162B41); /* 更浅的颜色 */
+  display: flex;
+  flex-direction: column;
+}
+.sticker{
+  flex: 1;
+}
+.cc-xxjl-con{
+  min-height: 523px;
+  margin-top:30px
+}
+.recommendInfo {
+  margin: 0 56px;
+  .title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    color: @colorWhite;
+  }
+  .desc {
+    margin: 12px 0 20px;
+    font-size: 18px;
+    line-height: 23px;
+    color: @colorGray;
+  }
+  .courseList{
+    display: grid;
+    grid-template-columns: 402px 402px 402px;
+    justify-content: space-between;
+  }
+  .loading {
+    color: #505873;
+  }
+  .course-empty {
+    height: 246px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -30px;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 14px;
+    }
+    span {
+      font-size: 20px;
+      line-height: 28px;
+      color: #70859F;
+    }
+    .loading {
+      color: #505873;
+    }
+  }
+}
+
+.subjectList {
+  margin: 20px 0 0;
+  .courseList{
+    // min-height: 582px;
+    display: flex;
+    // grid-template-columns: 402px 402px 402px;
+    // flex-wrap: wrap;
+    // height: 100%;
+    // justify-content: space-between;
+    .courseCard{
+      margin-right: 24px;
+    }
+    &>div:nth-child(1) {
+      margin-left: 56px;
+    }
+  }
+  .subject-empty, .subject-more {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -30px;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 14px;
+    }
+    span {
+      font-size: 20px;
+      line-height: 28px;
+      color: #70859F;
+    }
+    .loading {
+      color: #505873;
+    }
+  }
+  .subject-more {
+    height: 582px;
+  }
+  .loading {
+    color: #505873;
+  }
+}
+
+.course-list-loading {
+  text-align: center;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #70859F;
+  opacity: 0.6;
+}
+.flexB {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

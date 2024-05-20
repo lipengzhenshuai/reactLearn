@@ -32,15 +32,14 @@ import Ref from "../3senior/1Ref";
 import Basic from "./1basic";
 
 // 引入redux文件夹下所有文件
-import Redux1 from "../6redux/1";
+import Redux1 from "../6redux/0redux";
 import Redux1Simple from "../6redux/1_simple";
 import Redux2Use from "../6redux/2_use-xx";
 import Redux3Middle from "../6redux/3_middle-ware/1";
 import Redux4Saga from "../6redux/4_saga";
-import Redux5Dva from "../6redux/5_dva/basic";
+import Redux5Dva from "../6redux/5_dva";
 
 // 引入pinyin文件夹下所有文件
-import Pinyin from "../pinyin/src/index";
 import Hooks1 from "../hooks/1";
 import RefHooks from "../hooks/refHooks";
 import CustomHooks from "../hooks/customHooks/index";
@@ -50,6 +49,8 @@ import CustomHooks from "../hooks/customHooks/index";
 // import Business2 from "../business-compo/2";
 // import Business3 from "../business-compo/3";
 // import Business4 from "../business-compo/4";
+
+import Test1 from "../test/1/1.jsx";
 
 
 import {
@@ -88,7 +89,6 @@ const routes = [
     { path: "/redux/3_middle-ware/1", component: Redux3Middle },
     { path: "/redux/4_saga/basic", component: Redux4Saga },
     { path: "/redux/5_dva/basic", component: Redux5Dva },
-    { path: "/pinyin/src/index", component: Pinyin },
     { path: "/hooks/1", component: Hooks1 },
     { path: "/hooks/refHooks", component: RefHooks },
     { path: "/hooks/customHooks/index", component: CustomHooks },
@@ -96,6 +96,7 @@ const routes = [
     // { path: "/business-compo/2", component: Business2 },
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
+    { path: "/test/1", component: Test1 },
 ];
 
 
