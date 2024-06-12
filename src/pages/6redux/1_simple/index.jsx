@@ -1,6 +1,7 @@
 import store from "./store";
 import { Provider } from "react-redux";
 import Counter from "./Counter";
+import Counter2 from "./Counter2";
 
 /**
  * * 1.引入store
@@ -15,7 +16,10 @@ const A = () => {
   return (
     <div>
       <Provider store={store}>
+        <h1>使用connect连接</h1>
         <Counter />
+        <h1>使用useSelector连接</h1>
+        <Counter2 />
       </Provider>
     </div>
   );

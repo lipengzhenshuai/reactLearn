@@ -51,6 +51,7 @@ import CustomHooks from "../hooks/customHooks/index";
 // import Business4 from "../business-compo/4";
 
 import Test1 from "../test/1/1.jsx";
+import Test2 from "../test/2/1.jsx";
 
 
 import {
@@ -97,6 +98,7 @@ const routes = [
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
     { path: "/test/1", component: Test1 },
+    { path: "/test/2", component: Test2 },
 ];
 
 
