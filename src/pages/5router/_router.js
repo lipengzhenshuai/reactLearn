@@ -44,6 +44,10 @@ import Hooks1 from "../hooks/1";
 import RefHooks from "../hooks/refHooks";
 import CustomHooks from "../hooks/customHooks/index";
 
+import IframeFu from "../11demo/iframe/Fu.jsx";
+import IframeZi from "../11demo/iframe/Zi.jsx";
+
+
 // 引入business-compo文件夹下所有文件
 // import Business1 from "../business-compo/1";
 // import Business2 from "../business-compo/2";
@@ -99,6 +103,8 @@ const routes = [
     // { path: "/business-compo/4", component: Business4 },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
+    { path: "/demo/11/iframeFu", component: IframeFu },
+    { path: "/demo/11/iframeZi", component: IframeZi },
 ];
 
 
