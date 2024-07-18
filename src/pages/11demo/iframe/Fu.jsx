@@ -4,6 +4,8 @@ const Fu = (props) => {
 
   // 这块代码打开有问题，因为项目启动之后一直有postmessage，具体不知道是哪个地方发出的
 
+  // 可以通过在iframe上增加事件判断iframe是否加载成功，或者通过获取里面内容的状态来判断；iframe.windowContent;
+
   const iframeRef = useRef(null);
   const updateParent = () => {
     // const message = "Hello from parent";
