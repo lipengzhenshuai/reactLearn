@@ -39,6 +39,9 @@ import Redux3Middle from "../6redux/3_middle-ware/1";
 import Redux4Saga from "../6redux/4_saga";
 import Redux5Dva from "../6redux/5_dva";
 
+import PinYin from "../pinyin/index.jsx";
+import generatePdf from "../11demo/generatePdf/index.jsx";
+
 // 引入pinyin文件夹下所有文件
 import Hooks1 from "../hooks/1";
 import RefHooks from "../hooks/refHooks";
@@ -105,6 +108,8 @@ const routes = [
     { path: "/test/2", component: Test2 },
     { path: "/demo/11/iframeFu", component: IframeFu },
     { path: "/demo/11/iframeZi", component: IframeZi },
+    {path: "/pinyin", component: PinYin},
+    {path: "/generatePdf", component: generatePdf}
 ];
 
 
@@ -120,7 +125,6 @@ export default function App() {
                                     <Link to={route.path}>{route.path}</Link>
                                 </li>
                             ))}
-
                         </ul>
                     </div>
                 </Draggable>
