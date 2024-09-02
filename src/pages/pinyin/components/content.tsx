@@ -1,11 +1,12 @@
 import React from "react";
-import './1.less';
+import './index.less';
 
 import { decorationSvgs } from "../utils/svg_constants";
 
 import Top from './top.jsx';
 import PinYinType from './pinyinTypeOptions.jsx';
 import WordType from './wordTypeOptions.jsx';
+import Panel from './panel.jsx';
 
 const PinYinContent = ({ config, updateConfig }: any) => {
 
@@ -19,6 +20,16 @@ const PinYinContent = ({ config, updateConfig }: any) => {
   // 重置默认样式
   const reset = () => {
     updateConfig({ ...config, data: [] });
+  }
+
+  // 取消
+  const cancel = () => {
+    
+  }
+
+  // 提交
+  const submit = () => {
+
   }
 
   return (
@@ -54,12 +65,13 @@ const PinYinContent = ({ config, updateConfig }: any) => {
         <div id="${IDs.ERRORMSG}">
         </div>
         <div className="py-footer">
-          {/* <div id=${IDs.STYLEBASICCONTROL} className="py-panel">
-            ${panel(config)}
-          </div> */}
+          <div className="py-panel">
+            {/* ${(config)} */}
+            <Panel config={config} ></Panel>
+          </div>
           <div>
-            <button id="${IDs.CANCEL}" className="py-cancel-btn">取消</button>
-            <button id="${IDs.SUBMIT}" className="py-ok-btn">确认</button>
+            <button onClick={cancel} className="py-cancel-btn">取消</button>
+            <button onClick={submit} className="py-ok-btn">确认</button>
           </div>
         </div>
       </div>
