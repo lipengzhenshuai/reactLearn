@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Content from './components/content';
 
-const PinYin = (props: any) => {
-  const defaultConfig = {
+const PinYin = (props) => {
+
+  const [defaultConfig, setConfig] = useState({
     data: [],
     options: {
       wordType: 0, // 上下,左右,四线三格，田字格，组合等
@@ -27,8 +28,25 @@ const PinYin = (props: any) => {
       markTone: true,
       uKeepPoint: true,
     },
-  };
-  return <Content config={defaultConfig} />;
+  });
+
+  const updateConfig = (type, valueOrFunc) => {
+    if(['showWord', 'showPinyin' ,'markTone'].includes(type)) {
+      setConfig(valueOrFunc(defaultConfig))
+      return;
+    }
+    if(type === 'wordType') {
+      defaultConfig.options.wordType = valueOrFunc;
+      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
+      return;
+    }
+    if(type === 'pinyinType') {
+      defaultConfig.options.pinyinType = valueOrFunc;
+      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
+    }
+  }
+
+  return <Content config={defaultConfig} updateConfig={updateConfig} />;
 };
 
 export default PinYin;

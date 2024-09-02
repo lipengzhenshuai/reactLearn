@@ -7,31 +7,44 @@ import Top from './top.jsx';
 import PinYinType from './pinyinTypeOptions.jsx';
 import WordType from './wordTypeOptions.jsx';
 
-const PinYinContent = (props: any) => {
+const PinYinContent = ({ config, updateConfig }: any) => {
+
+  // 清除数据
+  const clear = () => {
+    if (config.data.length > 0) { // 更新内容
+      updateConfig({ ...config, data: [] });
+    }
+  }
+
+  // 重置默认样式
+  const reset = () => {
+    updateConfig({ ...config, data: [] });
+  }
+
   return (
     <div className="py-mask">
       <div className="py-border">
         <div className="py-title">学科工具拼音</div>
         <div className="py-top-bar-main">
-          <div id="${IDs.OTHERBASICCONTROL}" className="py-other-basic-control">
-            <div><Top config={props.config} /></div>
+          <div className="py-other-basic-control">
+            <div><Top config={config} updateConfig={updateConfig} /></div>
             <div>
-              <div id="${IDs.CLEAR}" className="py-clear-btn py-line-item-btn">
+              <div onClick={clear} className="py-clear-btn py-line-item-btn">
                 <span dangerouslySetInnerHTML={{ __html: decorationSvgs.clear }}></span>
                 <span>清除</span>
               </div>
-              <div id="${IDs.RESET}" className="py-reset-btn py-line-item-btn">
+              <div onClick={reset} className="py-reset-btn py-line-item-btn">
                 <span dangerouslySetInnerHTML={{ __html: decorationSvgs.reset }}></span>
                 <span>重置</span>
               </div>
             </div>
           </div>
-          <div id="${IDs.BASICCONTROL}" className="py-basic-control">
+          <div className="py-basic-control">
             <div>
-              <WordType config={props.config} />
+              <WordType config={config} updateConfig={updateConfig} />
             </div>
             <div>
-              <PinYinType config={props.config} />
+              <PinYinType config={config} updateConfig={updateConfig} />
             </div>
           </div>
         </div>
