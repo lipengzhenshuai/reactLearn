@@ -16,11 +16,7 @@ export const getNode = (e: any) => {
 
 export const getFontFamilyList = (type = 1, config:any) => {
 	const select = config || (type === 1 ? wordFontFamilys : pyFontFamilys);
-	let temp = "";
-	for (let item of select) {
-		temp += `<li data-name="${item.value}" class="size">${item.label}</li>`;
-	}
-	return temp;
+	return select;
 };
 
 /**
@@ -31,11 +27,12 @@ export const getFontFamilyList = (type = 1, config:any) => {
 
 export const getFontSiezList = (type = 1, config:any) => {
 	const list = config || (type === 1 ? wordFontSizes : pyFontSizes);
-	let temp = "";
-	for (let item of list) {
-		temp += `<li data-name="${item.value}" class="size">${item.label}</li>`;
-	}
-	return temp;
+	return list;
+	// let temp = "";
+	// for (let item of list) {
+	// 	temp += `<li data-name="${item.value}" class="size">${item.label}</li>`;
+	// }
+	// return temp;
 };
 
 
@@ -48,11 +45,7 @@ export const getFontSiezList = (type = 1, config:any) => {
 export const getFontColorList = (type = 1, config) => {
 
 	const select = config || (type === 1 ? wordColors : pyColors);
-	let temp = "";
-	for (let item of select) {
-		temp += `<li data-name="${item.value}"><span style='background:${item.value}' class='color-box'></span>${item.label}</li>`;
-	}
-	return	temp;
+	return select;
 }
 
 export const getWordNameByValue = (value, list) => {

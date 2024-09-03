@@ -1,5 +1,8 @@
 import React from "react";
+import { Select, Input } from "antd";
+import { PinYinFont, WordFont } from "../utils/constants.ts";
 import { decorationSvgs } from "../utils/svg_constants.ts";
+import { containerId, FONTSIZEDEFAULT, EMRANGE, PTRANGE } from "../utils/data";
 import {
   getNode,
   getFontSiezList,
@@ -10,26 +13,30 @@ import {
   getWordNameByValue4PY,
 } from "../utils/utils.ts";
 
-let getSelectList = undefined;
-
 let _pyFontFamilys = [];
 let _wordFontFamilys = [];
 
-const Panel = ({ config }) => {
+const Panel = ({ config, updateConfig }) => {
   const { wordType } = config.options;
   return (
     <>
       <div className={`${wordType === 3 ? "py-hide-remain" : ""}`}>
-        {panel1(config)}
+        {panel1(config, updateConfig)}
       </div>
       <div className={`${wordType === 2 ? "py-hide-remain" : ""}`}>
-        {panel2(config)}
+        {panel2(config, updateConfig)}
       </div>
     </>
   );
 };
 
-const panel1 = (config) => {
+const panel1 = (config, updateConfig) => {
+  const { pinyinStyle, wordStyle } = config.options;
+
+  const update = (type, value) => {
+    pinyinStyle[type] = value;
+    return updateConfig("pinyinStyle", config);
+  };
   const {
     options: {
       pinyinStyle: { fontFamily, fontSize, color },
@@ -40,39 +47,35 @@ const panel1 = (config) => {
   return (
     <>
       <div>拼音样式</div>
-      <div className="py-opt py-borders">
-        <span className="choice" style={{ width: "50" }}>
-          <span>{getWordNameByValue4PY(fontFamily, _pyFontFamilys)}</span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="pinyinFamilyPanel style-select hide">
-          {/* ${getSelectList(IDs.PINYINFONTSTYLE)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(PinYinFont.PYFont)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
-      <div className="py-opt py-borders">
-        <span className="choice" style={{ width: "50" }}>
-          <span>{fontSize}</span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="pinyinSizePanel style-select hide">
-          {/* ${getSelectList(IDs.PINYINFONTSIZE)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(PinYinFont.PYSize)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
-      <div className="py-opt">
-        <span className="choice">
-          <span dangerouslySetInnerHTML={{ __html: font }} />
-          <span className="box" style={{ background: "red" }}></span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="pinyinColorPanel style-select hide">
-          {/* ${getSelectList(IDs.PINYINFONTCOLOR)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(PinYinFont.PYColor)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
     </>
   );
 };
 
-const panel2 = (config) => {
+const panel2 = (config, updateConfig) => {
   const {
     options: {
       wordStyle: { fontFamily, fontSize, color },
@@ -83,36 +86,58 @@ const panel2 = (config) => {
   } = config;
   const { nabla, font, checked } = decorationSvgs;
 
+  const { pinyinStyle, wordStyle } = config.options;
+
+  const update = (type, value) => {
+    if(type === 'useFontWidth'){
+      return updateConfig("useFontWidth");
+    }
+    if(type === 'fontWidth'){
+      return updateConfig("fontWidth", value);
+    }
+    pinyinStyle[type] = value;
+    return updateConfig("pinyinStyle", config);
+  };
+
+  const changeFontWidth = (e) => {
+    const {
+			wordStyle: {fontSize: wordFontSize},
+			pinyinStyle: {fontSize: pinyinFontSize},
+		} = config.options;
+		const range = (wordFontSize === FONTSIZEDEFAULT || pinyinFontSize === FONTSIZEDEFAULT) ? EMRANGE : PTRANGE;
+		let { value = range[0] } = e.target;
+		if(value > range[1] || value < range[0]) {
+			value = value > range[1] ? range[1] : range[0];
+		}
+    update('fontWidth', value);
+  }
+
   return (
     <>
       <div>汉字样式</div>
-      <div className="py-opt py-borders">
-        <span className="choice" style={{ width: "50" }}>
-          <span>{getWordNameByValue(fontFamily, _wordFontFamilys)}</span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="fontFamilyPanel style-select hide">
-          {/* ${getSelectList(IDs.WORDFONTSTYLE)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(WordFont.WFont)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
-      <div className="py-opt py-borders">
-        <span className="choice" style={{ width: "50" }}>
-          <span>{fontSize}</span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="fontSizePanel style-select hide">
-          {/* ${getSelectList(IDs.WORDFONTSIZE)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(WordFont.WSize)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
-      <div className="py-opt">
-        <span className="choice">
-          <span dangerouslySetInnerHTML={{ __html: font }} />
-          <span className="box" style={{ background: "red" }}></span>
-        </span>
-        <span className="py-down" dangerouslySetInnerHTML={{ __html: nabla }} />
-        <div className="fontColorPanel style-select hide">
-          {/* ${getSelectList(IDs.WORDFONTCOLOR)} */}
-        </div>
+      <div>
+        <Select
+          dropdownStyle={{ zIndex: 10001 }}
+          style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
+          options={getSelectList(WordFont.WColor)}
+          onChange={(value) => update("fontFamily", value)}
+        ></Select>
       </div>
       <div
         className={`${wordType === 0 ? "" : "hide"}`}
@@ -121,6 +146,7 @@ const panel2 = (config) => {
         字宽
       </div>
       <span
+        onClick={() => {update('useFontWidth')}}
         className={`py-checkbox ${useFontWidth ? "checked" : ""} ${
           wordType === 0 ? "" : "hide"
         }`}
@@ -130,10 +156,42 @@ const panel2 = (config) => {
         className={`font-width-area ${wordType === 0 ? "" : "hide"}`}
         style={{ width: 40 }}
       >
-        <input type="number" value="{fontWidth}" />
+        <Input onChange={changeFontWidth} type="number" value={fontWidth} />
       </div>
     </>
   );
 };
+
+let _getSelectList = (
+  pyFontFamilys,
+  wordFontFamilys,
+  pyFontSizes,
+  wordFontSizes,
+  wordColors,
+  pyColors
+) => {
+  // 2代表拼音，1代表汉字
+  const pyFamilyList = getFontFamilyList(2, pyFontFamilys);
+  const pyFontSizeList = getFontSiezList(2, pyFontSizes);
+  const pyfontColorList = getFontColorList(2, pyColors);
+  const wordFamilyList = getFontFamilyList(1, wordFontFamilys);
+  const wordfontSizeList = getFontSiezList(1, wordFontSizes);
+  const wordfontColorList = getFontColorList(1, wordColors);
+
+  return function (type) {
+    const selectListObj = {
+      [PinYinFont.PYFont]: pyFamilyList,
+      [PinYinFont.PYSize]: pyFontSizeList,
+      [PinYinFont.PYColor]: pyfontColorList,
+      [WordFont.WFont]: wordFamilyList,
+      [WordFont.WColor]: wordfontColorList,
+      [WordFont.WSize]: wordfontSizeList,
+    };
+    return selectListObj[type];
+  };
+};
+
+// 没有传入从外界传入的值
+let getSelectList = _getSelectList();
 
 export default Panel;

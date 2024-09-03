@@ -24,7 +24,7 @@ const PinYinContent = ({ config, updateConfig }: any) => {
 
   // 取消
   const cancel = () => {
-    
+
   }
 
   // 提交
@@ -67,7 +67,7 @@ const PinYinContent = ({ config, updateConfig }: any) => {
         <div className="py-footer">
           <div className="py-panel">
             {/* ${(config)} */}
-            <Panel config={config} ></Panel>
+            <Panel config={config} updateConfig={updateConfig} />
           </div>
           <div>
             <button onClick={cancel} className="py-cancel-btn">取消</button>

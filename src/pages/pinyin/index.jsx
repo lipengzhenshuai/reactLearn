@@ -44,6 +44,17 @@ const PinYin = (props) => {
       defaultConfig.options.pinyinType = valueOrFunc;
       setConfig(JSON.parse(JSON.stringify(defaultConfig)))
     }
+    if(type === 'pinyinStyle') {
+      setConfig(JSON.parse(JSON.stringify(valueOrFunc)))
+    }
+    if(type === 'useFontWidth') {
+      defaultConfig.options.useFontWidth = !defaultConfig.options.useFontWidth;
+      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
+    }
+    if(type === 'fontWidth') {
+      defaultConfig.options.fontWidth = valueOrFunc;
+      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
+    }
   }
 
   return <Content config={defaultConfig} updateConfig={updateConfig} />;

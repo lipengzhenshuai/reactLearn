@@ -3,11 +3,23 @@ export enum WordType {
   LEFTRIGHT,
   FOURLINE,
   SQUARE,
-  COMBINE
+  COMBINE,
 }
 
 export enum PinYinType {
   FORM = 0,
   FIRSTUP,
-  ALLUP
+  ALLUP,
+}
+
+export enum PinYinFont {
+  PYFont=1,
+  PYColor,
+  PYSize,
+}
+
+export enum WordFont {
+  WFont=4,
+  WColor,
+  WSize,
 }
