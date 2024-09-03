@@ -28,11 +28,6 @@ export const getFontFamilyList = (type = 1, config:any) => {
 export const getFontSiezList = (type = 1, config:any) => {
 	const list = config || (type === 1 ? wordFontSizes : pyFontSizes);
 	return list;
-	// let temp = "";
-	// for (let item of list) {
-	// 	temp += `<li data-name="${item.value}" class="size">${item.label}</li>`;
-	// }
-	// return temp;
 };
 
 

@@ -59,10 +59,10 @@ const PinYinContent = ({ config, updateConfig }: any) => {
             </div>
           </div>
         </div>
-        <div id="${IDs.EDITCONTENT}" className="py-edit-content">
+        <div className="py-edit-content">
           {/* ${editContainer(config)} */}
         </div>
-        <div id="${IDs.ERRORMSG}">
+        <div>
         </div>
         <div className="py-footer">
           <div className="py-panel">
