@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 // import { isComposing } from '../../index.jsx';
-// import { addValue } from "./temp.js";
+import { addValue } from "./temp.js";
 import UpDown from "./upDown";
 
 let isComposing = false;
@@ -14,9 +15,11 @@ const renderList = {
   // 4: renderCombine
 };
 
-const EditContainer = ({ config, isPreview = false }) => {
+const EditContainer = ({ isPreview = false }) => {
+  const config = useSelector(state => state);
+  const dispatch = useDispatch();
   const { data, options } = config;
-
+  console.log('lipeng-🚀- ~ EditContainer ~ data:', data)
   const editContent = useRef(null);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const EditContainer = ({ config, isPreview = false }) => {
         // const index = getIndex(target);
         // config.data[index - 1].pinyin = innerText;
       } else if (tagName === "INPUT" && data && !isComposing) {
-        // addValue(e, data, 2, config);
+        addValue(e, data, 2, config, dispatch);
       }
     });
   
@@ -66,7 +69,7 @@ const EditContainer = ({ config, isPreview = false }) => {
       let data = (e.clipboardData || window.clipboardData).getData('text');
       e.preventDefault();
       if(data) {
-        // addValue(e, data, 3);
+        addValue(e, data, 3, config, dispatch);
         return;
       }
       e.target.value = '';
@@ -235,7 +238,7 @@ const EditContainer = ({ config, isPreview = false }) => {
             className="py-first-input"
           />
         )}
-        {data.map((item) => renderFunc(item, options, isPreview).trim())}
+        {data.map((item) => renderFunc(item, options, isPreview))}
       </span>
     </div>
   );

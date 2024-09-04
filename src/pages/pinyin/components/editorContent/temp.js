@@ -6,12 +6,12 @@ const typeFunc = {
 	3: getMixin
 }
 
-export function addValue(e, value, type, config, updateConfig) {
+export function addValue(e, value, type, config, dispatch) {
 	const { target } = e;
 	// 2.将汉字转化成对应的数据格式
 	let pinyin = typeFunc[type](value);
 	// 3.更新数据
-	// updateData(target, pinyin);
+	updateData(target, pinyin, config, dispatch);
 	// 4.更新dom
 	// updateChild(target, pinyin);
 	// 5.清空默认值
@@ -20,16 +20,17 @@ export function addValue(e, value, type, config, updateConfig) {
 	// updateFocus(target, pinyin.length);
 }
 
-// const updateData = (target, pinyin) => {
-//   // TODO: 其实可以不用区分
-// 	if ([...target.classList].includes("py-first-input")) { // 第一个input
-// 	} else {
-// 		// const index = getIndex(target);
-// 		// config.data.splice(index, 0, ...pinyin);
-// 	}
-//   // TODO: 更新
-// 	// otherDomUpdate(config);
-// }
+const updateData = (target, pinyin, config, dispatch) => {
+  // TODO: 其实可以不用区分
+	dispatch({type: 'updateData', index: 0, value: pinyin})
+	if ([...target.classList].includes("py-first-input")) { // 第一个input
+	} else {
+		// const index = getIndex(target);
+		// config.data.splice(index, 0, ...pinyin);
+	}
+  // TODO: 更新
+	// otherDomUpdate(config);
+}
 
 // const updateChild = (target, pinyin) => {
 	

@@ -61,13 +61,37 @@ const reducer = (state, action) => {
             fontWidth: action.value
           }
         }
+      case "updateData":
+        debugger;
+        const temp = [...state.data];
+        temp.splice(action.index, 0, ...action.value);
+        return {
+          ...state,
+          data: temp
+        }
 
     default: return state;
   }
 }
 // store
 const store = createStore(reducer, {
-  data: [],
+  data: [
+    {
+        "word": "你",
+        "pinyin": "nǐ",
+        "pysData": [],
+        "type": 1
+    },
+    {
+        "word": "好",
+        "pinyin": "hǎo",
+        "pysData": [
+            "hǎo",
+            "hào"
+        ],
+        "type": 1
+    }
+],
   options: {
     wordType: 0, // 上下,左右,四线三格，田字格，组合等
     pinyinType: 0, // 1 - 标准，2 - 首字母大写，3 - 大写

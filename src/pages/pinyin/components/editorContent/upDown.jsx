@@ -1,3 +1,4 @@
+
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 import { decorationSvgs } from "../../utils/svg_constants";
 import { firstUp } from "../../utils/utils.ts";
@@ -14,7 +15,7 @@ const wrapper = (str, options) => {
   // return markTone ? str : removeTone(str);
 };
 
-function renderUpDown(data, options, isPreview = false) {
+function RenderUpDown(data, options, isPreview = false) {
   const {
     wordStyle,
     pinyinStyle,
@@ -25,6 +26,7 @@ function renderUpDown(data, options, isPreview = false) {
     pinyinType,
   } = options;
 
+  debugger;
   const { pysData } = data;
   const polyphone = pysData.length > 0;
   // 是否展示多选的箭头
@@ -46,7 +48,7 @@ function renderUpDown(data, options, isPreview = false) {
         <span className="py-pinyin" style={{ "font-size": pinyinFontSize }}>
           <span
             contenteditable="true"
-            className={`py-wrap${showPinyin ? "" : " hide-remain"}`}
+            className={`py-wrap ${showPinyin ? "" : " hide-remain"}`}
             style={{
               color: pinyinStyle.color,
               "font-family": pinyinStyle.fontFamily,
@@ -59,9 +61,9 @@ function renderUpDown(data, options, isPreview = false) {
           ) : (
             <div
               id="POLYPHONE"
-              className={`pys-chooser {showSelectIcon ? "" : "hide"}`}
+              className={`pys-chooser ${showSelectIcon ? "" : "hide"}`}
             >
-              <span className="py-down">{decorationSvgs.pys_tips}</span>
+              <span className="py-down" dangerouslySetInnerHTML={{ __html: decorationSvgs.pys_tips }} />
               <span className="py-masks pysChooser"></span>
             </div>
           )}
@@ -76,7 +78,6 @@ function renderUpDown(data, options, isPreview = false) {
             <span className={showWord || data.type !== 1 ? "" : "hide-remain"}>
               {data.word}
             </span>
-            $
             {isPreview ? (
               ""
             ) : (
@@ -94,4 +95,4 @@ function renderUpDown(data, options, isPreview = false) {
   );
 }
 
-export default renderUpDown;
+export default RenderUpDown;

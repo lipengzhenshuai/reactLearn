@@ -1,31 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import './index.less';
-
 import { decorationSvgs } from "../utils/svg_constants";
-
 import Top from './top.jsx';
 import PinYinType from './pinyinTypeOptions.jsx';
 import WordType from './wordTypeOptions.jsx';
 import Panel from './panel.jsx';
 import EditContainer from './editorContent/index.jsx';
-import { useSelector, useDispatch } from "react-redux";
 
-const PinYinContent = ({ updateConfig }: any) => {
+const PinYinContent = () => {
 
   const config: any = useSelector(state => state);
-  const dispatch = useDispatch();
   
-
   // 清除数据
   const clear = () => {
     if (config.data.length > 0) { // 更新内容
-      updateConfig({ ...config, data: [] });
+      // updateConfig({ ...config, data: [] });
     }
   }
 
   // 重置默认样式
   const reset = () => {
-    updateConfig({ ...config, data: [] });
+    // updateConfig({ ...config, data: [] });
   }
 
   // 取消
@@ -66,13 +62,12 @@ const PinYinContent = ({ updateConfig }: any) => {
           </div>
         </div>
         <div className="py-edit-content">
-          <EditContainer config={config} isPreview={false} />
+          <EditContainer isPreview={false} />
         </div>
         <div>
         </div>
         <div className="py-footer">
           <div className="py-panel">
-            {/* ${(config)} */}
             <Panel />
           </div>
           <div>
