@@ -1,7 +1,14 @@
 import { decorationSvgs } from "../utils/svg_constants.ts";
 import { PinYinType as PinYinTypeEnum } from "../utils/constants.ts";
+import { useSelector, useDispatch } from "react-redux";
 
-const pinyinOptions = ({ config, updateConfig }) => {
+
+const PinyinOptions = () => {
+  const config = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const updateConfig = (type, params) => {
+    dispatch({ type, params });
+  };
   const { pinyinType } = config.options;
   const { form_font, first_upper_font, all_upper_font } = decorationSvgs;
 
@@ -41,4 +48,4 @@ const pinyinOptions = ({ config, updateConfig }) => {
   );
 };
 
-export default pinyinOptions;
+export default PinyinOptions;

@@ -56,3 +56,7 @@ export const getWordNameByValue4PY = (value, list) => {
 export const isPromise = func => {
 	return func && typeof func.then === 'function' && typeof func.catch === 'function';
 }
+
+export const firstUp = (str) => {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+};

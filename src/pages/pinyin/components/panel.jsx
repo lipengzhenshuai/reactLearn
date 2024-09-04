@@ -1,5 +1,6 @@
 import React from "react";
 import { Select, Input } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { PinYinFont, WordFont } from "../utils/constants.ts";
 import { decorationSvgs } from "../utils/svg_constants.ts";
 import { containerId, FONTSIZEDEFAULT, EMRANGE, PTRANGE } from "../utils/data";
@@ -16,26 +17,28 @@ import {
 let _pyFontFamilys = [];
 let _wordFontFamilys = [];
 
-const Panel = ({ config, updateConfig }) => {
+const Panel = () => {
+  const config = useSelector((state) => state);
+  const dispatch = useDispatch();
   const { wordType } = config.options;
   return (
     <>
       <div className={`${wordType === 3 ? "py-hide-remain" : ""}`}>
-        {panel1(config, updateConfig)}
+        {panel1(config, dispatch)}
       </div>
       <div className={`${wordType === 2 ? "py-hide-remain" : ""}`}>
-        {panel2(config, updateConfig)}
+        {panel2(config, dispatch)}
       </div>
     </>
   );
 };
 
-const panel1 = (config, updateConfig) => {
+const panel1 = (config, dispatch) => {
   const { pinyinStyle, wordStyle } = config.options;
 
   const update = (type, value) => {
     pinyinStyle[type] = value;
-    return updateConfig("pinyinStyle", config);
+    return dispatch({ type: "pinyinStyle", config });
   };
   const {
     options: {
@@ -75,7 +78,7 @@ const panel1 = (config, updateConfig) => {
   );
 };
 
-const panel2 = (config, updateConfig) => {
+const panel2 = (config, dispatch) => {
   const {
     options: {
       wordStyle: { fontFamily, fontSize, color },
@@ -89,28 +92,31 @@ const panel2 = (config, updateConfig) => {
   const { pinyinStyle, wordStyle } = config.options;
 
   const update = (type, value) => {
-    if(type === 'useFontWidth'){
-      return updateConfig("useFontWidth");
+    if (type === "useFontWidth") {
+      return dispatch({ type: "useFontWidth" });
     }
-    if(type === 'fontWidth'){
-      return updateConfig("fontWidth", value);
+    if (type === "fontWidth") {
+      return dispatch({ type: "fontWidth", value });
     }
     pinyinStyle[type] = value;
-    return updateConfig("pinyinStyle", config);
+    return dispatch({ type: "pinyinStyle", config });
   };
 
   const changeFontWidth = (e) => {
     const {
-			wordStyle: {fontSize: wordFontSize},
-			pinyinStyle: {fontSize: pinyinFontSize},
-		} = config.options;
-		const range = (wordFontSize === FONTSIZEDEFAULT || pinyinFontSize === FONTSIZEDEFAULT) ? EMRANGE : PTRANGE;
-		let { value = range[0] } = e.target;
-		if(value > range[1] || value < range[0]) {
-			value = value > range[1] ? range[1] : range[0];
-		}
-    update('fontWidth', value);
-  }
+      wordStyle: { fontSize: wordFontSize },
+      pinyinStyle: { fontSize: pinyinFontSize },
+    } = config.options;
+    const range =
+      wordFontSize === FONTSIZEDEFAULT || pinyinFontSize === FONTSIZEDEFAULT
+        ? EMRANGE
+        : PTRANGE;
+    let { value = range[0] } = e.target;
+    if (value > range[1] || value < range[0]) {
+      value = value > range[1] ? range[1] : range[0];
+    }
+    update("fontWidth", value);
+  };
 
   return (
     <>
@@ -146,7 +152,9 @@ const panel2 = (config, updateConfig) => {
         字宽
       </div>
       <span
-        onClick={() => {update('useFontWidth')}}
+        onClick={() => {
+          update("useFontWidth");
+        }}
         className={`py-checkbox ${useFontWidth ? "checked" : ""} ${
           wordType === 0 ? "" : "hide"
         }`}

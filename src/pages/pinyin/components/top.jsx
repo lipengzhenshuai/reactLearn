@@ -1,30 +1,26 @@
 import { decorationSvgs } from "../utils/svg_constants.ts";
+import { useSelector, useDispatch } from "react-redux";
+
 const checkedSvgs = decorationSvgs.checked;
 
-const Top = ({ config, updateConfig }) => {
+const Top = (props) => {
+  const config = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const updateWordType = (type) => {
-    switch(type) {
-      case 'showWord':
-        updateConfig('showWord', (config) => {
-          config.options.showWord = !config.options.showWord;
-          return JSON.parse(JSON.stringify(config));
-        });
+    switch (type) {
+      case "showWord":
+        dispatch({ type: "showWord" });
         break;
-      case 'showPinyin':
-        updateConfig('showPinyin', (config) => {
-          config.options.showPinyin = !config.options.showPinyin;
-          return JSON.parse(JSON.stringify(config));
-        })
+      case "showPinyin":
+        dispatch({ type: "showPinyin" });
         break;
-      case 'markTone':
-        return updateConfig('markTone', (config) => {
-          config.options.markTone = !config.options.markTone;
-          return JSON.parse(JSON.stringify(config));
-        })
+      case "markTone":
+        return dispatch({ type: "markTone" });
       default:
         return;
     }
-  }
+  };
   return (
     <div>
       {showHanZi(config, updateWordType)}
@@ -35,39 +31,54 @@ const Top = ({ config, updateConfig }) => {
 };
 
 const showHanZi = (config, updateWordType) => {
-  const {wordType, showWord} = config.options;
+  const { wordType, showWord } = config.options;
   return wordType === 2 ? (
     <div></div>
   ) : (
-    <div onClick={() => updateWordType('showWord')} className="py-line-item py-line-item-btn">
-      <span className={`py-checkbox ${showWord ? "checked" : ""}`} dangerouslySetInnerHTML={{ __html: checkedSvgs }}>
-      </span>
+    <div
+      onClick={() => updateWordType("showWord")}
+      className="py-line-item py-line-item-btn"
+    >
+      <span
+        className={`py-checkbox ${showWord ? "checked" : ""}`}
+        dangerouslySetInnerHTML={{ __html: checkedSvgs }}
+      ></span>
       <span className="py-tab">显示汉字</span>
     </div>
   );
 };
 
 const showYinBiao = (config, updateWordType) => {
-  const {wordType, showPinyin} = config.options;
+  const { wordType, showPinyin } = config.options;
   return wordType === 3 ? (
     ""
   ) : (
-    <div onClick={() => updateWordType('showPinyin')} class="py-line-item py-line-item-btn">
-      <span class={`py-checkbox ${showPinyin ? "checked" : ""}`} dangerouslySetInnerHTML={{ __html: checkedSvgs }}>
-      </span>
+    <div
+      onClick={() => updateWordType("showPinyin")}
+      class="py-line-item py-line-item-btn"
+    >
+      <span
+        class={`py-checkbox ${showPinyin ? "checked" : ""}`}
+        dangerouslySetInnerHTML={{ __html: checkedSvgs }}
+      ></span>
       <span class="py-tab">显示拼音</span>
     </div>
   );
 };
 
 const showYinDiao = (config, updateWordType) => {
-  const {wordType, markTone} = config.options;
+  const { wordType, markTone } = config.options;
   return wordType === 3 ? (
     ""
   ) : (
-    <div onClick={() => updateWordType('markTone')} class="py-line-item py-line-item-btn">
-      <span class={`py-checkbox ${markTone ? "checked" : ""}`} dangerouslySetInnerHTML={{ __html: checkedSvgs }}>
-      </span>
+    <div
+      onClick={() => updateWordType("markTone")}
+      class="py-line-item py-line-item-btn"
+    >
+      <span
+        class={`py-checkbox ${markTone ? "checked" : ""}`}
+        dangerouslySetInnerHTML={{ __html: checkedSvgs }}
+      ></span>
       <span class="py-tab">标注音调</span>
     </div>
   );

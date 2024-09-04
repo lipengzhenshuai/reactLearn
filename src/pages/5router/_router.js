@@ -26,7 +26,7 @@ import Reducer from "../2middle/7UseReducer/index.jsx";
 import useContextTest from "../2middle/8useContext";
 import ReducerContext from "../2middle/10ReducerContext";
 
-import Ref from "../3senior/1Ref";
+import Ref from "../3senior/useRef";
 
 // 引入router文件夹下所有文件
 import Basic from "./1basic";

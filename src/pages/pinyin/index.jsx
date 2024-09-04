@@ -1,9 +1,9 @@
-import {useState} from "react";
-
-import Content from './components/content';
+import { useState } from "react";
+import store from "./store/index.js";
+import { Provider } from "react-redux";
+import Content from "./components/content";
 
 const PinYin = (props) => {
-
   const [defaultConfig, setConfig] = useState({
     data: [],
     options: {
@@ -31,33 +31,14 @@ const PinYin = (props) => {
   });
 
   const updateConfig = (type, valueOrFunc) => {
-    if(['showWord', 'showPinyin' ,'markTone'].includes(type)) {
-      setConfig(valueOrFunc(defaultConfig))
-      return;
-    }
-    if(type === 'wordType') {
-      defaultConfig.options.wordType = valueOrFunc;
-      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
-      return;
-    }
-    if(type === 'pinyinType') {
-      defaultConfig.options.pinyinType = valueOrFunc;
-      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
-    }
-    if(type === 'pinyinStyle') {
-      setConfig(JSON.parse(JSON.stringify(valueOrFunc)))
-    }
-    if(type === 'useFontWidth') {
-      defaultConfig.options.useFontWidth = !defaultConfig.options.useFontWidth;
-      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
-    }
-    if(type === 'fontWidth') {
-      defaultConfig.options.fontWidth = valueOrFunc;
-      setConfig(JSON.parse(JSON.stringify(defaultConfig)))
-    }
-  }
+ 
+  };
 
-  return <Content config={defaultConfig} updateConfig={updateConfig} />;
+  return (
+    <Provider store={store}>
+      <Content updateConfig={updateConfig} />
+    </Provider>
+  );
 };
 
 export default PinYin;

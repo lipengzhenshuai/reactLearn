@@ -7,8 +7,14 @@ import Top from './top.jsx';
 import PinYinType from './pinyinTypeOptions.jsx';
 import WordType from './wordTypeOptions.jsx';
 import Panel from './panel.jsx';
+import EditContainer from './editorContent/index.jsx';
+import { useSelector, useDispatch } from "react-redux";
 
-const PinYinContent = ({ config, updateConfig }: any) => {
+const PinYinContent = ({ updateConfig }: any) => {
+
+  const config: any = useSelector(state => state);
+  const dispatch = useDispatch();
+  
 
   // 清除数据
   const clear = () => {
@@ -38,7 +44,7 @@ const PinYinContent = ({ config, updateConfig }: any) => {
         <div className="py-title">学科工具拼音</div>
         <div className="py-top-bar-main">
           <div className="py-other-basic-control">
-            <div><Top config={config} updateConfig={updateConfig} /></div>
+            <div><Top /></div>
             <div>
               <div onClick={clear} className="py-clear-btn py-line-item-btn">
                 <span dangerouslySetInnerHTML={{ __html: decorationSvgs.clear }}></span>
@@ -52,22 +58,22 @@ const PinYinContent = ({ config, updateConfig }: any) => {
           </div>
           <div className="py-basic-control">
             <div>
-              <WordType config={config} updateConfig={updateConfig} />
+              <WordType />
             </div>
             <div>
-              <PinYinType config={config} updateConfig={updateConfig} />
+              <PinYinType />
             </div>
           </div>
         </div>
         <div className="py-edit-content">
-          {/* ${editContainer(config)} */}
+          <EditContainer config={config} isPreview={false} />
         </div>
         <div>
         </div>
         <div className="py-footer">
           <div className="py-panel">
             {/* ${(config)} */}
-            <Panel config={config} updateConfig={updateConfig} />
+            <Panel />
           </div>
           <div>
             <button onClick={cancel} className="py-cancel-btn">取消</button>
