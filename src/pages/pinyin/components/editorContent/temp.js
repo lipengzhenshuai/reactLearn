@@ -1,33 +1,12 @@
-import { getPinYin, getSymbol, getMixin } from "../../utils/generate.ts";
 
-const typeFunc = {
-	1: getPinYin,
-	2: getSymbol,
-	3: getMixin
-}
-
-export function addValue(e, value, type, config, dispatch) {
-	const { target } = e;
-	// 2.将汉字转化成对应的数据格式
-	let pinyin = typeFunc[type](value);
-	// 3.更新数据
-	updateData(target, pinyin, config, dispatch);
-	// 4.更新dom
-	// updateChild(target, pinyin);
-	// 5.清空默认值
-	// e.target.value = '';
-	// 6.激活对应位置的光标
-	// updateFocus(target, pinyin.length);
-}
-
-const updateData = (target, pinyin, config, dispatch) => {
+export const updateData = (target, pinyin, config, dispatch) => {
   // TODO: 其实可以不用区分
 	dispatch({type: 'updateData', index: 0, value: pinyin})
-	if ([...target.classList].includes("py-first-input")) { // 第一个input
-	} else {
-		// const index = getIndex(target);
-		// config.data.splice(index, 0, ...pinyin);
-	}
+	// if ([...target.classList].includes("py-first-input")) { // 第一个input
+	// } else {
+	// 	// const index = getIndex(target);
+	// 	// config.data.splice(index, 0, ...pinyin);
+	// }
   // TODO: 更新
 	// otherDomUpdate(config);
 }

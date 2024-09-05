@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
-// import { isComposing } from '../../index.jsx';
-import { addValue } from "./temp.js";
 import UpDown from "./upDown";
 
 let isComposing = false;
@@ -15,6 +13,25 @@ const renderList = {
   // 4: renderCombine
 };
 
+/**
+ * 内容区域事件：https://www.processon.com/diagraming/60f435c71efad41bbea9fcb3
+ * 主要是监听编辑器里面的事件，然后根据事件做出对应的逻辑操作
+ *  事件是冒泡到最外层，然后在外层进行事件代理
+ * 涉及的事件：
+ *  1.compositionstart
+ *    当用户使用拼音输入法开始输入内容时，这个事件就会被触发。
+ *  2.input
+ *  3.compositionend
+ *    当用户完成输入并确定文字时触发
+ *  4.paste
+ *    当粘贴的时候获取粘贴的内容，然后转化成拼音插入页面
+ *  5.keydown
+ */
+
+const addValue = () => {
+
+}
+
 const EditContainer = ({ isPreview = false }) => {
   const config = useSelector(state => state);
   const dispatch = useDispatch();
@@ -24,45 +41,45 @@ const EditContainer = ({ isPreview = false }) => {
 
   useEffect(() => {
 
-    editContent.current.addEventListener("input",  (e) => {
-      const { target, data = undefined, isComposing = true } = e;
-      const { tagName = "" } = target;
-      if (tagName === "SPAN") {
-        // const { innerText } = e.target;
-        // const index = getIndex(target);
-        // config.data[index - 1].pinyin = innerText;
-      } else if (tagName === "INPUT" && data && !isComposing) {
-        addValue(e, data, 2, config, dispatch);
-      }
-    });
+    // editContent.current.addEventListener("input",  (e) => {
+    //   const { target, data = undefined, isComposing = true } = e;
+    //   const { tagName = "" } = target;
+    //   if (tagName === "SPAN") {
+    //     // const { innerText } = e.target;
+    //     // const index = getIndex(target);
+    //     // config.data[index - 1].pinyin = innerText;
+    //   } else if (tagName === "INPUT" && data && !isComposing) {
+    //     addValue(e, data, 2);
+    //   }
+    // });
   
-    editContent.current.addEventListener("compositionstart", e => {
-      isComposing = true;
-    });
+    // editContent.current.addEventListener("compositionstart", e => {
+    //   isComposing = true;
+    // });
     
-    editContent.current.addEventListener("compositionend", e => {
-      isComposing = false;
-      const { target, data } = e;
-      const { tagName = "" } = target;
-      if (tagName !== "INPUT") {
-        return;
-      }
+    // editContent.current.addEventListener("compositionend", e => {
+    //   isComposing = false;
+    //   // const { target, data } = e;
+    //   // const { tagName = "" } = target;
+    //   // if (tagName !== "INPUT") {
+    //   //   return;
+    //   // }
   
-      // 默认在输入法下只可以输入汉字或者只可以输入拼音
-      // 1.如果输入的是普通的字符
-      const symbol = data.replace(/[\u4E00-\u9FA5]/g, '');
-      if (symbol) {
-        // addValue(e, symbol, 2);
-        return;
-      }
-      // 2.输入的内容是汉字
-      const hanZi = data.replace(/[^\u4E00-\u9FA5]/g, '');
-      if(hanZi) {
-        // addValue(e, hanZi, 1);
-        return;
-      }
-      e.target.value = '';
-    })
+    //   // // 默认在输入法下只可以输入汉字或者只可以输入拼音
+    //   // // 1.如果输入的是普通的字符
+    //   // const symbol = data.replace(/[\u4E00-\u9FA5]/g, '');
+    //   // if (symbol) {
+    //   //   // addValue(e, symbol, 2);
+    //   //   return;
+    //   // }
+    //   // // 2.输入的内容是汉字
+    //   // const hanZi = data.replace(/[^\u4E00-\u9FA5]/g, '');
+    //   // if(hanZi) {
+    //   //   // addValue(e, hanZi, 1);
+    //   //   return;
+    //   // }
+    //   // e.target.value = '';
+    // });
   
     editContent.current.addEventListener("paste",  (e) => {
       // 遍历然后动态生成数据，然后更改dom
@@ -76,62 +93,62 @@ const EditContainer = ({ isPreview = false }) => {
     });
   
     // 多音字处理
-    editContent.current.addEventListener("click" , e => {
-      const { target } = e;
-      // 1.判断是否点击的是子节点，如果是就不处理
-      // const innerClickElement = getUpELement(target, "popOut_pys", "py-edit-content");
-      // if(innerClickElement) {
-      //   polyphoneSelect(e, config);
-      //   return;
-      // }
-      // // 2.如果有展开的节点，清空节点
-      // const editContent = document.body.querySelector("#EDITCONTENT");
-      // const children = editContent.children[0];
-      // const delItem = children.querySelector(".popOut_pys");
-      // delItem && children.removeChild(delItem);
-      // if ([0, 4].includes(config.options.wordType)) {
-      //   // 3.是否点击的是 上下的 多选拼音
-      //   const pysEle = getUpELement(target, "pys-chooser", "py-edit-content");
-      //   if(pysEle) {
-      //     const index = getIndex(target);
-      //     generatepolyphonePop(config, index, pysEle);
-      //     return;
-      //   }
-      //   // TODO: 对点击文字的处理
-      //   const pinyinEle = getUpELement(target, "py-wrap", "py-edit-content");
-      //   if (pinyinEle) {
-      //     return;
-      //   }
-      // } else {
-      //   // 3.5是否点击的是 左右的 多选拼音和icon
-      //   const pysEle = getUpELement(target, "pys-chooser", "py-edit-content");
-      //   if(pysEle) {
-      //     const index = getIndex(target);
-      //     generatepolyphonePop4UPDown(e, config, index);
-      //     return;
-      //   }
-      //   // TODO: 点击竖板文字权限
-      //   const pinyinEle = getUpELement(target, "py-wrap", "py-edit-content");
-      //   if (pinyinEle) {
-      //     return;
-      //   }
-      // }
-      // // 4.如果点击的是文字和拼音
-      // const word = getUpELement(target, "py-item", "py-edit-content");
-      // if(word) {
-      //   word.querySelector("input").focus();
-      //   return;
-      // }
-      // // 5.如果点击的是第一个input
-      // const input = getUpELement(target, "py-first-input", "py-edit-content");
-      // if(input) {
-      //   input.focus();
-      //   return;
-      // }
-      // // 6.点击剩余区域
-      // const inputs = editContent.querySelectorAll("input")
-      // inputs[inputs.length - 1].focus();
-    }, false);
+    // editContent.current.addEventListener("click" , e => {
+    //   const { target } = e;
+    //   // 1.判断是否点击的是子节点，如果是就不处理
+    //   // const innerClickElement = getUpELement(target, "popOut_pys", "py-edit-content");
+    //   // if(innerClickElement) {
+    //   //   polyphoneSelect(e, config);
+    //   //   return;
+    //   // }
+    //   // // 2.如果有展开的节点，清空节点
+    //   // const editContent = document.body.querySelector("#EDITCONTENT");
+    //   // const children = editContent.children[0];
+    //   // const delItem = children.querySelector(".popOut_pys");
+    //   // delItem && children.removeChild(delItem);
+    //   // if ([0, 4].includes(config.options.wordType)) {
+    //   //   // 3.是否点击的是 上下的 多选拼音
+    //   //   const pysEle = getUpELement(target, "pys-chooser", "py-edit-content");
+    //   //   if(pysEle) {
+    //   //     const index = getIndex(target);
+    //   //     generatepolyphonePop(config, index, pysEle);
+    //   //     return;
+    //   //   }
+    //   //   // TODO: 对点击文字的处理
+    //   //   const pinyinEle = getUpELement(target, "py-wrap", "py-edit-content");
+    //   //   if (pinyinEle) {
+    //   //     return;
+    //   //   }
+    //   // } else {
+    //   //   // 3.5是否点击的是 左右的 多选拼音和icon
+    //   //   const pysEle = getUpELement(target, "pys-chooser", "py-edit-content");
+    //   //   if(pysEle) {
+    //   //     const index = getIndex(target);
+    //   //     generatepolyphonePop4UPDown(e, config, index);
+    //   //     return;
+    //   //   }
+    //   //   // TODO: 点击竖板文字权限
+    //   //   const pinyinEle = getUpELement(target, "py-wrap", "py-edit-content");
+    //   //   if (pinyinEle) {
+    //   //     return;
+    //   //   }
+    //   // }
+    //   // // 4.如果点击的是文字和拼音
+    //   // const word = getUpELement(target, "py-item", "py-edit-content");
+    //   // if(word) {
+    //   //   word.querySelector("input").focus();
+    //   //   return;
+    //   // }
+    //   // // 5.如果点击的是第一个input
+    //   // const input = getUpELement(target, "py-first-input", "py-edit-content");
+    //   // if(input) {
+    //   //   input.focus();
+    //   //   return;
+    //   // }
+    //   // // 6.点击剩余区域
+    //   // const inputs = editContent.querySelectorAll("input")
+    //   // inputs[inputs.length - 1].focus();
+    // }, false);
   
     editContent.current.addEventListener("keydown", (e) => {
       const { key = "", target: { id, tagName } } = e;
@@ -180,7 +197,7 @@ const EditContainer = ({ isPreview = false }) => {
     fontWidth,
     useFontWidth,
   } = options;
-  const renderFunc = renderList[wordType];
+  const RenderComponent = renderList[wordType];
 
   let width = undefined;
   let _wordFontSize = undefined;
@@ -238,7 +255,14 @@ const EditContainer = ({ isPreview = false }) => {
             className="py-first-input"
           />
         )}
-        {data.map((item) => renderFunc(item, options, isPreview))}
+        {data.map((item, index) => 
+          <RenderComponent
+            data={item}
+            index={index}
+            options={options}
+            isPreview={isPreview}
+          />
+        )}
       </span>
     </div>
   );
