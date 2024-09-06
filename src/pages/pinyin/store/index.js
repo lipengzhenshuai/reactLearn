@@ -62,7 +62,6 @@ const reducer = (state, action) => {
           }
         }
       case "updateData":
-        debugger;
         const temp = [...state.data];
         temp.splice(action.index, 0, ...action.value);
         return {
@@ -76,21 +75,21 @@ const reducer = (state, action) => {
 // store
 const store = createStore(reducer, {
   data: [
-    {
-        "word": "你",
-        "pinyin": "nǐ",
-        "pysData": [],
-        "type": 1
-    },
-    {
-        "word": "好",
-        "pinyin": "hǎo",
-        "pysData": [
-            "hǎo",
-            "hào"
-        ],
-        "type": 1
-    }
+    // {
+    //     "word": "你",
+    //     "pinyin": "nǐ",
+    //     "pysData": [],
+    //     "type": 1
+    // },
+    // {
+    //     "word": "好",
+    //     "pinyin": "hǎo",
+    //     "pysData": [
+    //         "hǎo",
+    //         "hào"
+    //     ],
+    //     "type": 1
+    // }
 ],
   options: {
     wordType: 0, // 上下,左右,四线三格，田字格，组合等

@@ -1,14 +1,18 @@
+import { getPinYin, getSymbol, getMixin } from "../../utils/generate.ts";
+import { getUpELement } from '../../utils/dom.ts';
 
-export const updateData = (target, pinyin, config, dispatch) => {
-  // TODO: 其实可以不用区分
-	dispatch({type: 'updateData', index: 0, value: pinyin})
-	// if ([...target.classList].includes("py-first-input")) { // 第一个input
-	// } else {
-	// 	// const index = getIndex(target);
-	// 	// config.data.splice(index, 0, ...pinyin);
-	// }
-  // TODO: 更新
-	// otherDomUpdate(config);
+const typeFunc = {
+  1: getPinYin,
+  2: getSymbol,
+  3: getMixin,
+};
+
+export const getPinYinData = (type) => {
+	return typeFunc[type]
+}
+
+export const updateData = ({pinyin, dispatch, index}) => {
+	dispatch({type: 'updateData', index, value: pinyin})
 }
 
 // const updateChild = (target, pinyin) => {
@@ -26,14 +30,15 @@ export const updateData = (target, pinyin, config, dispatch) => {
 // 	}
 // }
 
-// const updateFocus = (target, length) => {
-// 	if ([...target.classList].indexOf("py-first-input") !== -1) { // 第一个input
-// 		document.getElementById("EDITCONTENT").querySelectorAll("input")[length].focus();
-// 	} else {
-// 		let item = getUpELement(target, "py-item", "py-edit-content");
-// 		while(length--) {
-// 			item = item.nextElementSibling;
-// 		}
-// 		item.querySelector("input").focus();
-// 	}
-// }
+export const updateFocus = (target, length) => {
+	if ([...target.classList].indexOf("py-first-input") !== -1) { // 第一个input
+		console.log('document.getElementById("EDITCONTENT").querySelectorAll("input")', document.getElementById("EDITCONTENT").querySelectorAll("input"))
+		document.getElementById("EDITCONTENT").querySelectorAll("input")[length].focus();
+	} else {
+		let item = getUpELement(target, "py-item", "py-edit-content");
+		while(length--) {
+			item = item.nextElementSibling;
+		}
+		item.querySelector("input").focus();
+	}
+}

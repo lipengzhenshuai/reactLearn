@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 import UpDown from "./upDown";
+import { getPinYinData, updateData, updateFocus } from "./temp.js";
+
 
 let isComposing = false;
 
@@ -28,9 +30,6 @@ const renderList = {
  *  5.keydown
  */
 
-const addValue = () => {
-
-}
 
 const EditContainer = ({ isPreview = false }) => {
   const config = useSelector(state => state);
@@ -190,6 +189,20 @@ const EditContainer = ({ isPreview = false }) => {
     }, false);
   }, [])
 
+  function addValue(e, value, type, index) {
+    const { target } = e;
+    // 2.将汉字转化成对应的数据格式
+    let pinyin = getPinYinData(type)(value);
+    // 3.更新数据
+    updateData({target, pinyin, config, dispatch, index});
+    // 4.清空默认值
+    e.target.value = '';
+    // 5.激活对应位置的光标
+    setTimeout(() => {
+      updateFocus(target, pinyin.length);
+    })
+  }
+
   const {
     wordType,
     wordStyle: { fontSize: wordFontSize },
@@ -198,6 +211,41 @@ const EditContainer = ({ isPreview = false }) => {
     useFontWidth,
   } = options;
   const RenderComponent = renderList[wordType];
+
+  const onCompositionend = (e, index) => {
+    console.log("lipeng-🚀- ~ onCompositionend ~ e:", e);
+    // isComposing = false;
+    const { target, data } = e;
+    const { tagName = "" } = target;
+    if (tagName !== "INPUT") {
+      return;
+    }
+
+    // 默认在输入法下只可以输入汉字或者只可以输入拼音
+    // 1.如果输入的是普通的字符
+    const symbol = data.replace(/[\u4E00-\u9FA5]/g, "");
+    if (symbol) {
+      addValue(e, symbol, 2, index);
+      return;
+    }
+    // 2.输入的内容是汉字
+    const hanZi = data.replace(/[^\u4E00-\u9FA5]/g, "");
+    if (hanZi) {
+      addValue(e, hanZi, 1, index);
+      return;
+    }
+    e.target.value = "";
+  };
+
+  const onPaste = (e) => {
+    let data = (e.clipboardData || window.clipboardData).getData("text");
+    e.preventDefault();
+    if (data) {
+      addValue(e, data, 3, config, dispatch);
+      return;
+    }
+    e.target.value = "";
+  };
 
   let width = undefined;
   let _wordFontSize = undefined;
@@ -231,7 +279,7 @@ const EditContainer = ({ isPreview = false }) => {
   const map = new Map();
 
   return (
-    <div ref={editContent}>
+    <div id="EDITCONTENT" ref={editContent}>
       <span
         className={`${
           useFontWidth ? "py-equal-width " : "py-not-equal-width "
@@ -248,8 +296,8 @@ const EditContainer = ({ isPreview = false }) => {
               "font-size": _wordFontSize,
             }}
             type="text"
-            id="input--1"
-            data-index="-1"
+            onPaste={onPaste}
+            onCompositionEnd={e => {onCompositionend(e, 0)}}
             placeholder={`${data.length ? "" : "请输入文字~"}`}
             autocomplete="off"
             className="py-first-input"
