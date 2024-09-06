@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const checkedSvgs = decorationSvgs.checked;
 
-const Top = (props) => {
+const Top = () => {
   const config = useSelector((state) => state);
   const dispatch = useDispatch();
 

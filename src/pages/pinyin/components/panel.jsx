@@ -1,21 +1,13 @@
-import React from "react";
 import { Select, Input } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { PinYinFont, WordFont } from "../utils/constants.ts";
 import { decorationSvgs } from "../utils/svg_constants.ts";
-import { containerId, FONTSIZEDEFAULT, EMRANGE, PTRANGE } from "../utils/data";
+import { FONTSIZEDEFAULT, EMRANGE, PTRANGE } from "../utils/data";
 import {
-  getNode,
   getFontSiezList,
   getFontFamilyList,
   getFontColorList,
-  isPromise,
-  getWordNameByValue,
-  getWordNameByValue4PY,
 } from "../utils/utils.ts";
-
-let _pyFontFamilys = [];
-let _wordFontFamilys = [];
 
 const Panel = () => {
   const config = useSelector((state) => state);
@@ -51,6 +43,7 @@ const panel1 = (config, dispatch) => {
       <div>拼音样式</div>
       <div>
         <Select
+          value={fontFamily}
           defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
@@ -60,6 +53,7 @@ const panel1 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          value={fontSize}
           defaultValue={"默认"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
@@ -69,6 +63,7 @@ const panel1 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          value={color}
           defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
@@ -125,6 +120,7 @@ const panel2 = (config, dispatch) => {
       <div>汉字样式</div>
       <div>
         <Select
+          value={fontFamily}
           defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
@@ -134,6 +130,7 @@ const panel2 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          value={fontSize}
           defaultValue={"默认"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
@@ -143,6 +140,7 @@ const panel2 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          value={color}
           defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}

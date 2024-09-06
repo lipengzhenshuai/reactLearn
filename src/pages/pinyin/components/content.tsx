@@ -22,7 +22,7 @@ const PinYinContent = () => {
 
   // 重置默认样式
   const reset = () => {
-    // updateConfig({ ...config, data: [] });
+    dispatch({type: 'reset'})
   }
 
   // 取消
