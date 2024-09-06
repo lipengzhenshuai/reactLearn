@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 import UpDown from "./upDown";
-import { getPinYinData, updateData, updateFocus } from "./temp.js";
+import { getPinYinData, updateData, updateFocus, updateFocus2 } from "./temp.js";
 
 
 let isComposing = false;
@@ -39,58 +39,6 @@ const EditContainer = ({ isPreview = false }) => {
   const editContent = useRef(null);
 
   useEffect(() => {
-
-    // editContent.current.addEventListener("input",  (e) => {
-    //   const { target, data = undefined, isComposing = true } = e;
-    //   const { tagName = "" } = target;
-    //   if (tagName === "SPAN") {
-    //     // const { innerText } = e.target;
-    //     // const index = getIndex(target);
-    //     // config.data[index - 1].pinyin = innerText;
-    //   } else if (tagName === "INPUT" && data && !isComposing) {
-    //     addValue(e, data, 2);
-    //   }
-    // });
-  
-    // editContent.current.addEventListener("compositionstart", e => {
-    //   isComposing = true;
-    // });
-    
-    // editContent.current.addEventListener("compositionend", e => {
-    //   isComposing = false;
-    //   // const { target, data } = e;
-    //   // const { tagName = "" } = target;
-    //   // if (tagName !== "INPUT") {
-    //   //   return;
-    //   // }
-  
-    //   // // 默认在输入法下只可以输入汉字或者只可以输入拼音
-    //   // // 1.如果输入的是普通的字符
-    //   // const symbol = data.replace(/[\u4E00-\u9FA5]/g, '');
-    //   // if (symbol) {
-    //   //   // addValue(e, symbol, 2);
-    //   //   return;
-    //   // }
-    //   // // 2.输入的内容是汉字
-    //   // const hanZi = data.replace(/[^\u4E00-\u9FA5]/g, '');
-    //   // if(hanZi) {
-    //   //   // addValue(e, hanZi, 1);
-    //   //   return;
-    //   // }
-    //   // e.target.value = '';
-    // });
-  
-    editContent.current.addEventListener("paste",  (e) => {
-      // 遍历然后动态生成数据，然后更改dom
-      let data = (e.clipboardData || window.clipboardData).getData('text');
-      e.preventDefault();
-      if(data) {
-        addValue(e, data, 3, config, dispatch);
-        return;
-      }
-      e.target.value = '';
-    });
-  
     // 多音字处理
     // editContent.current.addEventListener("click" , e => {
     //   const { target } = e;
@@ -148,45 +96,6 @@ const EditContainer = ({ isPreview = false }) => {
     //   // const inputs = editContent.querySelectorAll("input")
     //   // inputs[inputs.length - 1].focus();
     // }, false);
-  
-    editContent.current.addEventListener("keydown", (e) => {
-      const { key = "", target: { id, tagName } } = e;
-      // if (tagName === "INPUT" && !isComposing) {
-      //   if (key === "Backspace" && id !== "input--1") {
-      //     const item = getUpELement(e.target, "py-item", "py-edit-content");
-      //     const prev = item.previousElementSibling;
-      //     // 更新数据
-      //     const index = getIndex(e.target);
-      //     config.data.splice(index - 1, 1);
-      //     otherDomUpdate(config);
-      //     // 删除当前元素
-      //     item.parentNode.removeChild(item);
-      //     if(prev.tagName === "INPUT") {
-      //       prev.focus();
-      //       return;
-      //     }
-      //     let prevInput = prev.querySelector("input");
-      //     prevInput && prevInput.focus();
-      //   } else if (key === "ArrowLeft") {
-      //     const item = getUpELement(e.target, "py-item", "py-edit-content");
-      //     // 上一个获取焦点
-      //     const prevEle =  item.previousElementSibling;
-      //     if(prevEle && prevEle.tagName === "INPUT") {
-      //       prevEle.focus();
-      //       return;
-      //     }
-      //     prevEle.querySelector("input").focus();
-      //   } else if (key === "ArrowRight") {
-      //     if(id === "input--1") {
-      //       e.target.nextElementSibling.querySelector("input").focus();
-      //       return;
-      //     }
-      //     const item = getUpELement(e.target, "py-item", "py-edit-content");
-      //     // 下一个获取焦点
-      //     item.nextElementSibling.querySelector("input").focus();
-      //   }
-      // }
-    }, false);
   }, [])
 
   function addValue(e, value, type, index) {
@@ -212,9 +121,12 @@ const EditContainer = ({ isPreview = false }) => {
   } = options;
   const RenderComponent = renderList[wordType];
 
+  const onCompositionstart = (e, index) => {
+    isComposing = true;
+  }
+
   const onCompositionend = (e, index) => {
-    console.log("lipeng-🚀- ~ onCompositionend ~ e:", e);
-    // isComposing = false;
+    isComposing = false;
     const { target, data } = e;
     const { tagName = "" } = target;
     if (tagName !== "INPUT") {
@@ -237,15 +149,46 @@ const EditContainer = ({ isPreview = false }) => {
     e.target.value = "";
   };
 
-  const onPaste = (e) => {
+  const onPaste = (e, index) => {
     let data = (e.clipboardData || window.clipboardData).getData("text");
     e.preventDefault();
     if (data) {
-      addValue(e, data, 3, config, dispatch);
+      addValue(e, data, 3, index);
       return;
     }
     e.target.value = "";
   };
+
+
+  const onInput = (e, index) => {
+      console.log('lipeng-🚀- ~ onInput ~ e, index:', e, index)
+      const { target, data = undefined, isComposing = true } = e.nativeEvent;
+      const { tagName = "" } = target;
+      // todo: 这个不知道是干啥用的
+      // if (tagName === "SPAN") {
+      //   // const { innerText } = e.target;
+      //   // const index = getIndex(target);
+      //   // config.data[index - 1].pinyin = innerText;
+      // } else 
+      if (tagName === "INPUT" && data && !isComposing) {
+        addValue(e, data, 2, index);
+      }
+    };
+
+  // 调整focus位置
+  const onKeyDown = (e, index) => {
+      const { key = "", target: { id, tagName } } = e;
+      if (tagName === "INPUT" && !isComposing) {
+        if (key === "Backspace" && id !== "input--1") {
+          dispatch({type: 'deleteData', index: index - 1})
+          updateFocus2(index - 1)
+        } else if (key === "ArrowLeft") {
+          index >0 && updateFocus2(index - 1)
+        } else if (key === "ArrowRight") {
+          index < data.length && updateFocus2(index + 1)
+        }
+    }
+  }
 
   let width = undefined;
   let _wordFontSize = undefined;
@@ -290,14 +233,18 @@ const EditContainer = ({ isPreview = false }) => {
           ""
         ) : (
           <input
+            id="input--1"
             style={{
               "margin-top": data.length ? "0.5em" : 0,
               width: data.length ? "10px" : "8em",
               "font-size": _wordFontSize,
             }}
             type="text"
-            onPaste={onPaste}
+            onCompositionStart={e => {onCompositionstart(e, 0)}}
+            onInput={onInput}
             onCompositionEnd={e => {onCompositionend(e, 0)}}
+            onPaste={e => onPaste(e, 0)}
+            onKeyDown={e => onKeyDown(e, 0)}
             placeholder={`${data.length ? "" : "请输入文字~"}`}
             autocomplete="off"
             className="py-first-input"
@@ -309,6 +256,11 @@ const EditContainer = ({ isPreview = false }) => {
             index={index}
             options={options}
             isPreview={isPreview}
+            onCompositionStart={e => {onCompositionstart(e, 0)}}
+            onInput={onInput}
+            onCompositionend={onCompositionend}
+            onPaste={onPaste}
+            onKeyDown={onKeyDown}
           />
         )}
       </span>

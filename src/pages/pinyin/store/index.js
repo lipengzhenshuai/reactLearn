@@ -68,6 +68,13 @@ const reducer = (state, action) => {
           ...state,
           data: temp
         }
+      case "deleteData":
+        const temp2 = [...state.data];
+        temp2.splice(action.index, 1);
+        return {
+          ...state,
+          data: temp2
+      }
 
     default: return state;
   }

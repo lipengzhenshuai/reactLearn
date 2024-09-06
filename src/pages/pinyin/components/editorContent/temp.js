@@ -42,3 +42,13 @@ export const updateFocus = (target, length) => {
 		item.querySelector("input").focus();
 	}
 }
+
+/**
+ * 第一个是隐藏的组件，看到的第一个其实是第二个
+*/
+
+let container = undefined;
+
+export const updateFocus2 = (index) => {
+	(container || (container = document.getElementById("EDITCONTENT"))).querySelectorAll("input")[index].focus();
+}

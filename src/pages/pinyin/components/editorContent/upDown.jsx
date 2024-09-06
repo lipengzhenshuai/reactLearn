@@ -4,6 +4,7 @@ import { firstUp } from "../../utils/utils.ts";
 import { PinYinType } from "../../utils/constants.ts";
 import { getPinYinData, updateData, updateFocus } from "./temp.js";
 import { useSelector, useDispatch } from "react-redux";
+import { removeTone } from '../../utils/noTone.ts';
 
 const wrapper = (str, options) => {
   const { pinyinType: type, markTone } = options;
@@ -12,11 +13,10 @@ const wrapper = (str, options) => {
   } else if (type === PinYinType.ALLUP) {
     str = str.toUpperCase();
   }
-  return str;
-  // return markTone ? str : removeTone(str);
+  return markTone ? str : removeTone(str);
 };
 
-function RenderUpDown({ data, index, isPreview = false }) {
+function RenderUpDown({ data, index, isPreview = false, onCompositionStart, onInput, onKeyDown, onCompositionend, onPaste }) {
 
   const config = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -63,41 +63,6 @@ function RenderUpDown({ data, index, isPreview = false }) {
     pinyinFontSize += "pt";
   }
 
-  const onCompositionend = (e, index) => {
-    console.log("lipeng-🚀- ~ onCompositionend ~ e:", e);
-    // isComposing = false;
-    const { target, data } = e;
-    const { tagName = "" } = target;
-    if (tagName !== "INPUT") {
-      return;
-    }
-
-    // 默认在输入法下只可以输入汉字或者只可以输入拼音
-    // 1.如果输入的是普通的字符
-    const symbol = data.replace(/[\u4E00-\u9FA5]/g, "");
-    if (symbol) {
-      addValue(e, symbol, 2, index);
-      return;
-    }
-    // 2.输入的内容是汉字
-    const hanZi = data.replace(/[^\u4E00-\u9FA5]/g, "");
-    if (hanZi) {
-      addValue(e, hanZi, 1, index);
-      return;
-    }
-    e.target.value = "";
-  };
-
-  const onPaste = (e) => {
-    let data = (e.clipboardData || window.clipboardData).getData("text");
-    e.preventDefault();
-    if (data) {
-      addValue(e, data, 3, config, dispatch);
-      return;
-    }
-    e.target.value = "";
-  };
-
   return (
     <>
       <span className="py-item">
@@ -140,8 +105,11 @@ function RenderUpDown({ data, index, isPreview = false }) {
             ) : (
               <input
                 type="text"
-                onPaste={onPaste}
-                onCompositionEnd={e => {onCompositionend(e, index)}}
+                onCompositionStart={onCompositionStart}
+                onInput={e => onInput(e, index + 1)}
+                onCompositionEnd={e => {onCompositionend(e, index + 1)}}
+                onKeyDown={e => onKeyDown(e, index + 1)}
+                onPaste={e => {onPaste(e, index + 1)}}
                 className={`py-word-input ${showInput ? "" : "hide"}`}
                 autocomplete="off"
                 style={{ "font-size": "1em" }}
