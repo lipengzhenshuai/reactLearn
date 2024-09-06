@@ -35,7 +35,6 @@ const EditContainer = ({ isPreview = false }) => {
   const config = useSelector(state => state);
   const dispatch = useDispatch();
   const { data, options } = config;
-  console.log('lipeng-🚀- ~ EditContainer ~ data:', data)
   const editContent = useRef(null);
 
   useEffect(() => {

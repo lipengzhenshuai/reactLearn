@@ -45,6 +45,8 @@ const reducer = (state, action) => {
         }
       case "pinyinStyle":
           return {...action.config}
+          case "wordStyle":
+            return {...action.config}
       case "useFontWidth":
         return {
           ...state,
@@ -74,6 +76,11 @@ const reducer = (state, action) => {
         return {
           ...state,
           data: temp2
+      }
+      case "clearData":
+        return {
+          ...state,
+          data: []
       }
 
     default: return state;

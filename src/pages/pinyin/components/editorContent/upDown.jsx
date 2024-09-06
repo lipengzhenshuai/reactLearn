@@ -2,8 +2,7 @@ import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 import { decorationSvgs } from "../../utils/svg_constants";
 import { firstUp } from "../../utils/utils.ts";
 import { PinYinType } from "../../utils/constants.ts";
-import { getPinYinData, updateData, updateFocus } from "./temp.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { removeTone } from '../../utils/noTone.ts';
 
 const wrapper = (str, options) => {
@@ -19,7 +18,6 @@ const wrapper = (str, options) => {
 function RenderUpDown({ data, index, isPreview = false, onCompositionStart, onInput, onKeyDown, onCompositionend, onPaste }) {
 
   const config = useSelector((state) => state);
-  const dispatch = useDispatch();
   const options = config.options;
 
   const {
@@ -31,22 +29,6 @@ function RenderUpDown({ data, index, isPreview = false, onCompositionStart, onIn
     useFontWidth,
     pinyinType,
   } = options;
-
-  function addValue(e, value, type, index) {
-    const { target } = e;
-    // 2.将汉字转化成对应的数据格式
-    let pinyin = getPinYinData(type)(value);
-    // 3.更新数据
-    updateData({target, pinyin, config, dispatch, index: ++index});
-    // 4.更新dom
-    // updateChild(target, pinyin);
-    // 5.清空默认值
-    e.target.value = '';
-    // 6.激活对应位置的光标
-    setTimeout(() => {
-      updateFocus(target, pinyin.length);
-    })
-  }
 
   const { pysData } = data;
   const polyphone = pysData.length > 0;

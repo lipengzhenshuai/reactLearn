@@ -45,7 +45,6 @@ const panel1 = (config, dispatch) => {
       pinyinStyle: { fontFamily, fontSize, color },
     },
   } = config;
-  const { nabla, font } = decorationSvgs;
 
   return (
     <>
@@ -63,7 +62,7 @@ const panel1 = (config, dispatch) => {
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(PinYinFont.PYSize)}
-          onChange={(value) => update("fontFamily", value)}
+          onChange={(value) => update("fontSize", value)}
         ></Select>
       </div>
       <div>
@@ -71,7 +70,7 @@ const panel1 = (config, dispatch) => {
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(PinYinFont.PYColor)}
-          onChange={(value) => update("fontFamily", value)}
+          onChange={(value) => update("color", value)}
         ></Select>
       </div>
     </>
@@ -89,7 +88,7 @@ const panel2 = (config, dispatch) => {
   } = config;
   const { nabla, font, checked } = decorationSvgs;
 
-  const { pinyinStyle, wordStyle } = config.options;
+  const { wordStyle } = config.options;
 
   const update = (type, value) => {
     if (type === "useFontWidth") {
@@ -98,8 +97,8 @@ const panel2 = (config, dispatch) => {
     if (type === "fontWidth") {
       return dispatch({ type: "fontWidth", value });
     }
-    pinyinStyle[type] = value;
-    return dispatch({ type: "pinyinStyle", config });
+    wordStyle[type] = value;
+    return dispatch({ type: "wordStyle", config });
   };
 
   const changeFontWidth = (e) => {
@@ -134,7 +133,7 @@ const panel2 = (config, dispatch) => {
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(WordFont.WSize)}
-          onChange={(value) => update("fontFamily", value)}
+          onChange={(value) => update("fontSize", value)}
         ></Select>
       </div>
       <div>
@@ -142,7 +141,7 @@ const panel2 = (config, dispatch) => {
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(WordFont.WColor)}
-          onChange={(value) => update("fontFamily", value)}
+          onChange={(value) => update("color", value)}
         ></Select>
       </div>
       <div

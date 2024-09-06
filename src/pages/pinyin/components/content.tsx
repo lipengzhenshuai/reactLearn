@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import './index.less';
 import { decorationSvgs } from "../utils/svg_constants";
 import Top from './top.jsx';
@@ -11,11 +11,12 @@ import EditContainer from './editorContent/index.jsx';
 const PinYinContent = () => {
 
   const config: any = useSelector(state => state);
+  const dispatch = useDispatch();
   
   // 清除数据
   const clear = () => {
     if (config.data.length > 0) { // 更新内容
-      // updateConfig({ ...config, data: [] });
+      dispatch({type: 'clearData'})
     }
   }
 
