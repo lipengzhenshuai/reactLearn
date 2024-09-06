@@ -24,26 +24,26 @@ function renderLine(data, options, isPreview = false) {
 	}
 
 	return `
-		<span class="py-item">
-			<span class="py-word">
+		<span className="py-item">
+			<span className="py-word">
 				${
 					isPreview ? '' : `
 					<input
-						class="py-word-input ${showInput ? "" : 'hide'}"
+						className="py-word-input ${showInput ? "" : 'hide'}"
 						
 						type="text">`
 				}
 				<span
-					class="py-pinyin-span ${(showPinyin) ? "" : 'hide'}"
+					className="py-pinyin-span ${(showPinyin) ? "" : 'hide'}"
 					style="color:${pinyinStyle.color};font-size:${pinyinFontSize};"
 				>
-					<span class="py-wrap" style="font-family:${pinyinStyle.fontFamily}" contenteditable="true">${wrapper(data.pinyin, options)}</span>
+					<span className="py-wrap" style="font-family:${pinyinStyle.fontFamily}" contenteditable="true">${wrapper(data.pinyin, options)}</span>
 				</span>
 				${
 					isPreview ? '' : `
-					<div id="POLYPHONE" class="pys-chooser ${ showSelectIcon ? "" : "hide" }">
-						<span class="py-down">${decorationSvgs.pys_tips}</span>
-						<span class="py-masks pysChooser"></span>
+					<div id="POLYPHONE" className="pys-chooser ${ showSelectIcon ? "" : "hide" }">
+						<span className="py-down">${decorationSvgs.pys_tips}</span>
+						<span className="py-masks pysChooser"></span>
 					</div>`
 				}
 			</span>

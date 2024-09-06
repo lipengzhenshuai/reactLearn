@@ -3,7 +3,7 @@ import { containerId } from "./data";
 
 export const createContainer = () => {
 	if(!document.getElementById(containerId)) {
-		const container = parseDom(`<div id="${containerId}" class="pinyin"></div>`);
+		const container = parseDom(`<div id="${containerId}" className="pinyin"></div>`);
 		document.body.appendChild(container[0]);
 	}
 };

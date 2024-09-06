@@ -26,33 +26,33 @@ function renderCombine(data, options, isPreview = false) {
 	}
 
 	return `
-		<span class="py-item">
-			<span class="py-pinyin" style="font-size:${pinyinFontSize}">
+		<span className="py-item">
+			<span className="py-pinyin" style="font-size:${pinyinFontSize}">
 				<span
 					contenteditable="true"
-					class="py-wrap ${showPinyin ? "" : 'hide-remain'}"
+					className="py-wrap ${showPinyin ? "" : 'hide-remain'}"
 					style="color:${pinyinStyle.color}; font-family:${pinyinStyle.fontFamily}"
 					>
 					${wrapper(data.pinyin, options)}
 				</span>
 				${
 					isPreview ? '' : `
-					<div id="POLYPHONE" class="pys-chooser ${ showSelectIcon ? "" : "hide"}">
-						<span class="py-down">${decorationSvgs.pys_tips}</span>
-						<span class="py-masks pysChooser"></span>
+					<div id="POLYPHONE" className="pys-chooser ${ showSelectIcon ? "" : "hide"}">
+						<span className="py-down">${decorationSvgs.pys_tips}</span>
+						<span className="py-masks pysChooser"></span>
 					</div>`
 				}
 			</span>
-			<span class="py-word" style="font-size:${wordFontSize}">
+			<span className="py-word" style="font-size:${wordFontSize}">
 					<span
 						style="color:${wordStyle.color};font-family:${wordStyle.fontFamily}"
 					>
-						<span class="${(showWord || data.type !== 1)  ? "" : 'hide-remain'}" >${data.word}</span>
+						<span className="${(showWord || data.type !== 1)  ? "" : 'hide-remain'}" >${data.word}</span>
 					${
 						isPreview ? '' :
 						`
 						<input type="text"
-							class="py-word-input ${showInput ? "" : 'hide'}"
+							className="py-word-input ${showInput ? "" : 'hide'}"
 							autocomplete="off" style="font-size:1em">
 						`
 					}

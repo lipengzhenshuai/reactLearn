@@ -39,6 +39,9 @@ import Redux3Middle from "../6redux/3_middle-ware/1";
 import Redux4Saga from "../6redux/4_saga";
 import Redux5Dva from "../6redux/5_dva";
 
+// 面试的一些问题
+import InterviewBiBao from '../8interview/useEffect闭包问题.jsx'
+
 import PinYin from "../pinyin/index.jsx";
 import generatePdf from "../11demo/generatePdf/index.jsx";
 
@@ -97,6 +100,7 @@ const routes = [
     { path: "/redux/3_middle-ware/1", component: Redux3Middle },
     { path: "/redux/4_saga/basic", component: Redux4Saga },
     { path: "/redux/5_dva/basic", component: Redux5Dva },
+    { path: "/interviewer/bibao", component: InterviewBiBao },
     { path: "/hooks/1", component: Hooks1 },
     { path: "/hooks/refHooks", component: RefHooks },
     { path: "/hooks/customHooks/index", component: CustomHooks },

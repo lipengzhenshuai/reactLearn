@@ -15,20 +15,6 @@ export const updateData = ({pinyin, dispatch, index}) => {
 	dispatch({type: 'updateData', index, value: pinyin})
 }
 
-// const updateChild = (target, pinyin) => {
-	
-// 	const newElement = addContainer({
-// 		data:pinyin,
-// 		options: config.options
-// 	});
-// 	if(target.id === "input--1") {
-// 		// 根据不同的布局类型增加不同的页面结构
-// 		insertAfter(newElement, target);
-// 	} else {
-// 		const item = getUpELement(target, "py-item", "py-edit-content");
-// 		insertAfter(newElement, item);
-// 	}
-// }
 
 export const updateFocus = (target, length) => {
 	if ([...target.classList].indexOf("py-first-input") !== -1) { // 第一个input

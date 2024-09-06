@@ -18,16 +18,16 @@ function renderSquare(data, options, isPreview = false) {
 	}
 
 	return `
-		<span class="py-item">
-			<span class="py-word" style="font-size:${wordFontSize};">
+		<span className="py-item">
+			<span className="py-word" style="font-size:${wordFontSize};">
 				${
 					isPreview ? '' : `
 					<input
-						class="py-word-input ${showInput ? "" : 'hide'}"
+						className="py-word-input ${showInput ? "" : 'hide'}"
 						type="text">`
 				}
 				<span
-					class="py-word-span ${(showWord || data.type !== 1) ? "" : 'hide'}" 
+					className="py-word-span ${(showWord || data.type !== 1) ? "" : 'hide'}" 
 					style="color:${wordStyle.color};font-family:${wordStyle.fontFamily}"
 				>
 					${data.word}

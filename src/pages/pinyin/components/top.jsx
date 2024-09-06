@@ -55,13 +55,13 @@ const showYinBiao = (config, updateWordType) => {
   ) : (
     <div
       onClick={() => updateWordType("showPinyin")}
-      class="py-line-item py-line-item-btn"
+      className="py-line-item py-line-item-btn"
     >
       <span
-        class={`py-checkbox ${showPinyin ? "checked" : ""}`}
+        className={`py-checkbox ${showPinyin ? "checked" : ""}`}
         dangerouslySetInnerHTML={{ __html: checkedSvgs }}
       ></span>
-      <span class="py-tab">显示拼音</span>
+      <span className="py-tab">显示拼音</span>
     </div>
   );
 };
@@ -73,13 +73,13 @@ const showYinDiao = (config, updateWordType) => {
   ) : (
     <div
       onClick={() => updateWordType("markTone")}
-      class="py-line-item py-line-item-btn"
+      className="py-line-item py-line-item-btn"
     >
       <span
-        class={`py-checkbox ${markTone ? "checked" : ""}`}
+        className={`py-checkbox ${markTone ? "checked" : ""}`}
         dangerouslySetInnerHTML={{ __html: checkedSvgs }}
       ></span>
-      <span class="py-tab">标注音调</span>
+      <span className="py-tab">标注音调</span>
     </div>
   );
 };

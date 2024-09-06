@@ -24,34 +24,34 @@ function renderLeftRight(data, options, isPreview = false) {
 	}
 
 	return `
-		<span class="py-item">
-			<span class="py-word" style="font-size:${wordFontSize};">
+		<span className="py-item">
+			<span className="py-word" style="font-size:${wordFontSize};">
 				${
 					isPreview ? '' : `
 					<input
-						class="py-word-input ${showInput ? "" : 'hide'}"
+						className="py-word-input ${showInput ? "" : 'hide'}"
 						
 						type="text">`
 				}
 				<span
-					class="py-word-span${(showWord || data.type !== 1) ? "" : ' hide'}" 
+					className="py-word-span${(showWord || data.type !== 1) ? "" : ' hide'}" 
 					style="color:${wordStyle.color};font-family:${wordStyle.fontFamily}"
 				>
 					${data.word}
 				</span>
 				<span
-					class="py-pinyin-span${(showPinyin && data.type === 1) ? "" : ' hide'}"
+					className="py-pinyin-span${(showPinyin && data.type === 1) ? "" : ' hide'}"
 					style="color:${pinyinStyle.color};font-size:${pinyinFontSize};"
 				>
-					<span class="${showWord ? "" : 'hide'}">(</span>
-					<span class="py-wrap" style="font-family:${pinyinStyle.fontFamily}"  contenteditable="true">${wrapper(data.pinyin, options)}</span>
-					<span class="${showWord ? "" : 'hide'}">)</span>
+					<span className="${showWord ? "" : 'hide'}">(</span>
+					<span className="py-wrap" style="font-family:${pinyinStyle.fontFamily}"  contenteditable="true">${wrapper(data.pinyin, options)}</span>
+					<span className="${showWord ? "" : 'hide'}">)</span>
 				</span>
 				${
 					isPreview ? '' : `
-					<div id="POLYPHONE" class="pys-chooser ${ showSelectIcon ? "" : "hide" }">
-						<span class="py-down">${decorationSvgs.pys_tips}</span>
-						<span class="py-masks pysChooser"></span>
+					<div id="POLYPHONE" className="pys-chooser ${ showSelectIcon ? "" : "hide" }">
+						<span className="py-down">${decorationSvgs.pys_tips}</span>
+						<span className="py-masks pysChooser"></span>
 					</div>`
 				}
 			</span>

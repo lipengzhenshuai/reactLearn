@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 const defaultOptions = {
   wordType: 0, // 上下,左右,四线三格，田字格，组合等
@@ -100,6 +101,13 @@ const reducer = (state, action) => {
           ...state,
           data: temp2
       }
+      case "updatePys":
+        const newData = [...state.data];
+        newData[action.index].pinyin = action.value;
+        return {
+          ...state,
+          data: newData
+      }
       case "clearData":
         return {
           ...state,
@@ -155,5 +163,7 @@ const store = createStore(reducer, {
     markTone: true,
     uKeepPoint: true,
   },
-});
+},
+composeWithDevTools()
+);
 export default store;

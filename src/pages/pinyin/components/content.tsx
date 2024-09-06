@@ -62,9 +62,7 @@ const PinYinContent = () => {
             </div>
           </div>
         </div>
-        <div className="py-edit-content">
-          <EditContainer isPreview={false} />
-        </div>
+        <EditContainer isPreview={false} />
         <div>
         </div>
         <div className="py-footer">

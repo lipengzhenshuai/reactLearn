@@ -29,3 +29,21 @@
     1.npx npm-check-updates -u
     2.npm install
     npm包升级到最新版本，然后安装，但是一堆问题，感觉升级npm包或者升级node都是个让人痛苦的事情；
+
+## 引入 pinyin-pro包
+
+    增加拼音工具功能
+
+## 增加redux-devtool支持
+
+    1.npm install redux-devtools-extension
+
+```js
+import { composeWithDevTools } from '@redux-devtools/extension';
+    const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk)) // 中间件与 Redux DevTools 一起使用
+);
+```
+
+如果无法使用，按照浏览器提示到github地址查看使用方法
