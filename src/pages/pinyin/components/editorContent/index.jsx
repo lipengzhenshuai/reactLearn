@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FONTSIZEDEFAULT } from "../../utils/data.ts";
 import UpDown from "./upDown";
 import { getPinYinData, updateData, updateFocus, updateFocus2 } from "./temp.js";
-
 
 let isComposing = false;
 

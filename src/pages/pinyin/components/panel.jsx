@@ -51,6 +51,7 @@ const panel1 = (config, dispatch) => {
       <div>拼音样式</div>
       <div>
         <Select
+          defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(PinYinFont.PYFont)}
@@ -59,6 +60,7 @@ const panel1 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          defaultValue={"默认"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(PinYinFont.PYSize)}
@@ -67,6 +69,7 @@ const panel1 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(PinYinFont.PYColor)}
@@ -122,6 +125,7 @@ const panel2 = (config, dispatch) => {
       <div>汉字样式</div>
       <div>
         <Select
+          defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(WordFont.WFont)}
@@ -130,6 +134,7 @@ const panel2 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          defaultValue={"默认"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(WordFont.WSize)}
@@ -138,6 +143,7 @@ const panel2 = (config, dispatch) => {
       </div>
       <div>
         <Select
+          defaultValue={"inherit"}
           dropdownStyle={{ zIndex: 10001 }}
           style={{ width: 80, borderRadius: 15, marginLeft: 5 }}
           options={getSelectList(WordFont.WColor)}
