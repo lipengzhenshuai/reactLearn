@@ -47,3 +47,13 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 ```
 
 如果无法使用，按照浏览器提示到github地址查看使用方法
+
+## 引入highlight
+
+    1.npm install highlight.js
+    2.在src/components中增加组件
+    3.在使用的地方引用
+
+```js
+    <HighLight code="console.log(111)" languages="javascript" />
+```

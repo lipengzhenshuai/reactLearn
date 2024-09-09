@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.less";
 import EmptyIcon from "./asset/img/empty.png";
+import HighLight from '../../../components/HighLight/index.tsx';
 /**
  *
  * 参考文档：【腾讯文档】滚动加载https://docs.qq.com/doc/DSmZFcUZCY0FxZ3Np
@@ -43,15 +44,23 @@ const Demo = (props) => {
   }, []);
 
   return (
-    <div className="courseCenter">
-      {fistLoad ? (
-        <FirstLoad />
-      ) : list.length === 0 ? (
-        <NoData />
-      ) : (
-        <List loading={loading} list={list} fetchData={fetchData} />
-      )}
-    </div>
+    <>
+      <div>
+          <div>
+            说明
+          </div>
+          <HighLight code="console.log(111)" languages="javascript" />
+      </div>
+      <div className="courseCenter">
+        {fistLoad ? (
+          <FirstLoad />
+        ) : list.length === 0 ? (
+          <NoData />
+        ) : (
+          <List loading={loading} list={list} fetchData={fetchData} />
+        )}
+      </div>
+    </>
   );
 };
 
