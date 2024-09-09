@@ -104,16 +104,8 @@ const EditContainer = ({ isPreview = false }) => {
   };
 
   const onInput = (e, index) => {
-    console.log("lipeng-🚀- ~ onInput ~ e, index:", e, index);
-    const { target, data = undefined, isComposing = true } = e.nativeEvent;
-    const { tagName = "" } = target;
-    // todo: 这个不知道是干啥用的
-    // if (tagName === "SPAN") {
-    //   // const { innerText } = e.target;
-    //   // const index = getIndex(target);
-    //   // config.data[index - 1].pinyin = innerText;
-    // } else
-    if (tagName === "INPUT" && data && !isComposing) {
+    const { data = undefined, isComposing = true } = e.nativeEvent;
+    if (data && !isComposing) {
       addValue(e, data, 2, index);
     }
   };

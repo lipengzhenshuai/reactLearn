@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <input id="input" type="text" >
+  </div>
+  <script>
+    const input = document.querySelector("#input");
+
+    function logEvent(event) {
+      console.log('lipeng-🚀- ~ logEvent ~ event:', event.type, event.target.value, event)
+    }
+
+    // 添加事件监听
+    input.addEventListener("input", logEvent);
+    input.addEventListener("compositionstart", logEvent);
+    input.addEventListener("compositionend", logEvent);
+    input.addEventListener("keyup", logEvent);
+    input.addEventListener("keydown", logEvent);
+    input.addEventListener("paste", logEvent);
+
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: keydown
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: compositionstart
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: input
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: keyup
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: keydown
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: input
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: compositionend
+  // index.html:16 lipeng-🚀- ~ logEvent ~ event: keyup
+  </script>
+</body>
+</html>
