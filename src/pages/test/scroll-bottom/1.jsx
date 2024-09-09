@@ -30,7 +30,7 @@ const Demo = (props) => {
       setList((prevData) =>
         isAdd
           ? [...prevData, ...newData]
-          : Math.random() > 0.01
+          : Math.random() > 0.99
           ? []
           : [...prevData, ...newData]
       );
@@ -47,9 +47,30 @@ const Demo = (props) => {
     <>
       <div>
           <div>
-            说明
+            滚动加载的逻辑
           </div>
-          <HighLight code="console.log(111)" languages="javascript" />
+          <div>
+            首先是触发滚动的条件：
+              这个是dom层面的逻辑：
+            scrollHeight:包含滚动区域的高度
+            scrollTop:向下滚动的距离，没有滚动的时候这个值为0
+            clientHeight:可见区域的高度
+            所以：当滚动的高度+可见高度 >= 所有区域高度的时候说明滚动到底部了；
+          </div>
+          <div>
+              然后是触发的逻辑状态：
+                这个属于react范畴：
+                  1.是否首次加载
+                  2.是否加载完毕
+                  3.是否有更多数据
+          </div>
+          <HighLight code={`const List = ({ loading, list, fetchData }) => {
+  const scroll = (e) => {
+    const { scrollHeight, scrollTop, clientHeight } = e.currentTarget;
+    if (scrollTop + clientHeight + 30 >= scrollHeight) {
+      fetchData(true);
+    }
+  };`} languages="js" />
       </div>
       <div className="courseCenter">
         {fistLoad ? (

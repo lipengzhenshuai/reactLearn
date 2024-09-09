@@ -60,7 +60,7 @@ import IframeZi from "../11demo/iframe/Zi.jsx";
 // import Business3 from "../business-compo/3";
 // import Business4 from "../business-compo/4";
 
-import Test1 from "../test/countDown/1.jsx";
+import Test1 from "../test/scroll-bottom/1.jsx";
 import Test2 from "../test/2/1.jsx";
 
 
