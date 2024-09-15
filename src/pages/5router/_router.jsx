@@ -37,7 +37,7 @@ import Redux1Simple from "../6redux/1_simple";
 import Redux2Use from "../6redux/2_use-xx";
 import Redux3Middle from "../6redux/3_middle-ware/1";
 import Redux4Saga from "../6redux/4_saga";
-import Redux5Dva from "../6redux/5_dva";
+// import Redux5Dva from "../6redux/5_dva";
 
 // 面试的一些问题
 import InterviewBiBao from '../8interview/useEffect闭包问题.jsx'
@@ -66,7 +66,7 @@ import Test2 from "../test/2/1.jsx";
 
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     Link,
 } from "react-router-dom";
@@ -99,7 +99,6 @@ const routes = [
     { path: "/redux/2_use-xx/basic", component: Redux2Use },
     { path: "/redux/3_middle-ware/1", component: Redux3Middle },
     { path: "/redux/4_saga/basic", component: Redux4Saga },
-    { path: "/redux/5_dva/basic", component: Redux5Dva },
     { path: "/interviewer/bibao", component: InterviewBiBao },
     { path: "/hooks/1", component: Hooks1 },
     { path: "/hooks/refHooks", component: RefHooks },
@@ -132,13 +131,18 @@ export default function App() {
                         </ul>
                     </div>
                 </Draggable>
-                <Switch>
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path}>
-                            <route.component />
-                        </Route>
-                    ))}
-                </Switch>
+                <Routes>
+                    {routes.map((route, index) => {
+                        const Component = route.component;
+                        return (
+                            <Route 
+                                key={index} 
+                                path={route.path} 
+                                element={<Component />}
+                            />
+                        )
+                    })}
+                </Routes>
             </div>
         </Router>
     );

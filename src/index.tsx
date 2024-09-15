@@ -1,5 +1,7 @@
+// @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 // import App from './pages/core/1helloworld.jsx';
 // import App from './pages/core/2funcComponent';
@@ -22,7 +24,7 @@ import './index.css';
 // import App from './pages/senior/5fragments';
 // import App from './pages/senior/6HOC';
 
-import App from'./pages/5router/_router';
+import App from'./pages/5router/_router.jsx';
 // import App from'./pages/router/1basic';
 
 // import App from './pages/redux/1';
@@ -55,7 +57,8 @@ import App from'./pages/5router/_router';
 // import App from './pages/business/goTop.jsx';
 
 function render(props = {}) {
-  ReactDOM.render(<App />, props.container ? props.container.querySelector('#root') : document.getElementById('root'));
+  const root = createRoot(props.container ? props.container.querySelector('#root') : document.getElementById('root'));
+  root.render(<App />);
 }
 
 

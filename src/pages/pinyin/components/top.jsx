@@ -16,7 +16,7 @@ const Top = () => {
         dispatch({ type: "showPinyin" });
         break;
       case "markTone":
-        return dispatch({ type: "markTone" });
+        dispatch({ type: "markTone" });
       default:
         return;
     }
@@ -51,7 +51,7 @@ const showHanZi = (config, updateWordType) => {
 const showYinBiao = (config, updateWordType) => {
   const { wordType, showPinyin } = config.options;
   return wordType === 3 ? (
-    ""
+    <div></div>
   ) : (
     <div
       onClick={() => updateWordType("showPinyin")}
@@ -69,7 +69,7 @@ const showYinBiao = (config, updateWordType) => {
 const showYinDiao = (config, updateWordType) => {
   const { wordType, markTone } = config.options;
   return wordType === 3 ? (
-    ""
+    <div></div>
   ) : (
     <div
       onClick={() => updateWordType("markTone")}

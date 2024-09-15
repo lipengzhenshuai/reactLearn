@@ -71,4 +71,9 @@ module.exports = override(
 
     1.拉个新分支
     2.在新分支上进行修改
-
+    3.使用pnpm进行项目管理，感觉安装等方面更加方便
+    
+    具体流程：
+    1.引入一个刚搭建的vite环境的devDependencies依赖；然后放入本项目；
+    2.然后使用npm outdated 获取需要升级的依赖，给升级下，使用chatGpt生成对应的字段；然后加入到dependencies
+    3.修改启动命令

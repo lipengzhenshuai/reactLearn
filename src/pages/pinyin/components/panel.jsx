@@ -30,7 +30,7 @@ const panel1 = (config, dispatch) => {
 
   const update = (type, value) => {
     pinyinStyle[type] = value;
-    return dispatch({ type: "pinyinStyle", config });
+    dispatch({ type: "pinyinStyle", config });
   };
   const {
     options: {
@@ -90,13 +90,13 @@ const panel2 = (config, dispatch) => {
 
   const update = (type, value) => {
     if (type === "useFontWidth") {
-      return dispatch({ type: "useFontWidth" });
+      dispatch({ type: "useFontWidth" });
     }
     if (type === "fontWidth") {
-      return dispatch({ type: "fontWidth", value });
+      dispatch({ type: "fontWidth", value });
     }
     wordStyle[type] = value;
-    return dispatch({ type: "wordStyle", config });
+    dispatch({ type: "wordStyle", config });
   };
 
   const changeFontWidth = (e) => {

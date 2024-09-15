@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './index.less';
 import { decorationSvgs } from "../utils/svg_constants";
