@@ -47,3 +47,28 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 ```
 
 如果无法使用，按照浏览器提示到github地址查看使用方法
+
+## 升级失败案例
+
+    1.我将包升级到最新版，然后安装依赖
+    2.处理了新版react-dom的兼容问题
+    3.但是一直提示postcss问题，就是
+```js
+    const { override, addLessLoader } = require('customize-cra');
+
+module.exports = override(
+  addLessLoader({
+    lessOptions: {
+      javascriptEnabled: true,
+    },
+  })
+);
+```
+
+这块代码有问题，使用chatGpt也不知道为啥，我计划换成vite，这样提高开发效率，而且极大部分功能vite都能实现；
+
+## vite升级
+
+    1.拉个新分支
+    2.在新分支上进行修改
+
