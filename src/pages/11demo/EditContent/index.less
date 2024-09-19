@@ -1,0 +1,38 @@
+.editable-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 100px;
+}
+
+.editable-box .tag {
+  background-color: #d7e7ff;
+  padding: 0 5px;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.editable-box .tag:empty:before {
+  content: attr(data-placeholder); /* 使用伪元素显示placeholder */
+  color: #999;
+}
+
+.content-box .tag {
+  display: inline-block;
+  /* padding: 8px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.content-box .tag span {
+  white-space: pre;
+}
+.content-box .tag {
+  background-color: #d7e7ff;
+  padding: 0 5px;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+.content-box .tag:empty:before {
+  content: attr(data-placeholder); /* 使用伪元素显示placeholder */
+  color: #999;
+}

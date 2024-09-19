@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .special-span {
+        color: blue;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="editor"
+      contenteditable="true"
+      style="border: 1px solid #ccc; min-height: 100px; padding: 5px"
+    ></div>
+    <button onclick="insertSpecialSpan()">插入特殊标识</button>
+    <script>
+      function insertSpecialSpan() {
+        const editor = document.getElementById("editor");
+        // 创建一个带有特定样式的 span 元素
+        const span = document.createElement("span");
+        span.className = "special-span";
+        // 默认插入一些文本，或者可以是空的让用户输入
+        span.textContent = "#aaaa#";
+
+        // 获取光标位置并插入 span
+        const sel = window.getSelection();
+        if (sel.rangeCount) {
+          const range = sel.getRangeAt(0);
+          range.deleteContents(); // 如果需要删除选中的文本
+          range.insertNode(span);
+
+          // 如果想要自动将光标放在 span 内部，可以继续操作 range
+          const textNode = document.createTextNode("");
+          range.setStart(textNode, 0);
+          range.setEnd(textNode, 0);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          span.appendChild(textNode);
+        }
+      }
+
+      // 监听键盘事件处理删除操作（这里简化处理，实际可能更复杂）
+      document
+        .getElementById("editor")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Backspace" || e.key === "Delete") {
+            const sel = window.getSelection();
+            if (sel.rangeCount) {
+              const range = sel.getRangeAt(0);
+              const startNode = range.startContainer;
+              if (
+                startNode.nodeType === Node.ELEMENT_NODE &&
+                startNode.className === "special-span"
+              ) {
+                // 如果光标在 span 内部或刚好在 span 上，则删除整个 span
+                range.selectNodeContents(startNode);
+                range.deleteContents();
+                // 可能需要处理边界情况，如光标在 span 前后
+              }
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

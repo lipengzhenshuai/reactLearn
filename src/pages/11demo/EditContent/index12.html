@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>自适应宽度的伪输入框</title>
+    <style>
+      .editable-container {
+        display: inline-block;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .editable-container span {
+        white-space: pre;
+      }
+      .editable-container:empty:before {
+        content: attr(data-placeholder); /* 使用伪元素显示placeholder */
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- oninput="adjustWidth(this)" -->
+    我饿热热热我我热热二人<span
+      class="editable-container"
+      contenteditable="true"
+      data-placeholder="输入内容"
+    ></span
+    >我饿热热热我我热热二人我饿热热热我我热热二人我饿热热热我我热热二人我饿热热热我我热热二人我饿热热热我我热热二人
+    <input
+      id="measure"
+      style="visibility: hidden; position: absolute; white-space: pre"
+    />
+    <script>
+      function adjustWidth(span) {
+        console.log("1111");
+        const measureInput = document.getElementById("measure");
+        measureInput.value = span.textContent || ""; // 获取span中的文本内容
+        measureInput.style.fontSize = window.getComputedStyle(span).fontSize; // 确保测量字体大小相同
+        span.style.width = measureInput.scrollWidth + 10 + "px"; // 设置宽度加一些padding
+      }
+    </script>
+  </body>
+</html>

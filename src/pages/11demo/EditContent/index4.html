@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Input Width</title>
+<style>
+  input {
+    border: none;
+    outline: none; /* 去除聚焦后的外边框 */
+    font-size: inherit;
+    font-family: inherit;
+  }
+</style>
+<script>
+  function replaceSpansWithInputs(html) {
+    return html.replace(/<span class="custom-span" contenteditable="true">#(\d+)#<\/span>/g, (match, p1) => {
+      // 创建临时元素用于计算输入框宽度
+      const tempSpan = document.createElement('span');
+      tempSpan.style.visibility = 'hidden';
+      tempSpan.style.position = 'absolute';
+      tempSpan.style.fontSize = 'inherit';
+      tempSpan.style.fontFamily = 'inherit';
+      tempSpan.textContent = p1;
+
+      document.body.appendChild(tempSpan);
+      const width = tempSpan.offsetWidth + 10; // 加上一些额外空间以确保显示完全
+      document.body.removeChild(tempSpan);
+
+      return `<input type="text" placeholder="${p1}" value="${p1}" style="width:${width}px;" />`;
+    });
+  }
+
+  window.onload = () => {
+    const htmlString = `
+    <div id="editable" contenteditable="true" class="editable-box">
+      sdfd<span class="non-editable" contenteditable="false">
+        <span class="custom-span" contenteditable="true">#sdfsdfsdf#</span>
+      </span>sfds<span class="non-editable" contenteditable="false">
+        <span class="custom-span" contenteditable="true">#1sf111#</span>
+      </span>sdfsdfssdfsdf<span class="non-editable" contenteditable="false">
+        <span class="custom-span" contenteditable="true">#1111#</span>
+      </span>dfsdf<span class="non-editable" contenteditable="false">
+        <span class="custom-span" contenteditable="true">#1111#</span>
+      </span>sdfsdfsdf<span class="non-editable" contenteditable="false">
+        <span class="custom-span" contenteditable="true">#1111#</span>
+      </span>sdfsdfsfdsf
+    </div>
+    `;
+
+    const newHtmlString = replaceSpansWithInputs(htmlString);
+    document.getElementById('content').innerHTML = newHtmlString;
+  };
+</script>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

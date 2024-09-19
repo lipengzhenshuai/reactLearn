@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Style Example</title>
+  <style>
+    .non-editable {
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 10px;
+      background-color: #f0f0f0;
+      position: relative;
+    }
+    .editable {
+      border: 1px dashed #00f;
+      padding: 5px;
+      background-color: #e0e0ff;
+      position: relative;
+    }
+    .focus-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px dashed rgba(0, 0, 255, 0.5);
+      pointer-events: none; /* Ensure the overlay does not interfere with editing */
+      display: none; /* Hide overlay by default */
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    // Create parent element (non-editable)
+    const nonEditableSpan = document.createElement('span');
+    nonEditableSpan.className = 'non-editable';
+    nonEditableSpan.setAttribute('contenteditable', 'false');
+    nonEditableSpan.textContent = 'This text is not editable. ';
+
+    // Create child element (editable)
+    const editableSpan = document.createElement('span');
+    editableSpan.className = 'editable';
+    editableSpan.setAttribute('contenteditable', 'true');
+    editableSpan.textContent = 'This text is editable.';
+
+    // Create overlay for focus effect
+    const focusOverlay = document.createElement('div');
+    focusOverlay.className = 'focus-overlay';
+
+    // Add the overlay to the parent element
+    nonEditableSpan.appendChild(focusOverlay);
+
+    // Add child element to the parent element
+    nonEditableSpan.appendChild(editableSpan);
+
+    // Append the parent element to the container in the body
+    document.getElementById('container').appendChild(nonEditableSpan);
+
+    // Handle focus events
+    editableSpan.addEventListener('focus', function() {
+      focusOverlay.style.display = 'block'; // Show overlay
+    });
+
+    editableSpan.addEventListener('blur', function() {
+      focusOverlay.style.display = 'none'; // Hide overlay
+    });
+
+    // Make the focus overlay visible on click in the editable span
+    editableSpan.addEventListener('mousedown', function() {
+      focusOverlay.style.display = 'block'; // Show overlay on click
+    });
+  </script>
+</body>
+</html>

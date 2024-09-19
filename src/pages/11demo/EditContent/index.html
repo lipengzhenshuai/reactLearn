@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editable Input</title>
+    <style>
+      .editable-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        min-height: 100px;
+      }
+
+      .non-editable {
+        margin: 2px;
+        color: blue;
+        background-color: #e0eaff; /* 淡蓝色背景 */
+      }
+
+      .custom-span {
+        color: blue;
+        font-weight: bold;
+      }
+      /* 让选中的框失去外层蓝色层 */
+      /* .custom-span:focus-visible {
+        outline: none;
+      } */
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="editable" contenteditable="true" class="editable-box"></div>
+      <!-- <div id="editable" contenteditable="true" class="editable-box">水电费水电费水电费水电费水电费水电费<span class="non-editable" contenteditable="false"><span>#</span><span class="custom-span" contenteditable="true">111</span><span>#</span></span>第三方缩放水电费饭水电费<span class="non-editable" contenteditable="false"><span>#</span><span class="custom-span" contenteditable="true">111</span><span>#</span></span><span class="non-editable" contenteditable="false"><span>#</span><span class="custom-span" contenteditable="true">111</span><span>#</span></span>第三方水电费水电费水电费第三方<span class="non-editable" contenteditable="false"><span>#</span><span class="custom-span" contenteditable="true">111</span><span>#</span></span>水电费</div> -->
+      <button id="insertSpan">Insert Span</button>
+      <div id="parseContent"></div>
+      <button id="dddd">生成新增逻辑</button>
+    </div>
+
+    <script>
+      const gene1 = () => {
+        // 创建父元素 (不可编辑)
+        const nonEditableSpan = document.createElement("span");
+        nonEditableSpan.className = "non-editable";
+        nonEditableSpan.setAttribute("contenteditable", "plaintext-only");
+
+        // 创建子元素 (可编辑)
+        const editableSpan = document.createElement("span");
+        editableSpan.className = "custom-span";
+        editableSpan.setAttribute("contenteditable", "true");
+        editableSpan.textContent = "#1111#";
+
+        // 将子元素添加到父元素中
+        nonEditableSpan.appendChild(editableSpan);
+        return nonEditableSpan;
+      };
+
+      const gene2 = () => {
+        // 创建父元素 (不可编辑)
+        const nonEditableSpan = document.createElement("span");
+        nonEditableSpan.className = "non-editable";
+        nonEditableSpan.setAttribute("contenteditable", "false");
+
+        // 创建包裹#号的span元素
+        const hashStart = document.createElement("span");
+        hashStart.textContent = "#";
+
+        // 创建包含数字的span元素
+        const numberSpan = document.createElement("span");
+        numberSpan.className = "custom-span";
+        numberSpan.setAttribute("contenteditable", "true");
+        numberSpan.textContent = "111";
+
+        // 创建结束#号的span元素
+        const hashEnd = document.createElement("span");
+        hashEnd.textContent = "#";
+
+        // 将所有子元素添加到父元素中
+        nonEditableSpan.appendChild(hashStart);
+        nonEditableSpan.appendChild(numberSpan);
+        nonEditableSpan.appendChild(hashEnd);
+
+        return nonEditableSpan;
+      };
+
+      document
+        .getElementById("insertSpan")
+        .addEventListener("click", function () {
+          const editableDiv = document.getElementById("editable");
+          const span = gene2(); // 假设 gene1() 返回的是你想插入的 span 元素
+          // 获取当前的选区和范围
+          const selection = window.getSelection();
+          if (!selection.rangeCount) return; // 如果没有有效的选区，则退出函数
+          const range = selection.getRangeAt(0);
+          // 删除任何选中的内容（如果有）
+          range.deleteContents();
+          // 插入新的 span 元素
+          range.insertNode(span);
+          // // 创建一个空的文本节点并插入到 span 后面
+          // const afterSpan = document.createTextNode("");
+          // span.parentNode.insertBefore(afterSpan, span.nextSibling);
+          // 更新范围以将光标放置在空的文本节点后面
+          range.setStartAfter(span);
+          range.collapse(true);
+          // 清除所有的选区，然后添加新的范围
+          selection.removeAllRanges();
+          selection.addRange(range);
+        });
+
+      // document
+      //   .getElementById("editable")
+      //   .addEventListener("keydown", function (event) {
+      //     if (event.key === "Backspace" || event.key === "Delete") {
+      //       const selection = window.getSelection();
+      //       if (!selection.rangeCount) return;
+
+      //       if (selection.rangeCount > 0) {
+      //         const range = selection.getRangeAt(0);
+      //         console.log("🚀 ~ document.getElementById ~ range:", range);
+      //         console.log("🚀 ~ document.getElementById ~ range.startOffset:", range.startOffset);
+      //         console.log("🚀 ~ range.startContainer.previousSibling:", range.startContainer.previousSibling)
+      //         if (
+      //           range.startOffset === 0 &&
+      //           range.startContainer.previousSibling
+      //         ) {
+      //           const previousNode = range.startContainer.previousSibling;
+      //           if (
+      //             previousNode.nodeType === Node.ELEMENT_NODE &&
+      //             previousNode.classList.contains("non-editable")
+      //           ) {
+      //             event.preventDefault(); // Prevent the default backspace action
+      //             previousNode.remove(); // Remove the non-editable span
+      //           }
+      //         }
+      //       }
+      //     }
+      //   });
+
+  //       document
+  // .getElementById("editable")
+  // .addEventListener("keydown", function (event) {
+  //   if (event.key === "Backspace" || event.key === "Delete") {
+  //     const selection = window.getSelection();
+  //     if (!selection.rangeCount) return;
+
+  //     const range = selection.getRangeAt(0);
+  //     console.log("🚀 ~ document.getElementById ~ range:", range);
+  //     console.log("🚀 ~ document.getElementById ~ range.startOffset:", range.startOffset);
+  //     console.log("🚀 ~ range.startContainer.previousSibling:", range.startContainer.previousSibling)
+
+  //     // 如果起始偏移量为0，且有前一个兄弟节点
+  //     if (range.startOffset === 0 && range.startContainer.previousSibling) {
+  //       let previousNode = range.startContainer.previousSibling;
+
+  //       // 遍历找到第一个非文本节点（即元素节点）
+  //       while (previousNode && previousNode.nodeType !== Node.ELEMENT_NODE) {
+  //         previousNode = previousNode.previousSibling;
+  //       }
+
+  //       // 检查是否找到了具有.non-editable类的元素节点
+  //       if (
+  //         previousNode &&
+  //         previousNode.nodeType === Node.ELEMENT_NODE &&
+  //         previousNode.classList.contains("non-editable")
+  //       ) {
+  //         event.preventDefault(); // 阻止默认的退格操作
+  //         previousNode.remove(); // 移除不可编辑的span元素
+  //       }
+  //     }
+  //   }
+  // });
+  document.getElementById("editable").addEventListener("keydown", function (event) {
+  if (event.key === "Backspace" || event.key === "Delete") {
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+
+    let range = selection.getRangeAt(0);
+    let startContainer = range.startContainer;
+    let startOffset = range.startOffset;
+
+    // 检查是否在文本节点内
+    if (startContainer.nodeType === Node.TEXT_NODE) {
+      // Backspace 键：如果光标在文本节点的起始位置
+      if (event.key === "Backspace" && startOffset === 0) {
+        let previousNode = startContainer.previousSibling;
+
+        while (previousNode && previousNode.nodeType !== Node.ELEMENT_NODE) {
+          previousNode = previousNode.previousSibling;
+        }
+
+        if (
+          previousNode &&
+          previousNode.nodeType === Node.ELEMENT_NODE &&
+          previousNode.classList.contains("non-editable")
+        ) {
+          event.preventDefault(); // 阻止默认的退格操作
+          previousNode.remove();
+
+          // 更新选择范围以反映新的DOM状态
+          range.setStart(startContainer, 0);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return; // 结束函数执行，不继续处理
+        }
+      }
+
+      // Delete 键：如果光标在文本节点的末尾位置
+      if (event.key === "Delete" && startOffset === startContainer.length) {
+        let nextNode = startContainer.nextSibling;
+
+        while (nextNode && nextNode.nodeType !== Node.ELEMENT_NODE) {
+          nextNode = nextNode.nextSibling;
+        }
+
+        if (
+          nextNode &&
+          nextNode.nodeType === Node.ELEMENT_NODE &&
+          nextNode.classList.contains("non-editable")
+        ) {
+          event.preventDefault(); // 阻止默认的删除操作
+          nextNode.remove();
+
+          // 更新选择范围以反映新的DOM状态
+          range.setEnd(startContainer, startContainer.length);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return; // 结束函数执行，不继续处理
+        }
+      }
+    } else if (startContainer.nodeType === Node.ELEMENT_NODE) {
+      // 如果光标直接位于元素节点中，例如 <br> 或者空的 <div>
+      if (event.key === "Backspace" && startOffset > 0) {
+        let previousNode = startContainer.childNodes[startOffset - 1];
+
+        if (
+          previousNode &&
+          previousNode.nodeType === Node.ELEMENT_NODE &&
+          previousNode.classList.contains("non-editable")
+        ) {
+          event.preventDefault(); // 阻止默认的退格操作
+          previousNode.remove();
+
+          // 更新选择范围以反映新的DOM状态
+          range.setStart(startContainer, startOffset - 1);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return; // 结束函数执行，不继续处理
+        }
+      }
+
+      if (event.key === "Delete" && startOffset < startContainer.childNodes.length) {
+        let nextNode = startContainer.childNodes[startOffset];
+
+        if (
+          nextNode &&
+          nextNode.nodeType === Node.ELEMENT_NODE &&
+          nextNode.classList.contains("non-editable")
+        ) {
+          event.preventDefault(); // 阻止默认的删除操作
+          nextNode.remove();
+
+          // 更新选择范围以反映新的DOM状态
+          range.setStart(startContainer, startOffset);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          return; // 结束函数执行，不继续处理
+        }
+      }
+    }
+  }
+});
+
+      // TODO: 目前删除有问题
+      // document
+      //   .getElementById("editable")
+      //   .addEventListener("keydown", function (event) {
+      //     // 按下 Backspace 键时的逻辑
+      //     if (event.key === "Backspace") {
+      //       const selection = window.getSelection();
+      //       console.log("🚀 ~ selection:", selection);
+      //       if (!selection.rangeCount) return;
+
+      //       const range = selection.getRangeAt(0);
+      //       console.log("🚀 ~ range:", range)
+      //       const currentNode = range.startContainer;
+      //       const startOffset = range.startOffset;
+      //       console.log("🚀 ~ range.startOffset:", range.startOffset)
+      //       // 如果光标在文本节点的开头
+      //       if (startOffset === 0 && currentNode.previousElementSibling) {
+      //         let previousNode = currentNode.previousElementSibling;
+
+      //         if (
+      //           previousNode &&
+      //           previousNode.nodeType === Node.ELEMENT_NODE &&
+      //           previousNode.classList.contains("non-editable")
+      //         ) {
+      //           event.preventDefault(); // 阻止默认删除操作
+      //           previousNode.remove(); // 删除整个非编辑的span
+      //         }
+      //       }
+      //     }
+      //   });
+
+      // document
+      //   .getElementById("editable")
+      //   .addEventListener("keydown", function (event) {
+      //     if (event.key === "Backspace") {
+      //       const selection = window.getSelection();
+      //       if (!selection.rangeCount) return;
+
+      //       const range = selection.getRangeAt(0);
+      //       const currentNode = range.startContainer;
+      //       const startOffset = range.startOffset;
+
+      //       // 检查光标是否在文本节点中
+      //       if (currentNode.nodeType === Node.TEXT_NODE) {
+      //         const parentNode = currentNode.parentNode;
+      //         let previousNode = currentNode.previousSibling;
+
+      //         // 处理非文本节点情况，获取父级兄弟节点
+      //         if (!previousNode) {
+      //           previousNode = parentNode.previousSibling;
+      //         }
+
+      //         // 如果前一个兄弟节点是 non-editable 的 span，且光标在文本的开头或在 span 前
+      //         if (
+      //           previousNode &&
+      //           previousNode.nodeType === Node.ELEMENT_NODE &&
+      //           previousNode.classList.contains("non-editable") &&
+      //           startOffset === 0
+      //         ) {
+      //           event.preventDefault(); // 阻止默认删除操作
+      //           previousNode.remove(); // 删除 non-editable span
+      //         }
+      //       }
+      //     }
+      //   });
+
+      //       document.getElementById("editable").addEventListener("keydown", function (event) {
+      //   if (event.key === "Backspace") {
+      //     const selection = window.getSelection();
+      //     if (!selection.rangeCount) return;
+
+      //     const range = selection.getRangeAt(0);
+      //     const currentNode = range.startContainer;
+
+      //     // 如果光标在文本节点开头，检查其前面兄弟节点
+      //     if (currentNode.nodeType === Node.TEXT_NODE && range.startOffset === 0) {
+      //       let previousNode = currentNode.previousSibling;
+
+      //       // 获取父节点的前一个兄弟节点
+      //       if (!previousNode) {
+      //         previousNode = currentNode.parentNode.previousSibling;
+      //       }
+
+      //       // 只删除非编辑的 span 元素
+      //       if (previousNode &&
+      //           previousNode.nodeType === Node.ELEMENT_NODE &&
+      //           previousNode.classList.contains("non-editable")) {
+      //         event.preventDefault(); // 阻止默认删除操作
+      //         previousNode.remove(); // 删除 non-editable span
+      //       }
+      //     }
+      //     // 如果光标在元素节点内，检查光标前的兄弟节点
+      //     else if (currentNode.nodeType === Node.ELEMENT_NODE) {
+      //       let previousNode = currentNode.previousSibling;
+
+      //       if (previousNode &&
+      //           previousNode.nodeType === Node.ELEMENT_NODE &&
+      //           previousNode.classList.contains("non-editable")) {
+      //         event.preventDefault(); // 阻止默认删除操作
+      //         previousNode.remove(); // 删除 non-editable span
+      //       }
+      //     }
+      //   }
+      // });
+
+      // document
+      //   .getElementById("editable")
+      //   .addEventListener("keydown", function (event) {
+      //     if (event.key === "Backspace") {
+      //       const selection = window.getSelection();
+      //       if (!selection.rangeCount) return;
+
+      //       const range = selection.getRangeAt(0);
+      //       const currentNode = range.startContainer;
+      //       let previousNode = null;
+
+      //       // 如果光标在文本节点开头，检查其前面兄弟节点
+      //       if (
+      //         currentNode.nodeType === Node.TEXT_NODE &&
+      //         range.startOffset === 0
+      //       ) {
+      //         previousNode = currentNode.previousSibling;
+
+      //         // 获取父节点的前一个兄弟节点
+      //         if (!previousNode) {
+      //           previousNode = currentNode.parentNode.previousSibling;
+      //         }
+      //       }
+      //       // 如果光标在元素节点内，检查光标前的兄弟节点
+      //       else if (currentNode.nodeType === Node.ELEMENT_NODE) {
+      //         previousNode = currentNode.childNodes[range.startOffset - 1];
+      //       }
+
+      //       // 检查并删除 non-editable span 元素
+      //       if (
+      //         previousNode &&
+      //         previousNode.nodeType === Node.ELEMENT_NODE &&
+      //         previousNode.classList.contains("non-editable")
+      //       ) {
+      //         event.preventDefault(); // 阻止默认删除操作
+      //         previousNode.remove(); // 删除 non-editable span
+
+      //         // 更新选区范围
+      //         const newRange = document.createRange();
+      //         newRange.setStart(currentNode, 0);
+      //         newRange.collapse(true);
+
+      //         selection.removeAllRanges();
+      //         selection.addRange(newRange);
+      //       }
+      //     }
+      //   });
+
+      // document
+      //   .getElementById("editable")
+      //   .addEventListener("keydown", function (e) {
+      //     if (e.key === "Backspace") {
+      //       const sel = window.getSelection();
+      //       if (!sel.rangeCount) return;
+
+      //       const range = sel.getRangeAt(0);
+      //       const startContainer = range.startContainer;
+      //       const startOffset = range.startOffset;
+
+      //       // 检查光标是否位于文本节点开头，且该文本节点前面有一个span元素
+      //       if (
+      //         startContainer.nodeType === Node.TEXT_NODE &&
+      //         startOffset === 0
+      //       ) {
+      //         const prevNode = startContainer.previousSibling;
+      //         if (
+      //           prevNode &&
+      //           prevNode.nodeType === Node.ELEMENT_NODE &&
+      //           prevNode.matches(".special-span")
+      //         ) {
+      //           e.preventDefault(); // 阻止默认的删除操作
+
+      //           // 删除span元素
+      //           prevNode.remove();
+
+      //           // 如果删除后光标位置是空的，将光标移动到前一个兄弟节点（如果有的话）
+      //           if (!startContainer.textContent.trim()) {
+      //             const prevTextNode = prevNode.previousSibling;
+      //             if (
+      //               prevTextNode &&
+      //               prevTextNode.nodeType === Node.TEXT_NODE
+      //             ) {
+      //               range.setStart(
+      //                 prevTextNode,
+      //                 prevTextNode.textContent.length
+      //               );
+      //               range.setEnd(prevTextNode, prevTextNode.textContent.length);
+      //             } else {
+      //               // 如果没有前一个文本节点，则尝试将光标放在当前节点的末尾（可能是新的空白文本节点）
+      //               range.setStart(
+      //                 startContainer,
+      //                 startContainer.textContent.length
+      //               );
+      //               range.setEnd(
+      //                 startContainer,
+      //                 startContainer.textContent.length
+      //               );
+      //             }
+      //           }
+
+      //           // 更新选区
+      //           sel.removeAllRanges();
+      //           sel.addRange(range);
+      //         }
+      //       }
+
+      //       // 这里可以添加更多的逻辑来处理其他情况，比如光标在span内部的情况
+      //     }
+      //   });
+
+      document
+        .getElementById("dddd")
+        .addEventListener("click", function (event) {
+          const result = document.getElementById("editable").innerHTML;
+          document.getElementById("parseContent").innerHTML =
+            replaceSpansWithInputs(result);
+        });
+
+      const replaceSpansWithInputs = (html) => {
+        return html.replace(
+          /<span class="custom-span" contenteditable="true">#(\d+)#<\/span>/g,
+          (match, p1) => {
+            return `<input type="text" placeholder="${p1}"/>`;
+          }
+        );
+      };
+    </script>
+  </body>
+</html>

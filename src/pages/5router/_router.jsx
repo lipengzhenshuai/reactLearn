@@ -50,6 +50,7 @@ import Hooks1 from "../hooks/1";
 import RefHooks from "../hooks/refHooks";
 import CustomHooks from "../hooks/customHooks/index";
 
+import EditContent from "../11demo/EditContent/index";
 import IframeFu from "../11demo/iframe/Fu.jsx";
 import IframeZi from "../11demo/iframe/Zi.jsx";
 
@@ -111,6 +112,7 @@ const routes = [
     { path: "/antd/editTable", component: Table_Edit },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
+    { path: "/demo/11/editContent", component: EditContent },
     { path: "/demo/11/iframeFu", component: IframeFu },
     { path: "/demo/11/iframeZi", component: IframeZi },
     { path: "/pinyin", component: PinYin },
@@ -120,14 +122,17 @@ const routes = [
 
 export default function App() {
 
-    const [showDrag, setShowDrge] = useState(true);
+    const [showDrag, setShowDrge] = useState(false);
 
-    const closeDrag = () => {
-        setShowDrge(false)
-        window.localStorage.setItem(showDrag, true);
+    const updateDragShow = (value) => {
+        setShowDrge(value)
+        window.localStorage.setItem(showDrag, value);
     }
 
     useEffect(() => {
+        window.show = () => {
+            updateDragShow(true);
+        }
         setShowDrge(Boolean(window.localStorage.getItem("showDrag")));
     }, [])
 
@@ -138,7 +143,7 @@ export default function App() {
                     (
                         <Draggable>
                             <div className="list-touchbar">
-                                <div className="list-touchbar-close-icon" onClick={closeDrag}>x</div>
+                                <div className="list-touchbar-close-icon" onClick={() => updateDragShow(false)}>x</div>
                                 <ul>
                                     {routes.map((route, index) => (
                                         <li key={index}>
