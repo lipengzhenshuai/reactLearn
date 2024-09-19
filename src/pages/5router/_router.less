@@ -9,6 +9,7 @@
   border-radius: 10px; /* 圆角 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 添加立体感阴影 */
   background-image: linear-gradient(to bottom, #bddfff, #5dc8ff); /* 上下渐变 */
+  z-index: 1000000;
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -26,5 +27,11 @@
         color: greenyellow; /* 蓝色 */
       }
     }
+  }
+  .list-touchbar-close-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
   }
 }

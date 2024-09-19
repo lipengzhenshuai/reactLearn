@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Draggable from 'react-draggable';
 import './_router.less';
 
@@ -63,6 +63,7 @@ import IframeZi from "../11demo/iframe/Zi.jsx";
 import Test1 from "../test/1/1.jsx";
 import Test2 from "../test/2/1.jsx";
 
+import Table_Edit from "../antd/table/editTable.tsx";
 
 import {
     BrowserRouter as Router,
@@ -107,37 +108,57 @@ const routes = [
     // { path: "/business-compo/2", component: Business2 },
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
+    { path: "/antd/editTable", component: Table_Edit },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
     { path: "/demo/11/iframeFu", component: IframeFu },
     { path: "/demo/11/iframeZi", component: IframeZi },
-    {path: "/pinyin", component: PinYin},
-    {path: "/generatePdf", component: generatePdf}
+    { path: "/pinyin", component: PinYin },
+    { path: "/generatePdf", component: generatePdf }
 ];
 
 
 export default function App() {
+
+    const [showDrag, setShowDrge] = useState(true);
+
+    const closeDrag = () => {
+        setShowDrge(false)
+        window.localStorage.setItem(showDrag, true);
+    }
+
+    useEffect(() => {
+        setShowDrge(Boolean(window.localStorage.getItem("showDrag")));
+    }, [])
+
     return (
         <Router>
             <div>
-                <Draggable>
-                    <div className="list-touchbar">
-                        <ul>
-                            {routes.map((route, index) => (
-                                <li key={index}>
-                                    <Link to={route.path}>{route.path}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </Draggable>
+                {showDrag ?
+                    (
+                        <Draggable>
+                            <div className="list-touchbar">
+                                <div className="list-touchbar-close-icon" onClick={closeDrag}>x</div>
+                                <ul>
+                                    {routes.map((route, index) => (
+                                        <li key={index}>
+                                            <Link to={route.path}>{route.path}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </Draggable>
+                    )
+                    :
+                    ""
+                }
                 <Routes>
                     {routes.map((route, index) => {
                         const Component = route.component;
                         return (
-                            <Route 
-                                key={index} 
-                                path={route.path} 
+                            <Route
+                                key={index}
+                                path={route.path}
                                 element={<Component />}
                             />
                         )
