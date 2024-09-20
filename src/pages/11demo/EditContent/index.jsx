@@ -8,7 +8,6 @@ export const Demo = () => {
   const handleClick = () => {
 
     const editableDiv = document.getElementById(randDomId);
-
     // 创建自定义标记
     const tag = document.createElement("span");
     tag.className = "tag";
@@ -57,18 +56,67 @@ export const Demo = () => {
   const handleKeyDown = event => {
     const selection = window.getSelection();
     if (!selection.rangeCount) return;
-
+  
     const range = selection.getRangeAt(0);
     const currentNode = range.startContainer;
-
+  
     // 如果按下的是 Backspace 键
     if (event.key === "Backspace") {
       const previousNode = currentNode.previousSibling;
-
+      console.log('lipeng-🚀- ~ previousNode:', previousNode)
+      console.log('lipeng-🚀- ~ range.startOffset:', range.startOffset)
+      const startOffset = range.startOffset;
+  
+      // 获取光标前一个字符
+      if (startOffset >= 0) {
+        const charBefore = currentNode.textContent[startOffset - 1];
+        console.log("🚀 ~ charBefore:", charBefore);
+      }
+  
+      // 获取当前光标所在的父元素
+      const parentElement = currentNode.parentElement;
+  
+      // 检查光标是否在一个可以编辑的 span 内，并且该 span 是空的
+      if (
+        parentElement &&
+        parentElement.tagName === "SPAN" &&
+        parentElement.classList.contains("tag")
+      ) {
+        // 获取 span 内的内容
+        const spanContent = parentElement.textContent;
+        console.log('spanContent', spanContent);
+        // 如果 span 内容为空或者光标位置在内容开头，删除整个 span
+        if (spanContent.length === 1) {
+          event.preventDefault(); // 阻止默认行为
+  
+          // 获取 span 的前一个兄弟节点
+          const previousNode = parentElement.previousSibling;
+          parentElement.remove(); // 删除空的 span
+  
+          // 将光标移到前一个节点
+          if (previousNode && previousNode.nodeType === Node.TEXT_NODE) {
+            const newRange = document.createRange();
+            newRange.setStart(previousNode, previousNode.length);
+            newRange.setEnd(previousNode, previousNode.length);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+          }
+        }
+        return;
+      }
       // 如果前一个节点是自定义标签并且光标在标签前
       if (previousNode && previousNode.classList && previousNode.classList.contains("tag")) {
-        if (range.startOffset === 1) {
-          event.preventDefault();  // 阻止默认删除操作
+  
+        if (startOffset > 0) {
+          const charBefore = currentNode.textContent[startOffset - 1];
+          console.log("🚀 ~ charBefore:", charBefore);
+        }
+        const charBefore = currentNode.textContent[startOffset - 1];
+        if (range.startOffset === 1 && charBefore.trim() === "") { //如果前一个是空格的话
+          // event.preventDefault(); // 连同空格一起删掉
+          previousNode.remove();    // 删除整个标签
+        } else if (range.startOffset === 0) { // 如果前一个不是空格的话，这种删除就只能一个一个删除了
+          event.preventDefault(); // 不删掉字符
           previousNode.remove();    // 删除整个标签
         }
       }

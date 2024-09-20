@@ -126,7 +126,7 @@ export default function App() {
 
     const updateDragShow = (value) => {
         setShowDrge(value)
-        window.localStorage.setItem(showDrag, value);
+        window.localStorage.setItem("showDrag", value);
     }
 
     useEffect(() => {

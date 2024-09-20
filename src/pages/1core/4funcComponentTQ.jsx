@@ -35,8 +35,9 @@ function CommentOld(props) {
 
  function UserInfo(props) {
     return (
-      <div className="UserInfo">
+      <div style={{...props.style || {}}} className="UserInfo">
         <img className="Avatar"
+          width={200}
           src={props.author.avatarUrl}
           alt={props.author.name}
         />
