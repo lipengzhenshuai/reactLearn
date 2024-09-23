@@ -53,6 +53,7 @@ import { composeWithDevTools } from '@redux-devtools/extension';
     1.我将包升级到最新版，然后安装依赖
     2.处理了新版react-dom的兼容问题
     3.但是一直提示postcss问题，就是
+
 ```js
     const { override, addLessLoader } = require('customize-cra');
 
@@ -77,3 +78,7 @@ module.exports = override(
     1.引入一个刚搭建的vite环境的devDependencies依赖；然后放入本项目；
     2.然后使用npm outdated 获取需要升级的依赖，给升级下，使用chatGpt生成对应的字段；然后加入到dependencies
     3.修改启动命令
+
+## 使用pnpm安装依赖
+
+    1.更加快速和高效

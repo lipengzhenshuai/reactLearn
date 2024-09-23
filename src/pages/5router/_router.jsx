@@ -53,6 +53,7 @@ import CustomHooks from "../hooks/customHooks/index";
 import EditContent from "../11demo/EditContent/index";
 import IframeFu from "../11demo/iframe/Fu.jsx";
 import IframeZi from "../11demo/iframe/Zi.jsx";
+import Sort from "../11demo/sort/index.jsx";
 
 
 // 引入business-compo文件夹下所有文件
@@ -115,6 +116,7 @@ const routes = [
     { path: "/demo/11/editContent", component: EditContent },
     { path: "/demo/11/iframeFu", component: IframeFu },
     { path: "/demo/11/iframeZi", component: IframeZi },
+    { path: "/demo/11/Sort", component: Sort },
     { path: "/pinyin", component: PinYin },
     { path: "/generatePdf", component: generatePdf }
 ];
