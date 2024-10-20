@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Draggable from 'react-draggable';
+import { ShowType } from "./constant";
 import './_router.less';
 
 // 引入core文件夹下所有文件
@@ -65,7 +66,9 @@ import Sort from "../11demo/sort/index.jsx";
 import Test1 from "../test/1/1.jsx";
 import Test2 from "../test/2/1.jsx";
 
-import Table_Edit from "../antd/table/editTable.tsx";
+// import Table_Edit from "../antd/table/editTable.tsx";
+import Table_Edit from "../antd/table/editTable3";
+import Message from "../antd/message/index";
 
 import {
     BrowserRouter as Router,
@@ -111,6 +114,7 @@ const routes = [
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
     { path: "/antd/editTable", component: Table_Edit },
+    { path: "/antd/message", component: Message },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
     { path: "/demo/11/editContent", component: EditContent },
@@ -124,18 +128,22 @@ const routes = [
 
 export default function App() {
 
-    const [showDrag, setShowDrge] = useState(false);
+    const [showDrag, setShowDrag] = useState(ShowType.false);
 
     const updateDragShow = (value) => {
-        setShowDrge(value)
+        setShowDrag(value)
         window.localStorage.setItem("showDrag", value);
     }
 
     useEffect(() => {
         window.show = () => {
-            updateDragShow(true);
+            updateDragShow(ShowType.true);
         }
-        setShowDrge(Boolean(window.localStorage.getItem("showDrag")));
+        setShowDrag(Number(window.localStorage.getItem("showDrag")));
+        console.log('print show() to open Drag Menu');
+        return () => {
+            window.show = undefined;
+        }
     }, [])
 
     return (
@@ -145,7 +153,7 @@ export default function App() {
                     (
                         <Draggable>
                             <div className="list-touchbar">
-                                <div className="list-touchbar-close-icon" onClick={() => updateDragShow(false)}>x</div>
+                                <div className="list-touchbar-close-icon" onClick={() => updateDragShow(ShowType.false)}>x</div>
                                 <ul>
                                     {routes.map((route, index) => (
                                         <li key={index}>
