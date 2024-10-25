@@ -69,6 +69,7 @@ import Test2 from "../test/2/1.jsx";
 // import Table_Edit from "../antd/table/editTable.tsx";
 import Table_Edit from "../antd/table/editTable3";
 import Message from "../antd/message/index";
+import Upload from "../antd/upload/index";
 
 import {
     BrowserRouter as Router,
@@ -115,6 +116,7 @@ const routes = [
     // { path: "/business-compo/4", component: Business4 },
     { path: "/antd/editTable", component: Table_Edit },
     { path: "/antd/message", component: Message },
+    { path: "/antd/upload", component: Upload },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
     { path: "/demo/11/editContent", component: EditContent },
