@@ -1,0 +1,46 @@
+.upload-list-item-container {
+  display: inline-block;
+  width: 102px;
+  height: 102px;
+  vertical-align: top;
+  color: rgba(0, 0, 0, 0.88);
+  .hover-overlay {
+    opacity: 0;
+  }
+  &:hover {
+    .hover-overlay {
+      opacity: 1;
+    }
+  }
+
+  .upload-list-item-done {
+    border-radius: 8px;
+  }
+
+  .upload-list-item-progress {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.02);
+    border-style: dashed;
+    font-size: 14px;
+  }
+
+  .upload-list-item-error {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #ff4d4f;
+    border-radius: 8px;
+    height: 100%;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.02);
+    font-size: 14px;
+    justify-content: center;
+  }
+}

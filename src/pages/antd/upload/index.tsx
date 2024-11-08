@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Image, Upload } from "antd";
 import Info from "@/components/Info";
+import ImageList from './FileList';
 import type { GetProp, UploadFile, UploadProps } from "antd";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
@@ -88,6 +89,10 @@ const App: React.FC = () => {
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
+      <Info>
+        <div>自定义图片列表-图片上传demo</div>
+      </Info>
+      <ImageList fileList={fileList} onPreview={handlePreview}  onDelete={() => {}} />
       {previewImage && (
         <Image
           wrapperStyle={{ display: "none" }}
