@@ -67,7 +67,8 @@ import Test1 from "../test/1/1.jsx";
 import Test2 from "../test/2/1.jsx";
 
 // import Table_Edit from "../antd/table/editTable.tsx";
-import Table_Edit from "../antd/table/editTable3";
+// import Table_Edit from "../antd/table/editTable3";
+import Table_Edit from "../antd/table/滚动加载";
 import Message from "../antd/message/index";
 import Upload from "../antd/upload/index";
 
