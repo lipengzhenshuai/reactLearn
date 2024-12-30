@@ -1,15 +1,15 @@
 import React from "react";
-import { Consumer } from "./Parent";
+import { LanguageContext } from "./Parent";
 const LocaledButtons = () => {
   return (
-    <Consumer>
+    <LanguageContext.Consumer>
       {(locale) => (
         <div>
           <button>{locale.cancel}</button>
           &nbsp;<button>{locale.submit}</button>
         </div>
       )}
-    </Consumer>
+    </LanguageContext.Consumer>
   );
 };
 
