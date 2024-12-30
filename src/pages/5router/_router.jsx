@@ -12,7 +12,7 @@ import Clock from "../1core/5Clock";
 import Event from "../1core/6Event";
 import Condition from "../1core/7Condition";
 import Cycle from "../1core/8cycle";
-import Form from "../1core/9form";
+import BasicForm from "../1core/9form";
 import StateUp from "../1core/10StateUp";
 import LifeCycle from "../1core/11LifeCycle";
 
@@ -67,10 +67,15 @@ import Test1 from "../test/1/1.jsx";
 import Test2 from "../test/2/1.jsx";
 
 // import Table_Edit from "../antd/table/editTable.tsx";
+import Input from "../antd/input";
+import Card from "../antd/card";
 // import Table_Edit from "../antd/table/editTable3";
-import Table_Edit from "../antd/table/滚动加载";
+// import Table_Edit from "../antd/table/dynamicColumns/index";
+import Table_Edit from "../antd/table/滚动加载/index";
 import Message from "../antd/message/index";
-import Upload from "../antd/upload/index";
+// import Upload from "../antd/upload/index";
+import Upload from "../antd/upload/custom-img-upload/index";
+import Form from "../antd/form/index";
 
 import {
     BrowserRouter as Router,
@@ -88,7 +93,7 @@ const routes = [
     { path: "/core/6Event", component: Event },
     { path: "/core/7Condition", component: Condition },
     { path: "/core/8cycle", component: Cycle },
-    { path: "/core/9form", component: Form },
+    { path: "/core/9form", component: BasicForm },
     { path: "/core/10StateUp", component: StateUp },
     { path: "/core/11LifeCycle", component: LifeCycle },
     { path: "/middle/1codeSplit", component: CodeSplit },
@@ -115,9 +120,12 @@ const routes = [
     // { path: "/business-compo/2", component: Business2 },
     // { path: "/business-compo/3", component: Business3 },
     // { path: "/business-compo/4", component: Business4 },
+    { path: "/antd/input", component: Input },
+    { path: "/antd/card", component: Card },
     { path: "/antd/editTable", component: Table_Edit },
     { path: "/antd/message", component: Message },
     { path: "/antd/upload", component: Upload },
+    { path: "/antd/form", component: Form },
     { path: "/test/1", component: Test1 },
     { path: "/test/2", component: Test2 },
     { path: "/demo/11/editContent", component: EditContent },

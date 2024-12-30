@@ -1,0 +1,34 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle; /* 垂直居中 */
+}
+
+td {
+  white-space: normal; /* 允许内容换行 */
+}
+
+textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 4px;
+  box-sizing: border-box; /* 确保 padding 不影响宽度 */
+  resize: none; /* 禁止手动调整大小 */
+}
+
+button {
+  margin-left: 10px;
+}
+
+/* 拖拽时的样式 */
+.dragging {
+  background-color: #f0f0f0; /* 拖拽时背景颜色 */
+  opacity: 0.8; /* 拖拽时透明度 */
+}
