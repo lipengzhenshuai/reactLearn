@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import ChildCom from './childCom';
-import Info from '@/components/Info'
+import Info from '@/components/Info/index.tsx'
 
 const App = () => {
   const childRef = useRef();

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Info from "@/components/Info";
+import Info from "@/components/Info/index.tsx";
 import LocaledButtons from "./Son";
 import LocaledButtons2 from "./Son-2";
 

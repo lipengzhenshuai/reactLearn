@@ -73,8 +73,8 @@ import Card from "../antd/card";
 // import Table_Edit from "../antd/table/dynamicColumns/index";
 import Table_Edit from "../antd/table/滚动加载/index";
 import Message from "../antd/message/index";
-// import Upload from "../antd/upload/index";
-import Upload from "../antd/upload/custom-img-upload/index";
+import Upload from "../antd/upload/index";
+// import Upload from "../antd/upload/custom-img-upload/index";
 import Form from "../antd/form/index";
 
 import {
